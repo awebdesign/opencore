@@ -9,6 +9,10 @@
 
 namespace AwebCore;
 
+if (!defined('DIR_APPLICATION')) {
+	exit;
+}
+
 if (!defined('AWEBCORE_VERSION')) {
     define('AWEBCORE_VERSION', '1.0.0');
 }

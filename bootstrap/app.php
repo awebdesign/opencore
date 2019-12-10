@@ -9,9 +9,12 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-(new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
-    dirname(__DIR__)
-))->bootstrap();
+try {
+    (new Dotenv\Dotenv(__DIR__.'/../'))->load();
+} catch (Dotenv\Exception\InvalidPathException $e) {
+    //
+}
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -22,11 +25,28 @@ require_once __DIR__.'/../vendor/autoload.php';
 | application as an "IoC" container and router for this framework.
 |
 */
+
 $app = new Laravel\Lumen\Application(
-    dirname(__DIR__)
+    realpath(__DIR__.'/../')
 );
-// $app->withFacades();
-// $app->withEloquent();
+
+$defaults = [
+    'Illuminate\Support\Facades\Auth' => 'CoreAuth',
+    'Illuminate\Support\Facades\Cache' => 'CoreCache',
+    'Illuminate\Support\Facades\DB' => 'CoreDB',
+    'Illuminate\Support\Facades\Event' => 'CoreEvent',
+    'Illuminate\Support\Facades\Gate' => 'CoreGate',
+    'Illuminate\Support\Facades\Log' => 'CoreLog',
+    'Illuminate\Support\Facades\Queue' => 'CoreQueue',
+    'Illuminate\Support\Facades\Schema' => 'CoreSchema',
+    'Illuminate\Support\Facades\URL' => 'CoreURL',
+    'Illuminate\Support\Facades\Validator' => 'CoreValidator',
+    'Illuminate\Support\Facades\Request' => 'CoreRequest'
+];
+$app->withFacades(true, $defaults);
+
+//$app->withEloquent();
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
@@ -37,14 +57,17 @@ $app = new Laravel\Lumen\Application(
 | your own bindings here if you like or you can make another file.
 |
 */
+
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+    AwebCore\App\System\Exceptions\Handler::class
 );
+
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+    AwebCore\App\System\Console\Kernel::class
 );
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -55,12 +78,15 @@ $app->singleton(
 | route or middleware that'll be assigned to some specific routes.
 |
 */
+
 // $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
+//    App\Http\Middleware\ExampleMiddleware::class
 // ]);
+
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -71,9 +97,11 @@ $app->singleton(
 | totally optional, so you are not required to uncomment this line.
 |
 */
+
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -84,9 +112,26 @@ $app->singleton(
 | can respond to, as well as the controllers that may handle them.
 |
 */
-$app->router->group([
-    'namespace' => 'App\Http\Controllers',
+
+$app->group([
+    'namespace' => 'AwebCore\App\System\Http\Controllers',
 ], function ($router) {
-    require __DIR__.'/../routes/web.php';
+    require __DIR__.'/../App/System/Routes/web.php';
 });
+
+
+
+/*
+$app->group(['prefix' => 'admin'], function () use ($app) {
+    $app->get('users', function ()    {
+        // Matches The "/admin/users" URL
+    });
+});
+*/
+//Route::has('route.name');
+//pre(CoreRequest::is('route'),1);
+//pre($app['request']->current('admin/*'),1);
+//pre($app['request']->fullurl(),1);
+//pre($app['request']->path(),1);
+
 return $app;

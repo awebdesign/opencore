@@ -5,6 +5,26 @@
 	<version>1.0</version>
 	<author>AWeb Design</author>
 	<link>https://www.awebdesign.ro</link>
+	<file path="system/engine/action.php">
+		<operation>
+			<search><![CDATA[class Action {]]></search>
+			<add position="replace"><![CDATA[
+/* Aweb Core Module */
+require_once realpath(DIR_SYSTEM . '/../') . '/core/OcAction.php';
+
+use AwebCore\OcAction;
+class Action extends OcAction {]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[$class = 'Controller' . preg_replace('/[^a-zA-Z0-9]/', '', $this->route);]]></search>
+			<add position="after"><![CDATA[
+/* Aweb Core Module */
+if($this->checkAwebCoreRoute($this->id)) {
+	return $this->executeAwebCoreRoute();
+}
+]]></add>
+		</operation>
+	</file>
 	<file path="catalog/controller/startup/router.php">
 		<operation>
 			<search><![CDATA[class ControllerStartupRouter extends Controller {]]></search>

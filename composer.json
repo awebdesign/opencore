@@ -6,8 +6,13 @@
     "type": "project",    
     "require": {
         "php": "5.6.4",
-        "illuminate/contracts": "5.4.*",
-        "illuminate/http": "5.4.*"
+        "laravel/lumen-framework": ">=5.4.7",
+        "vlucas/phpdotenv": "~2.2"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "phpunit/phpunit": ">=5.7",
+        "mockery/mockery": "~0.9"
     },
     "autoload": {        
         "psr-4": {
@@ -23,5 +28,6 @@
         "optimize-autoloader": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "optimize-autoloader": true
 }
