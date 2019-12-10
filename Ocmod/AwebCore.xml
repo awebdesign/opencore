@@ -30,7 +30,7 @@ if($this->checkAwebCoreRoute($this->id)) {
 			<search><![CDATA[class ControllerStartupRouter extends Controller {]]></search>
 			<add position="replace"><![CDATA[
 /* Aweb Core Module */
-require_once realpath(DIR_SYSTEM . '/../') . '/core/Boot.php';
+require_once realpath(DIR_SYSTEM . '/../') . '/core/Loader.php';
 
 use AwebCore\OcRouter;
 class ControllerStartupRouter extends OcRouter {]]></add>
@@ -41,7 +41,7 @@ class ControllerStartupRouter extends OcRouter {]]></add>
 			<search><![CDATA[class ControllerStartupRouter extends Controller {]]></search>
 			<add position="replace"><![CDATA[
 /* Aweb Core Module */
-require_once realpath(DIR_SYSTEM . '/../') . '/core/Boot.php';
+require_once realpath(DIR_SYSTEM . '/../') . '/core/Loader.php';
 
 use AwebCore\OcRouter;
 class ControllerStartupRouter extends OcRouter {]]></add>

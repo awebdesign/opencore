@@ -29,7 +29,7 @@ class OcAction
         */
         //test
         //if($route == 'extension/module/awebcore') {
-        if($route == 'common/footer1') {
+        if($route == 'common/footer') {
             return true;
         }
     }
@@ -37,13 +37,13 @@ class OcAction
     public function executeAwebCoreRoute()
     {
         //pre($this->route);
-        $app = require __DIR__.'/bootstrap/app.php';
-        //
+        require __DIR__.'/App.php';
+        $app = App::getInstance();
+
         //$out = $app->run();
         $request = new \Symfony\Component\HttpFoundation\Request();
 
         $response = $app->handle($request);
-        //$out = $response->send();
 
         return $response->original;
     }
