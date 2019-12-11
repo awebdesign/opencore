@@ -1,0 +1,145 @@
+<?php
+// Heading
+$_['heading_title']                    = 'Tema Colorix';
+
+// Text
+$_['text_theme']                       = 'Teme';
+$_['text_extension']                   = 'Extensii';
+$_['text_success']                     = 'Succes: Ai modificat tema Colorix!';
+$_['text_edit']                        = 'Editeaza tema Colorix';
+$_['text_action']                      = 'Actiune';
+$_['text_general']                     = 'General';
+$_['text_design']                      = 'Aspect';
+$_['text_product']                     = 'Produse';
+$_['text_contact']                     = 'Contact';
+$_['text_footer']                      = 'Footer';
+$_['text_image']                       = 'Imagini';
+$_['text_import_export']               = 'Import / Export';
+$_['text_add_section']                 = 'Adauga Sectiune';
+$_['text_enabled']                     = 'Activat';
+$_['text_disabled']                    = 'Dezactivat';
+$_['text_no']                          = 'Nu';
+$_['text_yes']                         = 'Da';
+$_['text_import']                      = 'Importă setări Colorix';
+$_['text_export']                      = 'Exportă setări Colorix';
+$_['text_close']                       = 'Închide';
+$_['text_uploaded_alert']              = 'Fișierul a fost încarcat!';
+$_['text_upload']                      = 'Setările au fost încărcate cu succes!';
+$_['text_name']                        = 'Nume';
+$_['text_description']                 = 'Descriere';
+$_['text_add_tab']                     = 'Adauga Tab';
+$_['text_sales_agents']                = 'Agenti de vanzari';
+$_['text_add_contact_section']         = 'Adaugă Contact';
+
+$_['button_cancel']                    = 'Anuleaza';
+$_['button_export']                    = 'Exportă setările, modulele și layout-urile';
+$_['button_save']                      = 'Salveaza';
+$_['button_remove']                    = 'Sterge';
+$_['button_upload']                    = 'Încarcă un fișier';
+
+// Entry
+$_['entry_icon']                       = 'Iconita';
+$_['entry_title']                      = 'Titlu';
+$_['entry_text']                       = 'Text';
+$_['entry_directory']                  = 'Director tema';
+$_['entry_status']                     = 'Status';
+$_['entry_color_scheme']               = 'Schema de Culoare';
+$_['custom_color']                     = 'Culoare Custom';
+$_['entry_background_color']           = 'Culoare Fundal';
+$_['entry_background_image']           = 'Imagine Fundal';
+$_['entry_background_position']        = 'Poziție Imagine Fundal';
+$_['entry_background_size']            = 'Dimensiune Imagine Fundal';
+$_['entry_background_repeat']          = 'Repetă Imagine Fundal';
+$_['entry_category_menu']              = 'Format Meniu Categorii';
+$_['entry_sticky_logo']                = 'Logo Sticky';
+$_['entry_nav_type']                   = 'Bara Navigare';
+$_['entry_sections']                   = 'Sectiuni Bara Navigare';
+$_['entry_social']                     = 'Retele Sociale';
+$_['entry_fb']                         = 'Facebook URL';
+$_['entry_twitter']                    = 'Twitter URL';
+$_['entry_google']                     = 'Google+ URL';
+$_['entry_instagram']                  = 'Instagram URL';
+$_['entry_footer_about']               = 'Sectiune Text Footer';
+$_['entry_footer_custom_html']         = 'Sectiune Custom HTML';
+$_['entry_show_footer_block']          = 'Afiseaza Sectiuni Footer Infobox';
+$_['entry_footer_block']               = 'Sectiuni Footer Infobox';
+$_['entry_map']                        = 'Harta';
+$_['entry_map_embed_url']              = 'Google Maps Embed URL';
+$_['entry_contact_name']               = 'Nume';
+$_['entry_store_phone']                = 'Telefon';
+$_['entry_email_address']              = 'Email';
+$_['entry_custom_css']                 = 'Custom CSS';
+$_['entry_product_limit']              = 'Numărul de obiecte pe pagină';
+$_['entry_product_row_limit']          = 'Numărul de produse pe rând';
+$_['entry_product_description_length'] = 'Lungimea scurtei descrieri a produsului in lista';
+$_['entry_image_category']             = 'Dimensiunea imaginii categoriei';
+$_['entry_image_thumb']                = 'Dimensiunea Imaginii Produsului';
+$_['entry_image_popup']                = 'Dimensiunea Imaginii pop-up a Produsului';
+$_['entry_image_product']              = 'Dimensiunea imaginii in listele De Produse';
+$_['entry_image_additional']           = 'Dimensiunea Imaginilor Adiționale ale Produsului:';
+$_['entry_image_related']              = 'Dimensiunea Imaginilor produselor Asemănătoare:';
+$_['entry_image_compare']              = 'Dimensiunea Imaginilor produselor in pagina de comparare produse:';
+$_['entry_image_wishlist']             = 'Dimensiunea imaginilor in wishlist:';
+$_['entry_image_cart']                 = 'Dimensiunea Imaginilor produselor in cosul de cumparaturi:';
+$_['entry_image_location']             = 'Dimensiunea imaginii magazinului';
+$_['entry_image_quality']              = 'Calitatea imaginii';
+$_['entry_quality']                    = '1-100';
+$_['entry_width']                      = 'Latime';
+$_['entry_height']                     = 'Inaltime';
+$_['entry_warranty_information']    = 'Pagina informatii pentru garantii';
+$_['entry_warranty_information_i']  = 'Afiseaza pagina de informatii garantii pe pagina produsului';
+$_['entry_currency_sup']               = 'Modifică zecimalele pretului';
+$_['entry_quickview']                  = 'Afișează "Quickview" în lista de produse';
+$_['entry_compare']                    = 'Afișează "Compară" în lista de produse';
+$_['entry_wishlist']                   = 'Afișează "Wishlist" în lista de produse';
+$_['entry_extra_tabs']                 = 'Extra Taburi Produse';
+$_['entry_sales_agents']               = 'Afișează "Agentii de vanzari" pe pagina produsului';
+$_['entry_email']                      = 'Afișează Email';
+$_['entry_footer_template']            = 'Tip Footer';
+$_['entry_footer_tpl_1']               = 'Template 1';
+$_['entry_footer_tpl_2']               = 'Template 2';
+$_['entry_import_settings']            = 'Importă setări tema Colorix';
+$_['entry_import_extensions']          = 'Importă module Colorix';
+$_['entry_info_import']                = 'Importul suprascrie toate setările actuale!';
+
+$_['text_header']                      = 'Header';
+
+
+// Help
+$_['help_directory'] 	               = 'Acest camp exista doar in tema implicita pentru a permite compatibilitate temelor Aweb';
+$_['help_product_limit'] 	           = 'Câte obiecte (produse,categorii) sunt afisate pe pagina in catalog';
+$_['help_product_row_limit'] 	       = 'Câte produse sunt afisate pe pagina într-un rând (afișare tip grilă)';
+$_['help_product_description_length']  = 'Se refera la scurta descriere a produsului in lista de produse. Specifici numarul de caractere ce va fi afișat.';
+$_['help_currency_sup']                = 'Modifica fontul de afisare al zecimalelor';
+
+// Error
+$_['error_permission']                 = 'Eroare: Nu ai permisiunile necesare pentru a modifica această pagină. Contactează administratorul pentru asistență. Daca ești administrator mergi in admin la grupuri de utilizatori și actualizează permisiunile!';
+$_['error_invalid_form']               = 'Eroare: Formularul contine erori! Va rugam sa remediati problemele semnalate.';
+$_['error_limit']       	           = 'Limita este necesară!';
+$_['error_row_limit']       	       = 'Limita este necesară!';
+$_['error_image_thumb']                = 'Dimensiunea imaginilor este necesară!';
+$_['error_image_popup']                = 'Dimensiunea imaginilor este necesară!';
+$_['error_image_product']              = 'Dimensiunea imaginilor este necesară!';
+$_['error_image_category']             = 'Dimensiunea imaginilor este necesară!';
+$_['error_image_additional']           = 'Dimensiunea imaginilor este necesară!';
+$_['error_image_related']              = 'Dimensiunea imaginilor este necesară!';
+$_['error_image_compare']              = 'Dimensiunea imaginilor este necesară!';
+$_['error_image_wishlist']             = 'Dimensiunea imaginilor este necesară!';
+$_['error_image_cart']                 = 'Dimensiunea imaginilor este necesară!';
+$_['error_image_location']             = 'Specifică dimensiunile imaginii!';
+$_['error_image_quality']              = 'Calitatea imaginii este necesară!';
+$_['error_filetype']                   = 'Tip de fişier invalid!';
+$_['error_upload']                     = 'Fișierul nu a putut fi încărcat!';
+$_['error_upload_1']                   = 'Avertizare: Fișierul încărcat depașește directiva upload_max_filesize din php.ini!';
+$_['error_upload_2']                   = 'Avertizare: Fișierul încărcat depașește directiva MAX_FILE_SIZE care a fost specificată in formularul HTML!';
+$_['error_upload_3']                   = 'Avertizare: Fișierul a fost încărcat partial!';
+$_['error_upload_4']                   = 'Avertizare: Niciun fișier nu a fost încărcat!';
+$_['error_upload_6']                   = 'Avertizare: Lipsește un folder temporar!';
+$_['error_upload_7']                   = 'Avertizare: S-a eșuat scrierea fișierul pe disc!';
+$_['error_upload_8']                   = 'Avertizare: Incărcarea fișierului oprită de extensie!';
+$_['error_upload_999']                 = 'Avertizare: Niciun cod eroare disponibil!';
+$_['error_empty_import_file']          = 'Eroare: fișierul este gol!';
+$_['error_wrong_import_file_format']   = 'Tip de fişier invalid!';
+$_['error_wrong_import_file_table']    = 'Eroare! Tabele invalide: %s';
+$_['error_wrong_import_file_sql']      = 'Eroare SQL: fişier invalid!';
+$_['error_file_missing']               = 'Este necesară încărcarea unui fișier!';

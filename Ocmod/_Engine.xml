@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Colorix</name>
+    <code>Colorix</code>
+    <version>{{version}}</version>
+    <author>Aweb Design</author>
+    <link>https://www.awebdesign.ro</link>    
+    <file path="system/library/image.php">
+        <operation>
+            <search><![CDATA[
+            $info = pathinfo($file);
+            ]]></search>
+            <add position="after"><![CDATA[
+            if (class_exists('EngineUi') && EngineUi::isLoaded()) {
+                $quality = EngineUi::boot()->config('config.image_quality', $quality);
+            }
+            ]]></add>
+        </operation>
+    </file>
+</modification>
