@@ -19,8 +19,8 @@ $router->get('common/footer', [
     'as' => 'home', 'uses' => 'AdminExampleController@index'
 ]);
 
-$router->get('extension/module/awebcore', [
-    'as' => 'extension/module/awebcore', 'uses' => 'AwebcoreController@index'
+$router->get('extension/module/awebcore1', [
+    'as' => 'extension/module/awebcore1', 'uses' => 'AwebcoreController@index'
 ]);
 
 $router->get('test', [
