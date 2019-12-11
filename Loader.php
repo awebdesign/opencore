@@ -25,7 +25,7 @@ require_once AWEBCORE_DIR . 'vendor/autoload.php';
 require_once AWEBCORE_DIR . 'Helper/General.php';
 require_once AWEBCORE_DIR . 'OcRouter.php';
 
-//pre(new AwebCore\App\System\Controllers\OcController(),1);
+//pre(new AwebCore\App\Controllers\OcController(),1);
 
 //register autoloader
 /*spl_autoload_register(function ($className) {

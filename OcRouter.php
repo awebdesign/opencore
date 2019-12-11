@@ -9,11 +9,11 @@
 
 namespace AwebCore;
 
-use Exception;
+//use Exception;
 
 class OcRouter extends \Controller
 {
-    public $registry;
+    /*public $registry;
 
     public static function getInstance()
     {
@@ -21,5 +21,5 @@ class OcRouter extends \Controller
             throw new Exception('Oc Registry Instance Could not be loaded');
         }
         return $this->registry;
-    }
+    }*/
 }

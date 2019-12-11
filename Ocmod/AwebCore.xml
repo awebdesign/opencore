@@ -12,7 +12,7 @@
 /* Aweb Core Module */
 require_once realpath(DIR_SYSTEM . '/../') . '/core/OcAction.php';
 
-use AwebCore\OcAction;
+//use AwebCore\OcAction;
 class Action extends OcAction {]]></add>
 		</operation>
 		<operation>
