@@ -7,7 +7,7 @@
  *
  */
 
-namespace AwebCore\App\Traits;
+namespace AwebCore\Traits;
 
 trait Installer
 {
@@ -44,7 +44,7 @@ trait Installer
 
     public function loadOcMod($file, $replace = null)
     {
-        $engine_mod_path = AWEBCORE_DIR . 'Resources/' . $file . '.ocmod.xml';
+        $engine_mod_path = __DIR__ . '/../Resources/' . $file . '.ocmod.xml';
 
         if (!file_exists($engine_mod_path)) {
             throw new \Exception($engine_mod_path . ' cannot be found.');
@@ -477,7 +477,7 @@ trait Installer
 
     public function installHtaccess()
     {
-        $file = __DIR__ . '/../../Resources/htaccess.txt';
+        $file = __DIR__ . '/../Resources/htaccess.txt';
 
         if (!file_exists($file)) {
             throw new \Exception($file . ' cannot be found.');
@@ -499,6 +499,37 @@ trait Installer
         if (file_exists($destination_file) && !unlink($destination_file)) {
             throw new \Exception('Failed to remove .htaccess file to admin folder!');
         }
+    }
+
+    function installEvent($eventName, $eventPath, $eventAction)
+    {
+        /* 
+            Ex: AwebCore, extension/module/awebcore/beforeLoadingController, admin/controller/\*\/before
+        */
+        //delete old events if any
+        $extensionEvent = $this->removeEvent($eventName);
+
+        $extensionEvent->addEvent($eventName, $eventAction, $eventPath);
+    }
+
+    function removeEvent($eventName)
+    {
+        /* 
+            Ex: AwebCore
+        */
+        if (isOc3()) {
+            $extensionEvent = $this->getOcModel('setting/event');
+        } else {
+            $extensionEvent = $this->getOcModel('extension/event');
+        }
+
+        if (isOc3()) {
+            $extensionEvent->deleteEventByCode($eventName);
+        } else {
+            $extensionEvent->deleteEvent($eventName);
+        }
+
+        return $extensionEvent;
     }
 
     /*public function installEngine()
@@ -817,26 +848,6 @@ trait Installer
         }
 
         return true;
-    }
-
-    protected function installEvents()
-    {
-        if (isOc3()) {
-            $extensionEvent = $this->getOcModel('setting/event');
-            $eventName = 'extension/theme/awebcore/beforeLoadingController';
-        } else {
-            $extensionEvent = $this->getOcModel('extension/event');
-            $eventName = 'extension/theme/awebcore/beforeLoadingController';
-        }
-
-        //delete old events if any
-        if (isOc3()) {
-            $extensionEvent->deleteEventByCode($this->engineName);
-        } else {
-            $extensionEvent->deleteEvent($this->engineName);
-        }
-
-        $extensionEvent->addEvent($this->engineName, 'admin/controller/\*\/before', $eventName);
     }
 
     public function installSystemOcmod() {

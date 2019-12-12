@@ -18,9 +18,11 @@ $router->group([
     $router->get('home', 'HomeController@index');
 });
 
-$router->get('common/header', [
+/* test for multi instance */
+//TODO: we need to reset instance after triggering the first one !!!
+/*$router->get('common/header', [
     'as' => 'common/header', 'uses' => 'ExampleController@index'
-]);
+]);*/
 
 /* $router->get('extension/module/awebcore', [
     'as' => 'extension/module/awebcore', 'uses' => 'ExampleController@index'

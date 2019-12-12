@@ -94,15 +94,6 @@ class CoreController extends Controller
         return self::$config;
     }
 
-    public function getOcControllers($controllers = [], $args = [])
-    {
-        foreach ($controllers as $key => $controller) {
-            $this->setData($key, $this->getOcController($controller, $args));
-        }
-
-        return $this;
-    }
-
     public function view($filename, $data = [], $return = false)
     {
         $this->checkWrongFileName($filename);
@@ -146,17 +137,6 @@ class CoreController extends Controller
     }
 
     /* private & protected methods */
-
-    private function getWorkingFolder()
-    {
-        return !defined('HTTPS_CATALOG') ? 'catalog' : 'admin';
-    }
-
-    /* other */
-    private function filterOutput($output)
-    {
-        return $output;
-    }
 
     /* template */
     private function setData($key, $value = '')
@@ -206,16 +186,5 @@ class CoreController extends Controller
         ob_end_clean();
 
         return $content;
-    }
-
-    private function getCurrentLanguage($load_fallback)
-    {
-        if ($this->getWorkingFolder() == 'admin') {
-            $lang = $this->config->get('config_admin_language');
-        } else {
-            $lang = isset($this->session->data['language']) ? basename($this->session->data['language']) : $this->config->get('config_language');
-        }
-
-        return $load_fallback ? 'en-gb' : ($lang ?: $this->getCurrentLanguage(true));
     }
 }

@@ -16,7 +16,8 @@
     },
     "autoload": {        
         "psr-4": {
-            "AwebCore\\App\\": "App/"
+            "AwebCore\\App\\": "App/",
+            "AwebCore\\Traits\\": "Traits/"
         }
     },
     "config": {
