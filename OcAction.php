@@ -25,7 +25,7 @@ class OcAction
 
         $this->route = $route;
         /*
-        //should ignore the following
+        //we should ignore the following routes
         startup/startup
         startup/error
         startup/event
@@ -35,13 +35,11 @@ class OcAction
         startup/router
         event/compatibility/controller
         */
-        //test
-        //if($route == 'extension/module/awebcore') {
+
         if($framework->checkRoute($route)) {
+            /* vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php */
             $this->response = $framework->handle();
 
-//pre($route);
-//pre($this->response,1);
             return ($this->response->status() != '404') ? true : false;
         }
     }

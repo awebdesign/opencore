@@ -9,12 +9,13 @@
 
 //namespace AwebCore;
 
-
 class Framework
 {
     public static $instance;
 
     private $app;
+    private $uri = null;
+    private $httpMethod;
     
     public static $routes;
 
@@ -53,8 +54,39 @@ class Framework
             self::$routes = $routes;
         }
 
-        $route = strpos($route, '/') != 0 ? '/' . $route : $route;
+        $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+            foreach(self::$routes as $route) {
+                $r->addRoute($route['method'], $route['uri'], $route['action']['uses']);
+            }
+        });
 
-        return collect(self::$routes)->contains('uri', $route);
+        $route = strpos($route, '/') != 0 ? '/' . $route : $route;
+        // Strip query string (?foo=bar) and decode URI
+        if (false !== $pos = strpos($route, '?')) {
+            $route = substr($route, 0, $pos);
+        }
+        $route = rawurldecode($route);
+
+        $routeInfo = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $route);
+
+        switch ($routeInfo[0]) {
+            case FastRoute\Dispatcher::NOT_FOUND:
+                // ... 404 Not Found
+                return false;
+                break;
+            case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+                $allowedMethods = $routeInfo[1];
+                // ... 405 Method Not Allowed
+                return false;
+                break;
+            case FastRoute\Dispatcher::FOUND:
+                $handler = $routeInfo[1];
+                $vars = $routeInfo[2];
+                // ... call $handler with $vars
+                return true;
+                break;
+        }
+
+        return false;
     }
 }
