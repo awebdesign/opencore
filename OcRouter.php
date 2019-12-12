@@ -4,6 +4,7 @@
  *
  * Aweb Design
  * https://www.awebdesign.ro
+ * used by admin/controller/startup/router.php & catalog/controller/startup/seo_url.php
  *
  */
 

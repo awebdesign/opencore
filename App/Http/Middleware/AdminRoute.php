@@ -22,12 +22,6 @@ class AdminRoute
     */
     public function handle(Request $request, Closure $next)
     {
-        //TODO: find a solution for this thing!!!
-        /* Very Bad Work Arround -> in order to use route url query param */
-        if(isset($_SERVER['ORIGINAL_REQUEST_URI'])) {
-            $_SERVER['REQUEST_URI'] = $_SERVER['ORIGINAL_REQUEST_URI'];
-        }
-        
         return $next($request);
     }
 }

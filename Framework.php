@@ -55,8 +55,6 @@ class Framework
 
         $route = strpos($route, '/') != 0 ? '/' . $route : $route;
 
-        //pre(self::$routes);
-        //pre($route);
         return collect(self::$routes)->contains('uri', $route);
     }
 }

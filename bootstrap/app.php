@@ -112,14 +112,6 @@ $app->routeMiddleware([
 
 if(defined('HTTPS_CATALOG')) {
     //admin routes here
-
-    //TODO: find a solution for this thing!!!
-    /* Very Bad Work Arround -> in order to use route url query param */
-    if(isset($_GET['route'])) {
-        $_SERVER['ORIGINAL_REQUEST_URI'] = $_SERVER['REQUEST_URI'];
-        $_SERVER['REQUEST_URI'] = (new Request())->clean($_GET['route']);
-    }
- 
     $app->group([
         'namespace' => 'AwebCore\App\Http\Controllers\Admin',
         'middleware' => 'Admin'

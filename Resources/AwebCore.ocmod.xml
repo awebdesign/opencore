@@ -47,4 +47,45 @@ use AwebCore\OcRouter;
 class ControllerStartupRouter extends OcRouter {]]></add>
 		</operation>
 	</file>
+	<!--Url routing START -->
+	<file path="system/library/url.php">
+		<operation>
+			<search><![CDATA[class Url {]]></search>
+			<add position="before"><![CDATA[
+/* Aweb Core Module */
+require_once realpath(DIR_SYSTEM . '/../') . '/core/Traits/OcCore.php';
+
+use AwebCore\Traits\OcCore;
+]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[class Url {]]></search>
+			<add position="after"><![CDATA[use OcCore;]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[return $url;]]></search>
+			<add position="replace"><![CDATA[return $this->routeUrl($url);]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/startup/seo_url.php">
+		<operation>
+			<search><![CDATA[class ControllerStartupSeoUrl]]></search>
+			<add position="before"><![CDATA[
+/* Aweb Core Module */
+require_once realpath(DIR_SYSTEM . '/../') . '/core/Traits/OcCore.php';
+
+use AwebCore\Traits\OcCore;
+]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[Controller {]]></search>
+			<add position="after"><![CDATA[use OcCore;]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[if (!isset($this->request->get['route'])) {]]></search>
+			<add position="before"><![CDATA[/* Aweb Core Module */
+		$this->routeCatalogSeoUrl();]]></add>
+		</operation>
+	</file>
+	<!--Url routing END -->
 </modification>
