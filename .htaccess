@@ -1,3 +1,4 @@
-<FilesMatch "(?i)((\.tpl|\.twig|\.ini|\.log|\.txt|\.xml|\.log))">
-    Require all denied
-</Files> 
+order allow,deny
+<Files ~ "\.(ico|gif|jpg|jpeg|png|js|css)$">
+   allow from all
+</Files>
