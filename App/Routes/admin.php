@@ -11,24 +11,13 @@
 |
 */
 
-/*$router->get('/', [
-    'as' => 'home', 'uses' => 'AdminExampleController@index'
-]);*/
+$router->group([
+    'namespace' => 'Core',
+    'prefix' => 'core'
+], function ($router) {
+    $router->get('home', 'HomeController@index');
+});
 
-$router->get('common/footer', [
-    'as' => 'home', 'uses' => 'AdminExampleController@index'
+$router->get('example', [
+    'as' => 'example', 'uses' => 'ExampleController@index'
 ]);
-
-$router->get('extension/module/awebcore1', [
-    'as' => 'extension/module/awebcore1', 'uses' => 'AwebcoreController@index'
-]);
-
-$router->get('test', [
-    'as' => 'test', 'uses' => 'AdminExampleController@index'
-]);
-
-$router->get('test2', [
-    'as' => 'test', 'uses' => '2AdminExampleController@index'
-]);
-
-$router->get('mircea', 'mAdminExampleController@index');

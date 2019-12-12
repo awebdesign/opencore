@@ -11,8 +11,6 @@
 |
 */
 
-$router->get('/', [
-    'as' => 'home', 'uses' => 'CatalogExampleController@index'
+$router->get('example', [
+    'as' => 'example', 'uses' => 'ExampleController@index'
 ]);
-$router->get('extension/module/awebcore', 'CatalogExampleController@index');
-//$app->get('common/header', 'CatalogExampleController@index');

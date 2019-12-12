@@ -109,11 +109,12 @@ $app->routeMiddleware([
 | can respond to, as well as the controllers that may handle them.
 |
 */
+$namespace = 'AwebCore\App\Http\Controllers';
 
-if(defined('HTTPS_CATALOG')) {
+if (defined('HTTPS_CATALOG')) {
     //admin routes here
     $app->group([
-        'namespace' => 'AwebCore\App\Http\Controllers\Admin',
+        'namespace' => $namespace . '\Admin',
         'middleware' => 'Admin'
     ], function ($router) {
         require __DIR__ . '/../App/Routes/admin.php';
@@ -121,7 +122,7 @@ if(defined('HTTPS_CATALOG')) {
 } else {
     //catalog routes here
     $app->group([
-        'namespace' => 'AwebCore\App\Http\Controllers\Catalog',
+        'namespace' => $namespace . '\Catalog',
     ], function ($router) {
         require __DIR__ . '/../App/Routes/catalog.php';
     });

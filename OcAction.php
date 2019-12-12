@@ -48,18 +48,6 @@ class OcAction
 
     public function executeAwebCoreRoute()
     {
-        pre($this->route);
-        //pre(IRequest::get('route'));
-        pre(IRequest::url());
-        pre(IRequest::path());
-        //pre($this->response->original);
-        /*
-        pre(IRequest::query());
-        pre(IRequest::fullUrl());
-        pre(IRequest::getPathInfo()); 
-        */
-
-        //pre(App::make('url')->to('/'),1);
         if(isset($_GET['route']) && (new Request())->clean($_GET['route']) == $this->route) {
             echo $this->response->original;
         } else {
