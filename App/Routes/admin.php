@@ -25,13 +25,13 @@ $router->group([
     $router->get('home', 'HomeController@index');
 });
 
-$router->get('common/header', [
+/*$router->get('common/header', [
     'as' => 'common/header', 'uses' => 'ExampleController@index'
 ]);
 
 $router->get('common/footer', [
     'as' => 'common/footer', 'uses' => 'Core\HomeController@index'
-]);
+]);*/
 
 /* $router->get('extension/module/awebcore', [
     'as' => 'extension/module/awebcore', 'uses' => 'ExampleController@index'

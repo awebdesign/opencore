@@ -67,10 +67,12 @@ class Startup extends \Controller
     {
         $response = Framework::getInstance()->getResponse();
 
-        if (isset($this->request->get['route']) && $this->request->get['route'] == $this->route) {
-            echo $response->original;
+        /* if (isset($this->request->get['route']) && $this->request->get['route'] == $this->route) {
+            return $response->original;
         } else {
             return $response->original;
-        }
+        } */
+
+        return $response->original;
     }
 }
