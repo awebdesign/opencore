@@ -1,32 +1,19 @@
 <?php
 
-namespace AwebCore\App\;
+namespace AwebCore\App\User;
 
-use Illuminate\Auth\Authenticatable;
-use Laravel\Lumen\Auth\Authorizable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use AwebCore\App\Task;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+class User extends Authenticatable
 {
-    use Authenticatable, Authorizable;
+    // Other Eloquent Properties...
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * Get all of the tasks for the user.
      */
-    protected $fillable = [
-        'name', 'email',
-    ];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-    ];
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

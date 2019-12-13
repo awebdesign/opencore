@@ -23,6 +23,11 @@ $router->group([
     'prefix' => 'core'
 ], function ($router) {
     $router->get('home', 'HomeController@index');
+    $router->post('home/store', 'HomeController@store');
+    $router->post('home/store', 'HomeController@store');
+    $router->delete('home/{id}', [
+        'as' => 'home.destroy', 'uses' => 'HomeController@destroy'
+    ]);
 });
 
 /*$router->get('common/header', [
