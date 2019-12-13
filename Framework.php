@@ -15,8 +15,6 @@ class Framework
     private $app;
     private static $routes;
     private $response;
-    protected $registry;
-    private $data;
 
     public function __construct()
     {
@@ -47,26 +45,6 @@ class Framework
     }
 
     /**
-     * Retrieves the OpenCart registry
-     *
-     * @return object
-     */
-    public function getOcRegistry()
-    {
-        return $this->registry;
-    }
-
-    /**
-     * Retrieves OpenCart variables defined when the controller was loaded
-     *
-     * @return object
-     */
-    public function getOcVars()
-    {
-        return $this->data;
-    }
-
-    /**
      * Run Framework
      */
     public function run()
@@ -94,22 +72,20 @@ class Framework
      * @param object $registry
      * @return bool
      */
-    public function checkRoute($route, $registry, &$data = []) {
-        $this->registry = $registry;
-        $this->data = $data;
-
+    public function checkRoute($route)
+    {
         if (!self::$routes) {
             $routes = $this->app->getRoutes();
             self::$routes = $routes;
         }
 
-        $dispatcher = \FastRoute\cachedDispatcher(function(\FastRoute\RouteCollector $r) {
-            foreach(self::$routes as $route) {
+        $dispatcher = \FastRoute\cachedDispatcher(function (\FastRoute\RouteCollector $r) {
+            foreach (self::$routes as $route) {
                 $r->addRoute($route['method'], $route['uri'], $route['action']['uses']);
             }
         }, [
-            'cacheFile' => __DIR__ . '/route.cache', /* required */
-            'cacheDisabled' => false,     /* optional, enabled by default -> should be based on debug mode */
+            'cacheFile' => realpath(storage_path('framework/cache')) . '/route.cache', /* required */
+            'cacheDisabled' => config('app.debug')     /* optional, enabled by default */
         ]);
 
         $route = strpos($route, '/') != 0 ? '/' . $route : $route;

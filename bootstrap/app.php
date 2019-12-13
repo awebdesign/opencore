@@ -28,12 +28,12 @@ $defaults = [
     'Illuminate\Support\Facades\Cache' => 'ICache',
     'Illuminate\Support\Facades\DB' => 'IDB',
     'Illuminate\Support\Facades\Event' => 'IEvent',
-    'Illuminate\Support\Facades\Gate' => 'IGate',
+    'Illuminate\Support\Facades\Gate' => 'Gate',
     'Illuminate\Support\Facades\Log' => 'ILog',
-    'Illuminate\Support\Facades\Queue' => 'IQueue',
-    'Illuminate\Support\Facades\Schema' => 'ISchema',
+    'Illuminate\Support\Facades\Queue' => 'Queue',
+    'Illuminate\Support\Facades\Schema' => 'Schema',
     'Illuminate\Support\Facades\URL' => 'IURL',
-    'Illuminate\Support\Facades\Validator' => 'IValidator',
+    'Illuminate\Support\Facades\Validator' => 'Validator',
     'Illuminate\Support\Facades\Request' => 'IRequest'
 ];
 

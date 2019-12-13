@@ -24,13 +24,14 @@ require_once __DIR__ . '/Framework.php';
 class Startup extends \Controller
 {
     private $route;
-    private $_registry;
+    private static $_registry;
+    private $data;
 
     function __construct($registry)
     {
         parent::__construct($registry);
 
-        $this->_registry = $registry;
+        self::$_registry = $registry;
     }
 
     /**
@@ -51,11 +52,11 @@ class Startup extends \Controller
     public function checkAwebCoreRoute($route, &$data)
     {
         $this->route = $route;
-
+        $this->data = $data;
         /*
             We should add a dinamyc ignore list here
         */
-        if (Framework::getInstance()->checkRoute($route, $this->_registry, $data)) {
+        if (Framework::getInstance()->checkRoute($route)) {
             return Framework::getInstance()->handle();
         }
     }
@@ -73,5 +74,31 @@ class Startup extends \Controller
         } else {
             return $response;
         }
+    }
+
+    /**
+     * Retrieves the OpenCart registry
+     *
+     * @return object
+     */
+    public static function getRegistry($type = '')
+    {
+        $registry = self::$_registry;
+
+        if($type) {
+            return $registry->get($type);
+        }
+
+        return $registry;
+    }
+
+    /**
+     * Retrieves OpenCart variables defined when the controller was loaded
+     *
+     * @return object
+     */
+    public function getOcVars()
+    {
+        return $this->data;
     }
 }

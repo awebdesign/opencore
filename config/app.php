@@ -20,7 +20,9 @@ return [
     |
     */
 
-    'url' => defined('HTTPS_SERVER') ? HTTPS_SERVER : HTTP_SERVER,
+    'debug' => env('APP_DEBUG', false),
+
+    'url' => defined('HTTPS_SERVER') ? HTTPS_SERVER : (defined('HTTP_SERVER') ? HTTP_SERVER : ''), //we need both parms in case of artisan instance
 
     'key' => env('APP_KEY', 'SomeRandomString!!!'),
 
