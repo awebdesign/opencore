@@ -1,4 +1,11 @@
 <?php
+/*
+ * Created on Fri Dec 13 2019 by DaRock
+ *
+ * Aweb Design
+ * https://www.awebdesign.ro
+ *
+ */
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +25,13 @@ $router->group([
     $router->get('home', 'HomeController@index');
 });
 
-/* test for multi instance */
-//TODO: we need to reset instance after triggering the first one !!!
-/*$router->get('common/header', [
+$router->get('common/header', [
     'as' => 'common/header', 'uses' => 'ExampleController@index'
-]);*/
+]);
+
+$router->get('common/footer', [
+    'as' => 'common/footer', 'uses' => 'Core\HomeController@index'
+]);
 
 /* $router->get('extension/module/awebcore', [
     'as' => 'extension/module/awebcore', 'uses' => 'ExampleController@index'
