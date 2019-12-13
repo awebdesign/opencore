@@ -24,13 +24,13 @@ require_once __DIR__ . '/Framework.php';
 class Startup extends \Controller
 {
     private $route;
-    protected $registry;
+    private $_registry;
 
     function __construct($registry)
     {
         parent::__construct($registry);
 
-        $this->registry = $registry;
+        $this->_registry = $registry;
     }
 
     /**
@@ -55,7 +55,7 @@ class Startup extends \Controller
         /*
             We should add a dinamyc ignore list here
         */
-        if (Framework::getInstance()->checkRoute($route, $this->registry, $data)) {
+        if (Framework::getInstance()->checkRoute($route, $this->_registry, $data)) {
             return Framework::getInstance()->handle();
         }
     }
@@ -67,12 +67,11 @@ class Startup extends \Controller
     {
         $response = Framework::getInstance()->getResponse();
 
-        /* if (isset($this->request->get['route']) && $this->request->get['route'] == $this->route) {
-            return $response->original;
+        if (isset($this->request->get['route']) && $this->request->get['route'] == $this->route) {
+            echo $response;
+            return false;
         } else {
-            return $response->original;
-        } */
-
-        return $response->original;
+            return $response;
+        }
     }
 }

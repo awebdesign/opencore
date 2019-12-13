@@ -20,8 +20,8 @@ return [
     |
     */
 
-    'url' =>'http://www.dropshipping.d1.dv',
-    
+    'url' => defined('HTTPS_SERVER') ? HTTPS_SERVER : HTTP_SERVER,
+
     'key' => env('APP_KEY', 'SomeRandomString!!!'),
 
     'cipher' => 'AES-256-CBC',

@@ -30,7 +30,7 @@ $router->group([
 ]);
 
 $router->get('common/footer', [
-    'as' => 'common/footer', 'uses' => 'Core\HomeController@index'
+    'as' => 'common/footer', 'uses' => 'ExampleController@index'
 ]);*/
 
 /* $router->get('extension/module/awebcore', [

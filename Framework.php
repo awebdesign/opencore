@@ -43,7 +43,7 @@ class Framework
      */
     public function getResponse()
     {
-        return $this->response;
+        return $this->response->getContent();
     }
 
     /**
