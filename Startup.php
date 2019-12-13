@@ -48,14 +48,14 @@ class Startup extends \Controller
      *
      * @param string $route
      */
-    public function checkAwebCoreRoute($route)
+    public function checkAwebCoreRoute($route, &$data)
     {
         $this->route = $route;
 
         /*
             We should add a dinamyc ignore list here
         */
-        if (Framework::getInstance()->checkRoute($route, $this->registry)) {
+        if (Framework::getInstance()->checkRoute($route, $this->registry, $data)) {
             return Framework::getInstance()->handle();
         }
     }

@@ -16,6 +16,7 @@ class Framework
     private static $routes;
     private $response;
     protected $registry;
+    private $data;
 
     public function __construct()
     {
@@ -56,6 +57,16 @@ class Framework
     }
 
     /**
+     * Retrieves OpenCart variables defined when the controller was loaded
+     *
+     * @return object
+     */
+    public function getOcVars()
+    {
+        return $this->data;
+    }
+
+    /**
      * Run Framework
      */
     public function run()
@@ -83,8 +94,9 @@ class Framework
      * @param object $registry
      * @return bool
      */
-    public function checkRoute($route, $registry) {
+    public function checkRoute($route, $registry, &$data = []) {
         $this->registry = $registry;
+        $this->data = $data;
 
         if (!self::$routes) {
             $routes = $this->app->getRoutes();
