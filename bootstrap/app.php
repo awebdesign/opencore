@@ -62,6 +62,18 @@ $app->singleton(
     AwebCore\App\Console\Kernel::class
 );
 
+/**
+ * Loading session manager
+ * https://github.com/rummykhan/lumen-session-example
+ */
+$app->singleton(Illuminate\Session\SessionManager::class, function () use ($app) {
+    return $app->loadComponent('session', Illuminate\Session\SessionServiceProvider::class, 'session');
+});
+
+$app->singleton('session.store', function () use ($app) {
+    return $app->loadComponent('session', Illuminate\Session\SessionServiceProvider::class, 'session.store');
+});
+
 $app->configure('app');
 
 
@@ -75,6 +87,11 @@ $app->configure('app');
 | route or middleware that'll be assigned to some specific routes.
 |
 */
+
+$app->middleware([
+    Illuminate\Session\Middleware\StartSession::class,
+    Illuminate\View\Middleware\ShareErrorsFromSession::class,
+]);
 
 // $app->middleware([
 //    AwebCore\App\Http\Middleware\ExampleMiddleware::class
