@@ -25,7 +25,7 @@ $router->group([
     $router->get('home', 'HomeController@index');
     $router->post('home/store', 'HomeController@store');
     $router->post('home/store', 'HomeController@store');
-    $router->delete('home/{id}', [
+    $router->delete('/home/{id}', [
         'as' => 'home.destroy', 'uses' => 'HomeController@destroy'
     ]);
 });

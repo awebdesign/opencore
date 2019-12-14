@@ -21,3 +21,7 @@
 $router->get('example', [
     'as' => 'example', 'uses' => 'ExampleController@index'
 ]);
+
+$router->get('example/json', [
+    'as' => 'example.json', 'uses' => 'ExampleController@json'
+]);
