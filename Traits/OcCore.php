@@ -78,9 +78,9 @@ trait OcCore
     {
         //add permissions
         $permissions = is_array($permissions) ? $permissions : [$permissions];
-        
+
         $this->load->model('user/user_group');
-        foreach($permissions as $permission) {
+        foreach ($permissions as $permission) {
             $this->model_user_user_group->addPermission($this->user->getGroupId(), $permission, $path);
         }
     }

@@ -85,7 +85,7 @@ class Startup extends \Controller
     {
         $registry = self::$_registry;
 
-        if($type) {
+        if ($type) {
             return $registry->get($type);
         }
 
