@@ -41,6 +41,8 @@ class Framework
      */
     public function getResponse()
     {
+        $this->response->sendHeaders();
+
         return $this->response->getContent();
     }
 
@@ -55,9 +57,9 @@ class Framework
     /**
      * Handle Framework Response
      */
-    public function handle()
+    public function handle($request = null)
     {
-        $this->response = $this->app->dispatch(null);
+        $this->response = $this->app->dispatch($request);
 
         //TEMPORARY REQUEST URI CHANGE -> IN ORDER TO USE MULTIPLE INSTANCES
         $_SERVER['REQUEST_URI'] = $_SERVER['ORIGINAL_REQUEST_URI'];
@@ -88,7 +90,7 @@ class Framework
             'cacheDisabled' => config('app.debug')     /* optional, enabled by default */
         ]);
 
-        $route = strpos($route, '/') != 0 ? '/' . $route : $route;
+        $route = $route[0] != '/' ? '/' . $route : $route;
         // Strip query string (?foo=bar) and decode URI
         if (false !== $pos = strpos($route, '?')) {
             $route = substr($route, 0, $pos);
@@ -96,7 +98,9 @@ class Framework
         $route = rawurldecode($route);
 
         $_SERVER['REQUEST_URI'] = $route;
-        $routeInfo = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $route);
+
+        $request = \Illuminate\Http\Request::capture();
+        $routeInfo = $dispatcher->dispatch($request->getMethod(), $route);
 
         switch ($routeInfo[0]) {
             case \FastRoute\Dispatcher::NOT_FOUND:
@@ -106,6 +110,7 @@ class Framework
             case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
                 //$allowedMethods = $routeInfo[1];
                 // ... 405 Method Not Allowed
+                //throw new \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException($routeInfo[1]);
                 return false;
                 break;
             case \FastRoute\Dispatcher::FOUND:
