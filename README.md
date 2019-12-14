@@ -47,5 +47,6 @@ ATTENTIE
 most of facades have an I in front of the name: instead of URL you will need to use IURL. That's because OpenCart already using some of the names and in order to duplicates we had to rename it
 
 Stept to use AwebCore
-1. run: php artisan migrate:install
-2. run:  php artisan migrate
+1. run: php artisan key:generate OR php -r "echo bin2hex(random_bytes(16));" => and change APP_KEY from core/.env file
+2. run: php artisan migrate:install
+3. run: php artisan migrate
