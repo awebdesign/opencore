@@ -66,6 +66,12 @@ $app->singleton(
  * Loading session manager
  * https://github.com/rummykhan/lumen-session-example
  */
+$app->singleton('cookie', function () use ($app) {
+    return $app->loadComponent('session', 'Illuminate\Cookie\CookieServiceProvider', 'cookie');
+});
+
+$app->bind('Illuminate\Contracts\Cookie\QueueingFactory', 'cookie');
+
 $app->singleton(Illuminate\Session\SessionManager::class, function () use ($app) {
     return $app->loadComponent('session', Illuminate\Session\SessionServiceProvider::class, 'session');
 });
@@ -89,8 +95,11 @@ $app->configure('app');
 */
 
 $app->middleware([
-    Illuminate\Session\Middleware\StartSession::class,
-    Illuminate\View\Middleware\ShareErrorsFromSession::class,
+    \Illuminate\Cookie\Middleware\EncryptCookies::class,
+    \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+    \Illuminate\Session\Middleware\StartSession::class,
+    \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+    //Laravel\Lumen\Http\Middleware\VerifyCsrfToken::class,
 ]);
 
 // $app->middleware([
