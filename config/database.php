@@ -35,6 +35,26 @@ return [
 
     'connections' => [
 
+        'mysqlshared' => [
+            'driver' => 'mysqlshared',
+            'url' => env('DATABASE_URL'),
+            'host' => DB_HOSTNAME,
+            'port' => DB_PORT,
+            'database' => DB_DATABASE,
+            'username' => DB_USERNAME,
+            'password' => DB_PASSWORD,
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => DB_PREFIX,
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
