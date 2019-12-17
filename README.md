@@ -1,10 +1,8 @@
-/*
- * Created on Fri Dec 13 2019 by DaRock
- *
- * Aweb Design
- * https://www.awebdesign.ro
- *
- */
+Aweb Core Project
+by Aweb Design
+https://www.awebdesign.ro/en/
+
+
 
 FOLDER STRUCTURE OF Aweb Core
 
@@ -43,14 +41,19 @@ etc..
     => IF DOES NOT exists in /awebcore/App/Controllers/Admin/common/header.php => we load the system default one
 same for model, lang, view, etc
 
-ATTENTIE
+ATTENTION
 most of facades have an I in front of the name: instead of URL you will need to use IURL. That's because OpenCart already using some of the names and in order to duplicates we had to rename it
 
 
 we need to run stres tests
 ab -n 500 -c 100 homestead.app/
 
-Stept to use AwebCore
-1. run: php artisan key:generate OR php -r "echo bin2hex(random_bytes(16));" => and change APP_KEY from core/.env file
-2. run: php artisan migrate:install
-3. run: php artisan migrate
+Steps to use AwebCore
+
+1. Install Git and Composer on your system
+2. go to your OpenCart root folder, open a console and run the following commands step by step
+3. git clone https://github.com/awebdesign/awebcore.git core
+4. composer update
+5. php artisan key:generate OR php -r "echo bin2hex(random_bytes(16));", copy the key shown there and change APP_KEY from core/.env file
+6. php artisan migrate:install
+7. php artisan migrate
