@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'AwebCore'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => defined('HTTPS_SERVER') ? HTTPS_SERVER : HTTP_SERVER,
 
     'asset_url' => env('ASSET_URL', null),
 

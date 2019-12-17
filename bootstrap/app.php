@@ -43,22 +43,6 @@ $app->singleton(
     AwebCore\App\Exceptions\Handler::class
 );
 
-//$app->configure('app');
-/*
-|--------------------------------------------------------------------------
-| Register Middleware
-|--------------------------------------------------------------------------
-|
-| Next, we will register the middleware with the application. These can
-| be global middleware that run before and after each request into a
-| route or middleware that'll be assigned to some specific routes.
-|
-*/
-
-$app->router->middleware([
-    'Admin' => AwebCore\App\Http\Middleware\AdminRoute::class
-]);
-
 /*
 |--------------------------------------------------------------------------`
 | Load The Application Routes
@@ -69,20 +53,21 @@ $app->router->middleware([
 | can respond to, as well as the controllers that may handle them.
 |
 */
-$namespace = 'AwebCore\App\Http\Controllers';
+$namespace = 'AwebCore\App\Http';
 
 if (defined('HTTPS_CATALOG')) {
     //admin routes here
     $app->router->group([
-        'namespace' => $namespace . '\Admin',
-        'middleware' => 'Admin'
+        'namespace' => $namespace . '\Controllers\Admin',
+        'middleware' => ['web', $namespace . '\Middleware\AdminRoute']
     ], function ($router) {
         require __DIR__ . '/../app/Routes/admin.php';
     });
 } else {
     //catalog routes here
     $app->router->group([
-        'namespace' => $namespace . '\Catalog',
+        'namespace' => $namespace . '\Controllers\Catalog',
+        'middleware' => 'web'
     ], function ($router) {
         require __DIR__ . '/../app/Routes/catalog.php';
     });

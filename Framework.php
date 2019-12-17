@@ -72,7 +72,15 @@ class Framework
      */
     public function run()
     {
-        $this->app->run();
+        $this->kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
+
+        $this->response = $this->kernel->handle(
+            $this->request = \Illuminate\Http\Request::capture()
+        );
+
+        $this->response->send();
+
+        $this->kernel->terminate($this->request, $this->response);
     }
 
     /**
@@ -80,7 +88,6 @@ class Framework
      */
     public function handle()
     {
-
         $this->kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
 
         $this->response = $this->kernel->handle(
