@@ -9,12 +9,29 @@
 
 namespace AwebCore;
 
+define('LARAVEL_START', microtime(true));
+
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| our application. We just need to utilize it! We'll simply require it
+| into the script here so that we don't have to worry about manual
+| loading any of our classes later on. It feels great to relax.
+|
+*/
+require __DIR__ . '/vendor/autoload.php';
+
 class Framework
 {
     public static $instance;
     private $app;
     private static $routes;
     private $response;
+    private $request;
+    private $kernel;
 
     public function __construct()
     {
@@ -43,7 +60,11 @@ class Framework
     {
         $this->response->sendHeaders();
 
-        return $this->response->getContent();
+        $content = $this->response->getContent();
+
+        $this->kernel->terminate($this->request, $this->response);
+
+        return $content;
     }
 
     /**
@@ -57,9 +78,14 @@ class Framework
     /**
      * Handle Framework Response
      */
-    public function handle($request = null)
+    public function handle()
     {
-        $this->response = $this->app->dispatch($request);
+
+        $this->kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
+
+        $this->response = $this->kernel->handle(
+            $this->request = \Illuminate\Http\Request::capture()
+        );
 
         //TEMPORARY REQUEST URI CHANGE -> IN ORDER TO USE MULTIPLE INSTANCES
         $_SERVER['REQUEST_URI'] = $_SERVER['ORIGINAL_REQUEST_URI'];
@@ -76,21 +102,7 @@ class Framework
      */
     public function checkRoute($route)
     {
-        if (!self::$routes) {
-            $routes = $this->app->getRoutes();
-            self::$routes = $routes;
-        }
-
-        $dispatcher = \FastRoute\cachedDispatcher(function (\FastRoute\RouteCollector $r) {
-            foreach (self::$routes as $route) {
-                $r->addRoute($route['method'], $route['uri'], $route['action']['uses']);
-            }
-        }, [
-            'cacheFile' => realpath(storage_path('framework/cache')) . '/route.cache', /* required */
-            'cacheDisabled' => config('app.debug')     /* optional, enabled by default */
-        ]);
-
-        $route = $route[0] != '/' ? '/' . $route : $route;
+        //$route = $route[0] != '/' ? '/' . $route : $route;
         // Strip query string (?foo=bar) and decode URI
         if (false !== $pos = strpos($route, '?')) {
             $route = substr($route, 0, $pos);
@@ -99,28 +111,6 @@ class Framework
 
         $_SERVER['REQUEST_URI'] = $route;
 
-        $request = \Illuminate\Http\Request::capture();
-        $routeInfo = $dispatcher->dispatch($request->getMethod(), $route);
-
-        switch ($routeInfo[0]) {
-            case \FastRoute\Dispatcher::NOT_FOUND:
-                // ... 404 Not Found
-                return false;
-                break;
-            case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-                //$allowedMethods = $routeInfo[1];
-                // ... 405 Method Not Allowed
-                //throw new \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException($routeInfo[1]);
-                return false;
-                break;
-            case \FastRoute\Dispatcher::FOUND:
-                //$handler = $routeInfo[1];
-                //$vars = $routeInfo[2];
-                // ... call $handler with $vars
-                return true;
-                break;
-        }
-
-        return false;
+        return $this->app->router->has($route);
     }
 }

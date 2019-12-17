@@ -1,7 +1,13 @@
 /node_modules
+/public/hot
+/public/storage
 /storage/*.key
+/composer.lock
 /vendor
 .env
+.env.backup
 .phpunit.result.cache
+Homestead.json
+Homestead.yaml
 npm-debug.log
-/composer.lock
+yarn-error.log

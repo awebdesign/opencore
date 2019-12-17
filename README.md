@@ -48,6 +48,9 @@ most of facades have an I in front of the name: instead of URL you will need to 
 we need to run stres tests
 ab -n 500 -c 100 homestead.app/
 
+Dev mode:
+composer dump-autoload
+
 Steps to use AwebCore
 
 1. Install Git and Composer on your system
@@ -61,4 +64,3 @@ Steps to use AwebCore
 9. go to OpenCart admin panel / extensions / extensions / modules, find AwebCore module and install it
 
 Enjoy!
-

@@ -49,8 +49,19 @@ trait OcCore
     public function routeCatalogSeoUrl()
     {
         if (isset($this->request->get['_route_']) && $this->request->get['route'] == 'error/not_found') {
-            $this->request->get['route'] = $this->request->get['_route_'];
+            $newRoute = $this->request->get['_route_'];
+            $this->request->get['route'] = $newRoute;
+            $this->request->get['has_route'][$newRoute] = true;
+
+            return true;
         }
+
+        return false;
+    }
+
+    public function isRouted($route)
+    {
+        return !empty($this->request->get['has_route'][$route]);
     }
 
     public function getTokenStr()
