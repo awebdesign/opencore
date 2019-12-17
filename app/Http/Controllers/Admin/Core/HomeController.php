@@ -37,25 +37,22 @@ class HomeController extends Controller
          *
          * https://lumen.laravel.com/docs/5.4/validation
          */
-        /* $this->validate($request, [
-            'name' => 'required|max:255',
-        ]); */
 
-        /* $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
         ]);
-        */
+
         $redirect = '/admin/core/home?' . (new OcCore())->getTokenStr();
 
-        /* if ($validator->fails()) {
-            //return $validator->errors();
+        if ($validator->fails()) {
             return redirect($redirect)
                 ->withInput()
                 ->withErrors($validator);
-        } */
+        }
 
         $task = new Task;
         $task->name = $request->name;
+        $task->user_id = 0;
         $task->save();
 
         return redirect($redirect);

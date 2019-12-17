@@ -1,8 +1,7 @@
 <div class="panel-body">
     <!-- New Task Form -->
     <form action="/admin/core/home/store?{{$token}}" method="POST" class="form-horizontal">
-        {{-- {{ csrf_field() }} --}}
-        <input type="hidden" name="_token" value="{{-- app('session')->token() --}}">
+        {{ csrf_field() }}
 
         <!-- Task Name -->
         <div class="form-group">

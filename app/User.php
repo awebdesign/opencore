@@ -7,7 +7,12 @@ use AwebCore\App\Task;
 
 class User extends Authenticatable
 {
-    // Other Eloquent Properties...
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
 
     /**
      * Get all of the tasks for the user.
