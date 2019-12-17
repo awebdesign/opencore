@@ -66,7 +66,7 @@ $app->singleton(
  * Loading session manager
  * https://github.com/rummykhan/lumen-session-example
  */
-$app->singleton('cookie', function () use ($app) {
+/* $app->singleton('cookie', function () use ($app) {
     return $app->loadComponent('session', 'Illuminate\Cookie\CookieServiceProvider', 'cookie');
 });
 
@@ -78,7 +78,7 @@ $app->singleton(Illuminate\Session\SessionManager::class, function () use ($app)
 
 $app->singleton('session.store', function () use ($app) {
     return $app->loadComponent('session', Illuminate\Session\SessionServiceProvider::class, 'session.store');
-});
+}); */
 
 $app->configure('app');
 
@@ -94,13 +94,13 @@ $app->configure('app');
 |
 */
 
-$app->middleware([
-    \Illuminate\Cookie\Middleware\EncryptCookies::class,
-    \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-    \Illuminate\Session\Middleware\StartSession::class,
-    \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-    //Laravel\Lumen\Http\Middleware\VerifyCsrfToken::class,
-]);
+// $app->middleware([
+//     \Illuminate\Cookie\Middleware\EncryptCookies::class,
+//     \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+//     \Illuminate\Session\Middleware\StartSession::class,
+//     \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+//     \Laravel\Lumen\Http\Middleware\VerifyCsrfToken::class,
+// ]);
 
 // $app->middleware([
 //    AwebCore\App\Http\Middleware\ExampleMiddleware::class
@@ -143,14 +143,14 @@ if (defined('HTTPS_CATALOG')) {
         'namespace' => $namespace . '\Admin',
         'middleware' => 'Admin'
     ], function ($router) {
-        require __DIR__ . '/../App/Routes/admin.php';
+        require __DIR__ . '/../app/Routes/admin.php';
     });
 } else {
     //catalog routes here
     $app->group([
         'namespace' => $namespace . '\Catalog',
     ], function ($router) {
-        require __DIR__ . '/../App/Routes/catalog.php';
+        require __DIR__ . '/../app/Routes/catalog.php';
     });
 }
 

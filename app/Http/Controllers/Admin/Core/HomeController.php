@@ -23,36 +23,36 @@ class HomeController extends Controller
 
         $tasks = Task::orderBy('created_at', 'asc')->get();
 
-        return view("admin/core/home", compact('header', 'column_left', 'footer', 'tasks', 'token'));
+        return view("admin.core.home", compact('header', 'column_left', 'footer', 'tasks', 'token'));
     }
 
     function store(Request $request)
     {
         /**
-         * Lumen does not support sessions out of the box, so the $errors view variable that is available 
-         * in every view in Laravel is not available in Lumen. Should validation fail, the $this->validate 
-         * helper will throw Illuminate\Validation\ValidationException with embedded JSON response that 
-         * includes all relevant error messages. If you are not building a stateless API that solely sends 
+         * Lumen does not support sessions out of the box, so the $errors view variable that is available
+         * in every view in Laravel is not available in Lumen. Should validation fail, the $this->validate
+         * helper will throw Illuminate\Validation\ValidationException with embedded JSON response that
+         * includes all relevant error messages. If you are not building a stateless API that solely sends
          * JSON responses, you should use the full Laravel framework.
-         * 
+         *
          * https://lumen.laravel.com/docs/5.4/validation
          */
         /* $this->validate($request, [
             'name' => 'required|max:255',
         ]); */
 
-        $validator = Validator::make($request->all(), [
+        /* $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
         ]);
-
+        */
         $redirect = '/admin/core/home?' . (new OcCore())->getTokenStr();
 
-        if ($validator->fails()) {
+        /* if ($validator->fails()) {
             //return $validator->errors();
             return redirect($redirect)
                 ->withInput()
                 ->withErrors($validator);
-        }
+        } */
 
         $task = new Task;
         $task->name = $request->name;

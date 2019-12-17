@@ -18,7 +18,7 @@ if (!defined('AWEBCORE_VERSION')) {
 }
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/Helper/General.php';
+require_once __DIR__ . '/helper/General.php';
 require_once __DIR__ . '/Framework.php';
 
 class Startup extends \Controller

@@ -3,11 +3,9 @@
     "description": "The Laravel Lumen Framework for OpenCart projects",
     "keywords": ["framework", "laravel", "lumen", "opencart"],
     "license": "MIT",
-    "type": "project",    
+    "type": "project",
     "require": {
         "php": "5.6.4",
-        "illuminate/cookie": "^5.4",
-        "illuminate/session": "^5.4",
         "laravel/lumen-framework": ">=5.4.7",
         "vlucas/phpdotenv": "~2.2"
     },
@@ -16,10 +14,10 @@
         "phpunit/phpunit": ">=5.7",
         "mockery/mockery": "~0.9"
     },
-    "autoload": {        
+    "autoload": {
         "psr-4": {
-            "AwebCore\\App\\": "App/",
-            "AwebCore\\Traits\\": "Traits/"
+            "AwebCore\\App\\": "app/",
+            "AwebCore\\Traits\\": "traits/"
         }
     },
     "config": {
