@@ -11,7 +11,7 @@
 			<search><![CDATA[class Url {]]></search>
 			<add position="before"><![CDATA[
 /* Aweb Core Module */
-require_once realpath(DIR_SYSTEM . '/../') . '/core/Traits/OcCore.php';
+require_once realpath(DIR_SYSTEM . '/../') . '/core/traits/OcCore.php';
 
 use AwebCore\Traits\OcCore;
 ]]></add>
@@ -30,7 +30,7 @@ use AwebCore\Traits\OcCore;
 			<search><![CDATA[class ControllerStartupSeoUrl]]></search>
 			<add position="before"><![CDATA[
 /* Aweb Core Module */
-require_once realpath(DIR_SYSTEM . '/../') . '/core/Traits/OcCore.php';
+require_once realpath(DIR_SYSTEM . '/../') . '/core/traits/OcCore.php';
 
 use AwebCore\Traits\OcCore;
 ]]></add>
