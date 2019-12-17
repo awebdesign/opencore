@@ -42,7 +42,7 @@ class HomeController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        $redirect = '/admin/core/home?' . (new OcCore())->getTokenStr();
+        $redirect = 'core/home?' . (new OcCore())->getTokenStr();
 
         if ($validator->fails()) {
             return redirect($redirect)
@@ -66,6 +66,6 @@ class HomeController extends Controller
 
         $task->delete();
 
-        return redirect('/admin/core/home?' . (new OcCore())->getTokenStr());
+        return redirect('core/home?' . (new OcCore())->getTokenStr());
     }
 }

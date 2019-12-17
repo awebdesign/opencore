@@ -58,6 +58,7 @@ $namespace = 'AwebCore\App\Http';
 if (defined('HTTPS_CATALOG')) {
     //admin routes here
     $app->router->group([
+        //'prefix' => 'admin',
         'namespace' => $namespace . '\Controllers\Admin',
         'middleware' => ['web', $namespace . '\Middleware\AdminRoute']
     ], function ($router) {

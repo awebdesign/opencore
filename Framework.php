@@ -90,12 +90,7 @@ class Framework
     {
         $this->kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
 
-        $this->response = $this->kernel->handle(
-            $this->request = \Illuminate\Http\Request::capture()
-        );
-
-        //TEMPORARY REQUEST URI CHANGE -> IN ORDER TO USE MULTIPLE INSTANCES
-        $_SERVER['REQUEST_URI'] = $_SERVER['ORIGINAL_REQUEST_URI'];
+        $this->response = $this->kernel->handle($this->request);
 
         return ($this->response->status() != '404') ? true : false;
     }
@@ -109,15 +104,14 @@ class Framework
      */
     public function checkRoute($route)
     {
-        //$route = $route[0] != '/' ? '/' . $route : $route;
         // Strip query string (?foo=bar) and decode URI
         if (false !== $pos = strpos($route, '?')) {
             $route = substr($route, 0, $pos);
         }
         $route = rawurldecode($route);
 
-        $_SERVER['REQUEST_URI'] = $route;
+        $this->request = \Illuminate\Http\Request::capture();
 
-        return $this->app->router->has($route);
+        return $this->app->router->has($route) || $this->request->is($route .'*');
     }
 }
