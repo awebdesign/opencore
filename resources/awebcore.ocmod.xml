@@ -45,5 +45,34 @@ use AwebCore\Traits\OcCore;
 		$this->routeCatalogSeoUrl();]]></add>
 		</operation>
 	</file>
+    <!-- if using SEO MEGA PACK -->
+    <file path="catalog/controller/common/seo_mega_pack_pro_url.php">
+		<operation>
+			<search><![CDATA[class ControllerCommonSeoMegaPackProUrl]]></search>
+			<add position="before"><![CDATA[
+/* Aweb Core Module */
+require_once realpath(DIR_SYSTEM . '/../') . '/core/traits/OcCore.php';
+
+use AwebCore\Traits\OcCore;
+]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[Controller {]]></search>
+			<add position="after"><![CDATA[use OcCore;]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[private function parseUrlExt_part_3( $part, $parts, $params ) {]]></search>
+			<add position="after"><![CDATA[/* Aweb Core Module */
+		if($this->routeCatalogSeoUrl()) {
+            return true; //we have found a AwebCore match so we will ignore the rest of SeoPack
+        }]]></add>
+		</operation>
+        <operation>
+			<search><![CDATA[return new Action( $this->request->get['route'] );]]></search>
+			<add position="before"><![CDATA[if($this->isRouted($this->request->get['route'])) {
+                return true; //we have found a AwebCore match so we will ignore the rest of SeoPack
+            }]]></add>
+		</operation>
+	</file>
 	<!--Url routing END -->
 </modification>
