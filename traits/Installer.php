@@ -44,7 +44,7 @@ trait Installer
 
     public function loadOcMod($file, $replace = null)
     {
-        $engine_mod_path = __DIR__ . '/../Resources/' . $file . '.ocmod.xml';
+        $engine_mod_path = __DIR__ . '/../resources/' . $file . '.ocmod.xml';
 
         if (!file_exists($engine_mod_path)) {
             throw new \Exception($engine_mod_path . ' cannot be found.');
@@ -477,7 +477,7 @@ trait Installer
 
     public function installHtaccess()
     {
-        $file = __DIR__ . '/../Resources/htaccess.txt';
+        $file = __DIR__ . '/../resources/htaccess.txt';
 
         if (!file_exists($file)) {
             throw new \Exception($file . ' cannot be found.');
@@ -503,7 +503,7 @@ trait Installer
 
     function installEvent($eventName, $eventPath, $eventAction)
     {
-        /* 
+        /*
             Ex: AwebCore, extension/module/awebcore/beforeLoadingController, admin/controller/\*\/before
         */
         //delete old events if any
@@ -514,7 +514,7 @@ trait Installer
 
     function removeEvent($eventName)
     {
-        /* 
+        /*
             Ex: AwebCore
         */
         if (isOc3()) {
@@ -719,9 +719,9 @@ trait Installer
         (" . (int) $store_id . ", 'theme', 'product_description_length', '100', 0),
         (" . (int) $store_id . ", 'theme', 'product_limit', '15', 0),
         (" . (int) $store_id . ", 'theme', 'map_embed_url', '&lt;iframe src=&quot;https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d16110.491226282891!2d26.088162120703185!3d44.45450376106539!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sro!2sro!4v1540223073883&quot; width=&quot;600&quot; height=&quot;450&quot; frameborder=&quot;0&quot; style=&quot;border:0&quot; allowfullscreen&gt;&lt;/iframe&gt;', 0),
-        (" . (int) $store_id . ", 'theme', 'map', '1', 0),        
+        (" . (int) $store_id . ", 'theme', 'map', '1', 0),
         (" . (int) $store_id . ", 'theme', 'social', '{\"fb\":\"Facebook URL\",\"google\":\"Google+ URL\",\"twitter\":\"Twitter URL\",\"instagram\":\"Instagram URL\"}', 1),
-        (" . (int) $store_id . ", 'theme', 'custom_css', '', 0),        
+        (" . (int) $store_id . ", 'theme', 'custom_css', '', 0),
         (" . (int) $store_id . ", 'theme', 'nav_type', 'wide', 0),
         (" . (int) $store_id . ", 'theme', 'category_menu', 'button', 0),
         (" . (int) $store_id . ", 'theme', 'background_repeat', 'no-repeat', 0),
@@ -851,7 +851,7 @@ trait Installer
     }
 
     public function installSystemOcmod() {
-        
+
         $this->removeOcmod('engine');
 
         $xml = $this->loadOcMod('engine');
