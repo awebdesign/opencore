@@ -57,7 +57,7 @@ class ControllerExtensionModuleAwebcore extends Controller
     {
         $this->installHtaccess();
 
-        $this->installOcmod('AwebCore');
+        $this->installOcmod('awebcore');
         $this->refreshOcmod();
 
         $this->installEvent('awebcore_admin_menu', 'startup/awebcore/before_view', 'admin/view/*/before');
@@ -74,7 +74,7 @@ class ControllerExtensionModuleAwebcore extends Controller
     {
         $this->removeHtaccess();
 
-        $this->removeOcmod('AwebCore');
+        $this->removeOcmod('awebcore');
         $this->refreshOcmod();
 
         $this->removeEvent('awebcore_admin_menu');
