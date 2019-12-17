@@ -57,3 +57,8 @@ Steps to use AwebCore
 5. php artisan key:generate OR php -r "echo bin2hex(random_bytes(16));", copy the key shown there and change APP_KEY from core/.env file
 6. php artisan migrate:install
 7. php artisan migrate
+8. copy OpenCart extension files from core/opencart-module/upload to you OpenCart root folder
+9. go to OpenCart admin panel / extensions / extensions / modules, find AwebCore module and install it
+
+Enjoy!
+
