@@ -4,3 +4,4 @@
 .env
 .phpunit.result.cache
 npm-debug.log
+/composer.lock
