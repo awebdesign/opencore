@@ -5,25 +5,17 @@ namespace AwebCore\App\Http\Controllers\Admin\Core;
 use AwebCore\App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use AwebCore\Startup;
+//use AwebCore\Startup;
 use AwebCore\App\General\OcCore;
 use AwebCore\App\Task;
 
 class HomeController extends Controller
 {
-    function index()
+    function index(OcCore $occore)
     {
-        $loader = Startup::getRegistry('load');
-
-        $header = $loader->controller('common/header');
-        $column_left = $loader->controller('common/column_left');
-        $footer = $loader->controller('common/footer');
-
-        $token = (new OcCore())->getTokenStr();
-
         $tasks = Task::orderBy('created_at', 'asc')->get();
 
-        return view("admin.core.home", compact('header', 'column_left', 'footer', 'tasks', 'token'));
+        return view("admin.core.home", compact('tasks')); //'header', 'column_left', 'footer',
     }
 
     function store(Request $request)
