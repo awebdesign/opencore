@@ -24,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (defined('HTTPS_CATALOG')) { //only for admin
+            $this->app->singleton('url', function ($app) {
+                return new \AwebCore\App\General\UrlGenerator($app->router->getRoutes(), request());
+            });
+        }
+
         Schema::defaultStringLength(191);
 
         /* OpenCart MySql shared driver */
