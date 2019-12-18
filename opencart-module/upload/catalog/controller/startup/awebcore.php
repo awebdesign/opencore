@@ -31,6 +31,13 @@ class ControllerStartupAwebcore extends Startup
             return false;
         } */
 
+        /**
+         * we are using $this->request->get['route'] instead of $route because on $route some characters like dash ("-") are removed
+         */
+        if (!empty($this->request->get['route']) && preg_replace('/[^a-zA-Z0-9_\/]/', '', (string) $this->request->get['route']) == $route) {
+            $route = $this->request->get['route'];
+        }
+
         if ($this->checkAwebCoreRoute($route, $data)) {
             return $this->response();
         }

@@ -27,6 +27,13 @@ class ControllerStartupAwebcore extends Startup
      */
     function before_controller($route, &$data)
     {
+        /**
+         * we are using $this->request->get['route'] instead of $route because on $route some characters like dash ("-") are removed
+         */
+        if (!empty($this->request->get['route']) && preg_replace('/[^a-zA-Z0-9_\/]/', '', (string) $this->request->get['route']) == $route) {
+            $route = $this->request->get['route'];
+        }
+
         if ($this->checkAwebCoreRoute($route, $data)) {
             return $this->response();
         }
@@ -54,7 +61,7 @@ class ControllerStartupAwebcore extends Startup
                 //adding entries into admin menu for Aweb Core panel
                 $data['menus'][] = [
                     'id'       => 'awebcore-menu',
-                    'icon'       => 'fa-superpowers',
+                    'icon'       => 'fa-cube',
                     'name'       => 'Aweb Core',
                     'href'     => $this->url->link('core/home', $this->getTokenStr()),
                     'children' => []
@@ -62,7 +69,7 @@ class ControllerStartupAwebcore extends Startup
             break;
             case 'user/user_group_form':
                 //adding permissions into admin user/permissions page for Aweb Core panel
-                $data['permissions'][] = 'core/home';
+                $data['permissions'][] = 'core/*';
 
                 sort($data['permissions']);
             break;
