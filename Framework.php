@@ -28,10 +28,10 @@ class Framework
 {
     public static $instance;
     private $app;
-    private static $routes;
     private $response;
     private $request;
     private $kernel;
+    private $registry;
 
     public function __construct()
     {
@@ -67,6 +67,15 @@ class Framework
         return $content;
     }
 
+    public function getRegistry($type = null)
+    {
+        if ($type) {
+            return $this->registry->get($type);
+        }
+
+        return $this->registry;
+    }
+
     /**
      * Run Framework
      */
@@ -86,13 +95,21 @@ class Framework
     /**
      * Handle Framework Response
      */
-    public function handle()
+    public function handle($registry = null)
     {
+        $this->registry =  $registry;
+
         $this->kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
 
         $this->response = $this->kernel->handle($this->request);
 
-        return ($this->response->status() != '404') ? true : false;
+        if($this->response instanceof \Symfony\Component\HttpFoundation\BinaryFileResponse){
+            $this->response->send();
+
+            return true;
+        } else {
+            return ($this->response->status() != '404') ? true : false;
+        }
     }
 
     /**
@@ -112,6 +129,6 @@ class Framework
 
         $this->request = \Illuminate\Http\Request::capture();
 
-        return $this->app->router->has($route) || $this->request->is($route .'*');
+        return $this->app->router->has($route) || $this->request->is($route . '*');
     }
 }

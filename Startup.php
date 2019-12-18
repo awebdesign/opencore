@@ -57,7 +57,7 @@ class Startup extends \Controller
             We should add a dinamyc ignore list here
         */
         if (Framework::getInstance()->checkRoute($route)) {
-            return Framework::getInstance()->handle();
+            return Framework::getInstance()->handle(self::$_registry);
         }
     }
 
