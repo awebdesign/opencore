@@ -24,7 +24,7 @@
 
                             <!-- Delete Button -->
                             <td>
-                                <form action="{{ url('core/home/' . $task->id) }}?{{$token}}" method="POST">
+                                <form action="{{ route('admin::core.home.destroy', [$task->id]) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     {{--@method('patch')--}}

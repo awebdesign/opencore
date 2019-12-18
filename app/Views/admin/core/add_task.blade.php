@@ -1,6 +1,6 @@
 <div class="panel-body">
     <!-- New Task Form -->
-    <form action="{{ url('core/home/store') }}?{{$token}}" method="POST" class="form-horizontal">
+    <form action="{{ route('admin::core.home.store') }}" method="POST" class="form-horizontal">
         {{ csrf_field() }}
 
         <!-- Task Name -->
