@@ -56,22 +56,22 @@ $app->singleton(
 $namespace = 'AwebCore\App\Http';
 
 if (defined('HTTPS_CATALOG')) {
-    //admin routes here
-    $app->router->group([
-        //'prefix' => 'admin',
-        'namespace' => $namespace . '\Controllers\Admin',
-        'middleware' => ['web', $namespace . '\Middleware\AdminRoute']
-    ], function ($router) {
-        require __DIR__ . '/../app/Routes/admin.php';
-    });
+    //admin routes here //->prefix('core')
+    $app->router->middleware(['web', $namespace . '\Middleware\AdminPanel'])
+        ->name('admin::')
+        ->namespace($namespace . '\Controllers\Admin')
+        ->group(function ($router) {
+            require __DIR__ . '/../app/Routes/admin.php';
+        });
 } else {
     //catalog routes here
-    $app->router->group([
-        'namespace' => $namespace . '\Controllers\Catalog',
-        'middleware' => 'web'
-    ], function ($router) {
-        require __DIR__ . '/../app/Routes/catalog.php';
-    });
+    $app->router
+        ->middleware('web')
+        ->name('catalog::')
+        ->namespace($namespace . '\Controllers\Catalog')
+        ->group(function ($router) {
+            require __DIR__ . '/../app/Routes/catalog.php';
+        });
 }
 
 /*

@@ -17,17 +17,35 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+$router->name('core.')->prefix('core')->namespace('Core')->group(function ($router) {
+    $router->get('home', 'HomeController@index')->name('home');
+    $router->post('home/store', 'HomeController@store')->name('home.store');
+    $router->delete('/home/{id}', 'HomeController@destroy')->name('home.destroy');
 
-$router->group([
-    'namespace' => 'Core',
-    'prefix' => 'core'
-], function ($router) {
-    $router->get('home', 'HomeController@index');
-    $router->post('home/store', 'HomeController@store');
-    $router->post('home/store', 'HomeController@store');
-    $router->delete('/home/{id}', [
-        'as' => 'home.destroy', 'uses' => 'HomeController@destroy'
-    ]);
+    // admin::core.dashboard
+    $router->get('log-viewer', 'LogViewerController@index')->name('logs.dashboard');
+
+    $router->prefix('logs')->name('logs.')->group(function ($router) {
+        $router->get('/', 'LogViewerController@listLogs')
+            ->name('list'); // admin::core.logs.list
+
+        $router->delete('delete', 'LogViewerController@delete')
+            ->name('delete'); // admin::core.logs.delete
+
+        $router->prefix('{date}')->group(function ($router) {
+            $router->get('/', 'LogViewerController@show')
+                ->name('show'); // admin::core.logs.show
+
+            $router->get('download', 'LogViewerController@download')
+                ->name('download'); // admin::core.logs.download
+
+            $router->get('{level}', 'LogViewerController@showByLevel')
+                ->name('filter'); // admin::core.logs.filter
+
+            $router->get('{level}/search', 'LogViewerController@search')
+                ->name('search'); // admin::core.logs.search
+        });
+    });
 });
 
 /*$router->get('common/header', [
