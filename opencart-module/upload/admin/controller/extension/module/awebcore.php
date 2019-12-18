@@ -65,7 +65,7 @@ class ControllerExtensionModuleAwebcore extends Controller
         $this->installEvent('awebcore_catalog_before_controller', 'startup/awebcore/before_controller', 'catalog/controller/*/before');
 
         $this->addPermissions('extension/module/awebcore', ['access', 'modify']);
-        $this->addPermissions('core/home', ['access', 'modify']);
+        $this->addPermissions('core/*', ['access', 'modify']);
 
         $this->session->data['success'] = $this->language->get('text_success');
     }
@@ -80,6 +80,9 @@ class ControllerExtensionModuleAwebcore extends Controller
         $this->removeEvent('awebcore_admin_menu');
         $this->removeEvent('awebcore_admin_before_controller');
         $this->removeEvent('awebcore_catalog_before_controller');
+
+        $this->removePermissions('extension/module/awebcore', ['access', 'modify']);
+        $this->removePermissions('core/*', ['access', 'modify']);
 
         $this->session->data['success'] = $this->language->get('text_success');
 

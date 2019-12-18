@@ -75,4 +75,26 @@ use AwebCore\Traits\OcCore;
 		</operation>
 	</file>
 	<!--Url routing END -->
+    <file path="system/library/cart/user.php">
+		<operation>
+			<search><![CDATA[if (isset($this->permission[$key])) {]]></search>
+			<add position="before"><![CDATA[
+        /* Aweb Core Module */
+        if(isset($this->permission[$key]) && ($regex_permissions = preg_grep("/\*/", $this->permission[$key]))) {
+            $regex = '/(' . str_replace('/', '\/', implode('|', $regex_permissions)) . ')/';
+            $match = (bool) preg_match($regex, $value, $matches);
+            if($match) {
+                return true;
+            }
+        }]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[class Url {]]></search>
+			<add position="after"><![CDATA[use OcCore;]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[return $url;]]></search>
+			<add position="replace"><![CDATA[return $this->routeUrl($url);]]></add>
+		</operation>
+	</file>
 </modification>
