@@ -7,6 +7,8 @@
  *
  */
 
+use Illuminate\Support\HtmlString;
+
 function isCompatible()
 {
     return (isOc23() || $this->isOc3());
@@ -73,5 +75,33 @@ if (!function_exists('pre')) {
     {
         echo "<pre>" . print_r($var, true) . "</pre>\n";
         if (!empty($exit)) exit();
+    }
+}
+
+if (!function_exists('getToken')) {
+    function getToken()
+    {
+        $request = app('request');
+
+        return isOc3() ? $request->get('user_token') : $request->get('token');
+    }
+}
+
+if (!function_exists('getTokenKey')) {
+    function getTokenKey()
+    {
+        return (isOc3() ? 'user_token' : 'token');
+    }
+}
+
+if (!function_exists('token_field')) {
+    /**
+     * Generate a CSRF token form field.
+     *
+     * @return \Illuminate\Support\HtmlString
+     */
+    function token_field()
+    {
+        return new HtmlString('<input type="hidden" name="' . getTokenKey() . '" value="' . getToken() . '">');
     }
 }

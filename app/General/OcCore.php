@@ -20,12 +20,16 @@ class OcCore
 
     public function getTokenStr()
     {
-        if (isOc3()) {
-            $token_str = 'user_token=' . Request::input('user_token');
-        } else {
-            $token_str = 'token=' . Request::input('token');
-        }
+        return $this->getTokenKey() . '=' . $this->getToken();
+    }
 
-        return $token_str;
+    public function getToken()
+    {
+        return isOc3() ? Request::input('user_token') : Request::input('token');
+    }
+
+    public function getTokenKey()
+    {
+        return (isOc3() ? 'user_token' : 'token');
     }
 }
