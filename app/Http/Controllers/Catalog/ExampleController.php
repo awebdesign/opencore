@@ -1,4 +1,11 @@
 <?php
+/*
+ * Created on Wed Dec 17 2019 by DaRock
+ *
+ * Aweb Design
+ * https://www.awebdesign.ro
+ *
+ */
 
 namespace AwebCore\App\Http\Controllers\Catalog;
 
