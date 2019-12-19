@@ -37,8 +37,8 @@ etc..
 
 
 /admin/controller/common/header.php
-    => IF exists in /awebcore/App/Controllers/Admin/common/header.php => we load it from here
-    => IF DOES NOT exists in /awebcore/App/Controllers/Admin/common/header.php => we load the system default one
+    => IF exists in /opencore/App/Controllers/Admin/common/header.php => we load it from here
+    => IF DOES NOT exists in /opencore/App/Controllers/Admin/common/header.php => we load the system default one
 same for model, lang, view, etc
 
 ATTENTION
@@ -51,16 +51,16 @@ ab -n 500 -c 100 homestead.app/
 Dev mode:
 composer dump-autoload
 
-Steps to use AwebCore
+Steps to use OpenCore
 
 1. Install Git and Composer on your system
 2. go to your OpenCart root folder, open a console and run the following commands step by step
-3. git clone https://github.com/awebdesign/awebcore.git core
+3. git clone https://github.com/opencorero/opencore.git core
 4. composer update
 5. php artisan key:generate OR php -r "echo bin2hex(random_bytes(16));", copy the key shown there and change APP_KEY from core/.env file
 6. php artisan migrate:install
 7. php artisan migrate
 8. copy OpenCart extension files from core/opencart-module/upload to you OpenCart root folder
-9. go to OpenCart admin panel / extensions / extensions / modules, find AwebCore module and install it
+9. go to OpenCart admin panel / extensions / extensions / modules, find OpenCore module and install it
 
 Enjoy!

@@ -7,7 +7,7 @@
  *
  */
 
-namespace AwebCore\Traits;
+namespace OpenCore\Traits;
 
 trait Installer
 {
@@ -24,11 +24,11 @@ trait Installer
         $modification_data = array(
             'name'    => $dom->getElementsByTagName('name')->item(0)->nodeValue,
             'author'  => $dom->getElementsByTagName('author')->item(0)->nodeValue,
-            'version' => $version ? $version : AWEBCORE_VERSION,
+            'version' => $version ? $version : OPENCORE_VERSION,
             'link'    => $dom->getElementsByTagName('link')->item(0)->nodeValue,
             'code'    => $dom->getElementsByTagName('code')->item(0)->nodeValue,
             'status'  => 1,
-            'xml'     => str_replace('{{version}}', AWEBCORE_VERSION, $xml)
+            'xml'     => str_replace('{{version}}', OPENCORE_VERSION, $xml)
         );
 
         if (isOc3()) {
@@ -504,7 +504,7 @@ trait Installer
     function installEvent($eventName, $eventPath, $eventAction)
     {
         /*
-            Ex: AwebCore, extension/module/awebcore/beforeLoadingController, admin/controller/\*\/before
+            Ex: OpenCore, extension/module/opencore/beforeLoadingController, admin/controller/\*\/before
         */
         //delete old events if any
         $extensionEvent = $this->removeEvent($eventName);
@@ -515,7 +515,7 @@ trait Installer
     function removeEvent($eventName)
     {
         /*
-            Ex: AwebCore
+            Ex: OpenCore
         */
         if (isOc3()) {
             $extensionEvent = $this->getOcModel('setting/event');

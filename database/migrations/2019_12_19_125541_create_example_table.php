@@ -13,7 +13,7 @@ class CreateExampleTable extends Migration
      */
     public function up()
     {
-        Schema::create('awebcore_examples', function (Blueprint $table) {
+        Schema::create('opencore_examples', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateExampleTable extends Migration
      */
     public function down()
     {
-        Schema::drop('awebcore_examples');
+        Schema::drop('opencore_examples');
     }
 }

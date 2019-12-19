@@ -1,6 +1,6 @@
 <?php
 
-namespace Awebcore\App\Exceptions;
+namespace Opencore\App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

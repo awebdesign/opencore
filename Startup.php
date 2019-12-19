@@ -7,14 +7,14 @@
  *
  */
 
-namespace AwebCore;
+namespace OpenCore;
 
 if (!defined('DIR_APPLICATION')) {
     exit;
 }
 
-if (!defined('AWEBCORE_VERSION')) {
-    define('AWEBCORE_VERSION', '1.0.0');
+if (!defined('OPENCORE_VERSION')) {
+    define('OPENCORE_VERSION', '1.0.0');
 }
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -49,7 +49,7 @@ class Startup extends \Controller
      *
      * @param string $route
      */
-    public function checkAwebCoreRoute($route, &$data)
+    public function checkOpenCoreRoute($route, &$data)
     {
         $this->route = $route;
         $this->data = $data;

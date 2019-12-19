@@ -7,7 +7,7 @@
  *
  */
 
-namespace AwebCore\Traits;
+namespace OpenCore\Traits;
 
 trait OcCore
 {

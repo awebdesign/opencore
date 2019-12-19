@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <modification>
-	<code>AwebCore</code>
-	<name>AwebCore - Laravel 5.8</name>
+	<code>OpenCore</code>
+	<name>OpenCore - Laravel 5.8</name>
 	<version>1.0</version>
 	<author>AWeb Design</author>
 	<link>https://www.awebdesign.ro</link>
@@ -13,7 +13,7 @@
 /* OpenCore Module */
 require_once realpath(DIR_SYSTEM . '/../') . '/core/traits/OcCore.php';
 
-use AwebCore\Traits\OcCore;
+use OpenCore\Traits\OcCore;
 ]]></add>
 		</operation>
 		<operation>
@@ -32,7 +32,7 @@ use AwebCore\Traits\OcCore;
 /* OpenCore Module */
 require_once realpath(DIR_SYSTEM . '/../') . '/core/traits/OcCore.php';
 
-use AwebCore\Traits\OcCore;
+use OpenCore\Traits\OcCore;
 ]]></add>
 		</operation>
 		<operation>
@@ -53,7 +53,7 @@ use AwebCore\Traits\OcCore;
 /* OpenCore Module */
 require_once realpath(DIR_SYSTEM . '/../') . '/core/traits/OcCore.php';
 
-use AwebCore\Traits\OcCore;
+use OpenCore\Traits\OcCore;
 ]]></add>
 		</operation>
 		<operation>
@@ -64,13 +64,13 @@ use AwebCore\Traits\OcCore;
 			<search><![CDATA[private function parseUrlExt_part_3( $part, $parts, $params ) {]]></search>
 			<add position="after"><![CDATA[/* OpenCore Module */
 		if($this->routeCatalogSeoUrl()) {
-            return true; //we have found a AwebCore match so we will ignore the rest of SeoPack
+            return true; //we have found a OpenCore match so we will ignore the rest of SeoPack
         }]]></add>
 		</operation>
         <operation>
 			<search><![CDATA[return new Action( $this->request->get['route'] );]]></search>
 			<add position="before"><![CDATA[if($this->isRouted($this->request->get['route'])) {
-                return true; //we have found a AwebCore match so we will ignore the rest of SeoPack
+                return true; //we have found a OpenCore match so we will ignore the rest of SeoPack
             }]]></add>
 		</operation>
 	</file>

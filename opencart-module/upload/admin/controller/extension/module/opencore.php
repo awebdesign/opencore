@@ -5,7 +5,7 @@ require_once realpath(__DIR__ . '/../../../../') . '/core/Startup.php';
 use OpenCore\Traits\Installer;
 use OpenCore\Traits\OcCore;
 
-class ControllerExtensionModuleAwebcore extends Controller
+class ControllerExtensionModuleOpencore extends Controller
 {
     use OcCore, Installer;
 
@@ -15,7 +15,7 @@ class ControllerExtensionModuleAwebcore extends Controller
 
     public function index()
     {
-        $this->load->language('extension/module/awebcore');
+        $this->load->language('extension/module/opencore');
 
         $this->document->setTitle($this->language->get('heading_title'));
 
@@ -35,7 +35,7 @@ class ControllerExtensionModuleAwebcore extends Controller
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('heading_title'),
-            'href' => $this->url->link('extension/module/awebcore', 'token=' . $this->session->data['token'], true)
+            'href' => $this->url->link('extension/module/opencore', 'token=' . $this->session->data['token'], true)
         );
 
         $this->checkInstalation();
@@ -50,21 +50,21 @@ class ControllerExtensionModuleAwebcore extends Controller
         $data['column_left'] = $this->load->controller('common/column_left');
         $data['footer'] = $this->load->controller('common/footer');
 
-        $this->response->setOutput($this->load->view('extension/module/awebcore', $data));
+        $this->response->setOutput($this->load->view('extension/module/opencore', $data));
     }
 
     public function install()
     {
         $this->installHtaccess();
 
-        $this->installOcmod('awebcore');
+        $this->installOcmod('opencore');
         $this->refreshOcmod();
 
-        $this->installEvent('awebcore_admin_menu', 'startup/awebcore/before_view', 'admin/view/*/before');
-        $this->installEvent('awebcore_admin_before_controller', 'startup/awebcore/before_controller', 'admin/controller/*/before');
-        $this->installEvent('awebcore_catalog_before_controller', 'startup/awebcore/before_controller', 'catalog/controller/*/before');
+        $this->installEvent('opencore_admin_menu', 'startup/opencore/before_view', 'admin/view/*/before');
+        $this->installEvent('opencore_admin_before_controller', 'startup/opencore/before_controller', 'admin/controller/*/before');
+        $this->installEvent('opencore_catalog_before_controller', 'startup/opencore/before_controller', 'catalog/controller/*/before');
 
-        $this->addPermissions('extension/module/awebcore', ['access', 'modify']);
+        $this->addPermissions('extension/module/opencore', ['access', 'modify']);
         $this->addPermissions('core/*', ['access', 'modify']);
         $this->addPermissions('example/*', ['access', 'modify']);
 
@@ -75,14 +75,14 @@ class ControllerExtensionModuleAwebcore extends Controller
     {
         $this->removeHtaccess();
 
-        $this->removeOcmod('awebcore');
+        $this->removeOcmod('opencore');
         $this->refreshOcmod();
 
-        $this->removeEvent('awebcore_admin_menu');
-        $this->removeEvent('awebcore_admin_before_controller');
-        $this->removeEvent('awebcore_catalog_before_controller');
+        $this->removeEvent('opencore_admin_menu');
+        $this->removeEvent('opencore_admin_before_controller');
+        $this->removeEvent('opencore_catalog_before_controller');
 
-        $this->removePermissions('extension/module/awebcore', ['access', 'modify']);
+        $this->removePermissions('extension/module/opencore', ['access', 'modify']);
         $this->removePermissions('core/*', ['access', 'modify']);
         $this->removePermissions('example/*', ['access', 'modify']);
 
@@ -109,11 +109,11 @@ class ControllerExtensionModuleAwebcore extends Controller
         */
 
         //will fail if the before_controller will not be triggered
-        if (!class_exists('ControllerStartupAwebcore')) {
+        if (!class_exists('ControllerStartupOpencore')) {
             $this->errors[] = $this->language->get('error_router');
         }
 
-        //TODO: need to check event entry/status for awebcore_catalog_before_controll & awebcore_admin_menu
+        //TODO: need to check event entry/status for opencore_catalog_before_controll & opencore_admin_menu
 
         $this->load->model('extension/modification');
         $modification = $this->model_extension_modification->getModificationByCode('OpenCore');
@@ -126,7 +126,7 @@ class ControllerExtensionModuleAwebcore extends Controller
             $this->errors[] = $this->language->get('error_modification_empty_xml');
         }
 
-        //TODO: check if awebcore menu event is installed!
+        //TODO: check if opencore menu event is installed!
         if (!file_exists(DIR_APPLICATION . '.htaccess')) {
             $this->errors[] = $this->language->get('error_htaccess_not_found');
         }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Example extends Model
 {
-    protected $table = 'awebcore_examples';
+    protected $table = 'opencore_examples';
 
     /**
      * The attributes that are mass assignable.

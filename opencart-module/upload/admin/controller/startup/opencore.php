@@ -12,7 +12,7 @@ require_once realpath(__DIR__ . '/../../../') . '/core/Startup.php';
 use OpenCore\Startup;
 use OpenCore\Traits\OcCore;
 
-class ControllerStartupAwebcore extends Startup
+class ControllerStartupOpencore extends Startup
 {
     use OcCore;
 
@@ -40,7 +40,7 @@ class ControllerStartupAwebcore extends Startup
 
         /**
          * in case the view\/*\/before event is not activated by default we can call
-         * $this->event->register('view/\*\/before', new Action('startup/awebcore/before_view'));
+         * $this->event->register('view/\*\/before', new Action('startup/opencore/before_view'));
          */
     }
 
@@ -60,7 +60,7 @@ class ControllerStartupAwebcore extends Startup
             case 'common/column_left':
                 //adding entries into admin menu for OpenCore panel
                 $data['menus'][] = [
-                    'id'       => 'awebcore-menu',
+                    'id'       => 'opencore-menu',
                     'icon'       => 'fa-cube',
                     'name'       => 'OpenCore',
                     'href'     => $this->url->link('core/home', $this->getTokenStr()),
