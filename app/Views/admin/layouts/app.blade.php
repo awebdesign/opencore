@@ -1,7 +1,7 @@
-@hasSection('header')
-    @yield('header')
+@hasSection('opencart_header')
+    @yield('opencart_header')
 @else
-    {!! $header !!}
+    {!! $opencart_header !!}
 @endif
 <style>
 .navbar-inverse {
@@ -29,10 +29,10 @@
 </style>
 @yield('styles')
 
-@hasSection('column_left')
-    @yield('column_left')
+@hasSection('opencart_column_left')
+    @yield('opencart_column_left')
 @else
-    {!! $column_left !!}
+    {!! $opencart_column_left !!}
 @endif
 
 <!-- Bootstrap Boilerplate... -->
@@ -87,8 +87,8 @@
 @yield('modals')
 @yield('scripts')
 
-@hasSection('footer')
-    @yield('footer')
+@hasSection('opencart_footer')
+    @yield('opencart_footer')
 @else
-    {!! $footer !!}
+    {!! $opencart_footer !!}
 @endif

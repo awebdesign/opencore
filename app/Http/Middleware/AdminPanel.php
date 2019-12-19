@@ -24,9 +24,9 @@ class AdminPanel
         $column_left = $loader->controller('common/column_left');
         $footer = $loader->controller('common/footer');
 
-        View::share('header', $header);
-        View::share('column_left', $column_left);
-        View::share('footer', $footer);
+        View::share('opencart_header', $header);
+        View::share('opencart_column_left', $column_left);
+        View::share('opencart_footer', $footer);
 
         return $next($request);
     }
