@@ -26,13 +26,17 @@ class MySqlSharedConnector extends MySqlConnector
         /**
          * Take OpenCart default connection in order to avoid double connections
          */
-        try {
-            $connection = \AwebCore\Framework::getInstance()->getRegistry('db')->getConnection();
-        } catch(Exception $e) {
-            throw new Exception('Bad instance shared instance for MysqlSharedConnector:' . $e->getMessage());
+        $connection = null;
+
+        if (class_exists('\AwebCore\Framework')) {
+            try {
+                $connection = \AwebCore\Framework::getInstance()->getRegistry('db')->getConnection();
+            } catch (Exception $e) {
+                throw new Exception('Bad instance shared instance for MysqlSharedConnector:' . $e->getMessage());
+            }
         }
 
-        if(!$connection) {
+        if (!$connection) {
             // We need to grab the PDO options that should be used while making the brand
             // new connection instance. The PDO options control various aspects of the
             // connection's behavior, and some might be specified by the developers.
@@ -42,7 +46,7 @@ class MySqlSharedConnector extends MySqlConnector
 
             $connection = $this->createConnection($dsn, $config, $options);
 
-            if (! empty($config['database'])) {
+            if (!empty($config['database'])) {
                 $connection->exec("use `{$config['database']}`;");
             }
 
