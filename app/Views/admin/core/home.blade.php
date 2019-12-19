@@ -1,7 +1,7 @@
 
 @extends('admin.layouts.app')
 
-@section('content')
+@section('container')
     <!-- Create Task Form... -->
     @include('admin.core.add_task')
 

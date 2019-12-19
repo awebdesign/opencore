@@ -205,7 +205,7 @@
 <![endif]-->
 @endsection
 
-@section('content')
+@section('container')
 <div class="panel-body">
     @yield('logscontent')
 </div>

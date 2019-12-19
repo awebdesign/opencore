@@ -68,6 +68,11 @@
                                     <i class="fa fa-archive"></i> Logs
                                 </a>
                             </li>
+                            <li class="{{ Route::is('admin::core.requirements') ? 'active' : '' }}">
+                                <a href="{{ route('admin::core.requirements') }}">
+                                    <i class="fa fa-archive"></i> System Requirements
+                                </a>
+                            </li>
                             <li class="{{ Route::is('admin::core.home') ? 'active' : '' }}">
                                 <a href="{{ route('admin::core.home') }}">
                                     <i class="fa fa-folder-open-o fw"></i> Task Test
@@ -79,7 +84,7 @@
             </nav>
             {{-- Main container --}}
 
-            @yield('content')
+            @yield('container')
         </div>
     </div>
 </div>

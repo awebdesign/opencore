@@ -22,6 +22,8 @@ $router->name('core.')->prefix('core')->namespace('Core')->group(function ($rout
     $router->post('home/store', 'HomeController@store')->name('home.store');
     $router->delete('/home/{id}', 'HomeController@destroy')->name('home.destroy');
 
+    $router->get('requirements', 'RequirementsController@index')->name('requirements');
+
     // admin::core.dashboard
     $router->get('log-viewer', 'LogViewerController@index')->name('logs.dashboard');
 

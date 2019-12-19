@@ -9,7 +9,8 @@
         "arcanedev/log-viewer": "^4.7",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "rachidlaasri/laravel-installer": "^4.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
