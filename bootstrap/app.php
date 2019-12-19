@@ -57,7 +57,7 @@ $namespace = 'AwebCore\App\Http';
 
 if (defined('HTTPS_CATALOG')) {
     //admin routes here //->prefix('core')
-    $app->router->middleware(['web', $namespace . '\Middleware\AdminPanel'])
+    $app->router->middleware(['web', $namespace . '\Middleware\AdminMiddleware'])
         ->name('admin::')
         ->namespace($namespace . '\Controllers\Admin')
         ->group(function ($router) {
@@ -66,7 +66,7 @@ if (defined('HTTPS_CATALOG')) {
 } else {
     //catalog routes here
     $app->router
-        ->middleware('web')
+        ->middleware(['web', $namespace . '\Middleware\CatalogMiddleware'])
         ->name('catalog::')
         ->namespace($namespace . '\Controllers\Catalog')
         ->group(function ($router) {

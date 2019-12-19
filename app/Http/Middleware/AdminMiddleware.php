@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Foundation\Application;
 use AwebCore\Startup;
 
-class AdminPanel
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -24,7 +24,7 @@ class AdminPanel
     public function handle(Request $request, Closure $next)
     {
         /**
-         * set language absed on OpenCart language sessio
+         * set language absed on OpenCart language session
          */
         $locale = config('app.locale');
 
