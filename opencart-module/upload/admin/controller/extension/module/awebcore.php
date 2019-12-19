@@ -66,6 +66,7 @@ class ControllerExtensionModuleAwebcore extends Controller
 
         $this->addPermissions('extension/module/awebcore', ['access', 'modify']);
         $this->addPermissions('core/*', ['access', 'modify']);
+        $this->addPermissions('example/*', ['access', 'modify']);
 
         $this->session->data['success'] = $this->language->get('text_success');
     }
@@ -83,6 +84,7 @@ class ControllerExtensionModuleAwebcore extends Controller
 
         $this->removePermissions('extension/module/awebcore', ['access', 'modify']);
         $this->removePermissions('core/*', ['access', 'modify']);
+        $this->removePermissions('example/*', ['access', 'modify']);
 
         $this->session->data['success'] = $this->language->get('text_success');
 

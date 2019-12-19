@@ -19,8 +19,6 @@
 */
 $router->name('core.')->prefix('core')->namespace('Core')->group(function ($router) {
     $router->get('home', 'HomeController@index')->name('home');
-    $router->post('home/store', 'HomeController@store')->name('home.store');
-    $router->delete('/home/{id}', 'HomeController@destroy')->name('home.destroy');
 
     $router->get('requirements', 'RequirementsController@index')->name('requirements');
 
@@ -50,18 +48,15 @@ $router->name('core.')->prefix('core')->namespace('Core')->group(function ($rout
     });
 });
 
+/** Example Controller */
+$router->get('example', 'ExampleController@index')->name('example');
+$router->post('example/store', 'ExampleController@store')->name('example.store');
+$router->delete('example/{id}', 'ExampleController@destroy')->name('example.destroy');
+
+/** Example of rewriting common OpenCart controllers */
 /*$router->get('common/header', [
     'as' => 'common/header', 'uses' => 'ExampleController@index'
 ]);
-
 $router->get('common/footer', [
     'as' => 'common/footer', 'uses' => 'ExampleController@index'
 ]);*/
-
-/* $router->get('extension/module/awebcore', [
-    'as' => 'extension/module/awebcore', 'uses' => 'ExampleController@index'
-]); */
-
-/* $router->get('example', [
-    'as' => 'example', 'uses' => 'ExampleController@index'
-]); */

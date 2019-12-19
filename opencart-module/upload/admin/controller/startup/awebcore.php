@@ -70,6 +70,7 @@ class ControllerStartupAwebcore extends Startup
             case 'user/user_group_form':
                 //adding permissions into admin user/permissions page for Aweb Core panel
                 $data['permissions'][] = 'core/*';
+                $data['permissions'][] = 'example/*';
 
                 sort($data['permissions']);
             break;

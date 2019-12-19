@@ -49,15 +49,15 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="{{ route('admin::core.logs.dashboard') }}" class="navbar-brand">
-                            <i class="fa fa-cube"></i> Core
+                        <a href="{{ route('admin::core.home') }}" class="navbar-brand">
+                            <i class="fa fa-cube"></i> Core Home
                         </a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar">
                         <ul class="nav navbar-nav">
                             <li class="{{ Route::is('admin::core.logs.dashboard') ? 'active' : '' }}">
                                 <a href="{{ route('admin::core.logs.dashboard') }}">
-                                    <i class="fa fa-dashboard"></i> Dashboard
+                                    <i class="fa fa-dashboard"></i> Logs Dashboard
                                 </a>
                             </li>
                             <li class="{{ Route::is('admin::core.logs.list') ? 'active' : '' }}">
@@ -70,9 +70,9 @@
                                     <i class="fa fa-life-ring"></i> System Requirements
                                 </a>
                             </li>
-                            <li class="{{ Route::is('admin::core.home') ? 'active' : '' }}">
-                                <a href="{{ route('admin::core.home') }}">
-                                    <i class="fa fa-folder-open-o fw"></i> Task Test
+                            <li class="{{ Route::is('admin::example') ? 'active' : '' }}">
+                                <a href="{{ route('admin::example') }}">
+                                    <i class="fa fa-folder-open-o fw"></i> Example
                                 </a>
                             </li>
                         </ul>

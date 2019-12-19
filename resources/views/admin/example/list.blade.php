@@ -1,36 +1,34 @@
-<!-- Current Tasks -->
-@if (count($tasks) > 0)
+<!-- Examples List -->
+@if (count($examples) > 0)
     <div class="panel panel-default">
         <div class="panel-heading">
-            Current Tasks
+            Examples List
         </div>
 
         <div class="panel-body">
-            <table class="table table-striped task-table">
+            <table class="table table-striped">
                 <!-- Table Headings -->
                 <thead>
-                    <th>Task</th>
+                    <th>Name</th>
                     <th>&nbsp;</th>
                 </thead>
 
                 <!-- Table Body -->
                 <tbody>
-                    @foreach ($tasks as $task)
+                    @foreach ($examples as $example)
                         <tr>
-                            <!-- Task Name -->
+                            <!-- Example Name -->
                             <td class="table-text">
-                                <div>{{ $task->name }}</div>
+                                <div>{{ $example->name }}</div>
                             </td>
 
                             <!-- Delete Button -->
                             <td>
-                                <form action="{{ route('admin::core.home.destroy', [$task->id]) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    {{--@method('patch')--}}
-                                    <input type="hidden" name="_method" value="DELETE">
+                                <form action="{{ route('admin::example.destroy', [$example->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
 
-                                    <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-danger">
+                                    <button type="submit" id="delete-example-{{ $example->id }}" class="btn btn-danger">
                                         <i class="fa fa-btn fa-trash"></i>Delete
                                     </button>
                                 </form>
