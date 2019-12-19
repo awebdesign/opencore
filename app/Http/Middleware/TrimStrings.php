@@ -1,6 +1,6 @@
 <?php
 
-namespace AwebCore\App\Http\Middleware;
+namespace OpenCore\App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
 

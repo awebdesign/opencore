@@ -1,6 +1,6 @@
 <?php
 
-namespace AwebCore\App\Providers;
+namespace OpenCore\App\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;

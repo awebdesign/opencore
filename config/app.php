@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'AwebCore'),
+    'name' => env('APP_NAME', 'OpenCore'),
 
     /*
     |--------------------------------------------------------------------------
@@ -169,11 +169,11 @@ return [
         /*
          * Application Service Providers...
          */
-        AwebCore\App\Providers\AppServiceProvider::class,
-        AwebCore\App\Providers\AuthServiceProvider::class,
-        // AwebCore\App\Providers\BroadcastServiceProvider::class,
-        AwebCore\App\Providers\EventServiceProvider::class,
-        AwebCore\App\Providers\RouteServiceProvider::class,
+        OpenCore\App\Providers\AppServiceProvider::class,
+        OpenCore\App\Providers\AuthServiceProvider::class,
+        // OpenCore\App\Providers\BroadcastServiceProvider::class,
+        OpenCore\App\Providers\EventServiceProvider::class,
+        OpenCore\App\Providers\RouteServiceProvider::class,
 
     ],
 

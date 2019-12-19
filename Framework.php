@@ -7,7 +7,7 @@
  *
  */
 
-namespace AwebCore;
+namespace OpenCore;
 
 define('LARAVEL_START', microtime(true));
 

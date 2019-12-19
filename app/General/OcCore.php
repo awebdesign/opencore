@@ -7,7 +7,7 @@
  *
  */
 
-namespace AwebCore\App\General;
+namespace OpenCore\App\General;
 
 use Illuminate\Support\Facades\Request;
 

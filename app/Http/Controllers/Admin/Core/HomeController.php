@@ -7,9 +7,9 @@
  *
  */
 
-namespace AwebCore\App\Http\Controllers\Admin\Core;
+namespace OpenCore\App\Http\Controllers\Admin\Core;
 
-use AwebCore\App\Http\Controllers\Controller;
+use OpenCore\App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {

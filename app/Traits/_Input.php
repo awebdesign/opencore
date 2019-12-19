@@ -7,7 +7,7 @@
  *
  */
 
-namespace AwebCore\App\Traits;
+namespace OpenCore\App\Traits;
 
 trait Input {
     /**

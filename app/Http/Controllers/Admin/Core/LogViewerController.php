@@ -7,13 +7,13 @@
  *
  */
 
-namespace AwebCore\App\Http\Controllers\Admin\Core;
+namespace OpenCore\App\Http\Controllers\Admin\Core;
 
 use Arcanedev\LogViewer\Contracts\LogViewer as LogViewerContract;
 use Arcanedev\LogViewer\Entities\LogEntry;
 use Arcanedev\LogViewer\Exceptions\LogNotFoundException;
 use Arcanedev\LogViewer\Tables\StatsTable;
-use AwebCore\App\General\OcCore;
+use OpenCore\App\General\OcCore;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller;

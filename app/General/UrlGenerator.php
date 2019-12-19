@@ -7,7 +7,7 @@
  *
  */
 
-namespace AwebCore\App\General;
+namespace OpenCore\App\General;
 
 use Illuminate\Routing\UrlGenerator as DefaultUrlGenerator;
 use Illuminate\Support\Facades\Request;

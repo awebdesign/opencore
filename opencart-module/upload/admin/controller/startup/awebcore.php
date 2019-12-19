@@ -9,8 +9,8 @@
 
 require_once realpath(__DIR__ . '/../../../') . '/core/Startup.php';
 
-use AwebCore\Startup;
-use AwebCore\Traits\OcCore;
+use OpenCore\Startup;
+use OpenCore\Traits\OcCore;
 
 class ControllerStartupAwebcore extends Startup
 {
@@ -34,7 +34,7 @@ class ControllerStartupAwebcore extends Startup
             $route = $this->request->get['route'];
         }
 
-        if ($this->checkAwebCoreRoute($route, $data)) {
+        if ($this->checkOpenCoreRoute($route, $data)) {
             return $this->response();
         }
 
@@ -58,17 +58,17 @@ class ControllerStartupAwebcore extends Startup
 
         switch($route) {
             case 'common/column_left':
-                //adding entries into admin menu for Aweb Core panel
+                //adding entries into admin menu for OpenCore panel
                 $data['menus'][] = [
                     'id'       => 'awebcore-menu',
                     'icon'       => 'fa-cube',
-                    'name'       => 'Aweb Core',
+                    'name'       => 'OpenCore',
                     'href'     => $this->url->link('core/home', $this->getTokenStr()),
                     'children' => []
                 ];
             break;
             case 'user/user_group_form':
-                //adding permissions into admin user/permissions page for Aweb Core panel
+                //adding permissions into admin user/permissions page for OpenCore panel
                 $data['permissions'][] = 'core/*';
                 $data['permissions'][] = 'example/*';
 

@@ -10,7 +10,7 @@
 		<operation>
 			<search><![CDATA[class Url {]]></search>
 			<add position="before"><![CDATA[
-/* Aweb Core Module */
+/* OpenCore Module */
 require_once realpath(DIR_SYSTEM . '/../') . '/core/traits/OcCore.php';
 
 use AwebCore\Traits\OcCore;
@@ -29,7 +29,7 @@ use AwebCore\Traits\OcCore;
 		<operation>
 			<search><![CDATA[class ControllerStartupSeoUrl]]></search>
 			<add position="before"><![CDATA[
-/* Aweb Core Module */
+/* OpenCore Module */
 require_once realpath(DIR_SYSTEM . '/../') . '/core/traits/OcCore.php';
 
 use AwebCore\Traits\OcCore;
@@ -41,7 +41,7 @@ use AwebCore\Traits\OcCore;
 		</operation>
 		<operation>
 			<search><![CDATA[if (!isset($this->request->get['route'])) {]]></search>
-			<add position="before"><![CDATA[/* Aweb Core Module */
+			<add position="before"><![CDATA[/* OpenCore Module */
 		$this->routeCatalogSeoUrl();]]></add>
 		</operation>
 	</file>
@@ -50,7 +50,7 @@ use AwebCore\Traits\OcCore;
 		<operation>
 			<search><![CDATA[class ControllerCommonSeoMegaPackProUrl]]></search>
 			<add position="before"><![CDATA[
-/* Aweb Core Module */
+/* OpenCore Module */
 require_once realpath(DIR_SYSTEM . '/../') . '/core/traits/OcCore.php';
 
 use AwebCore\Traits\OcCore;
@@ -62,7 +62,7 @@ use AwebCore\Traits\OcCore;
 		</operation>
 		<operation>
 			<search><![CDATA[private function parseUrlExt_part_3( $part, $parts, $params ) {]]></search>
-			<add position="after"><![CDATA[/* Aweb Core Module */
+			<add position="after"><![CDATA[/* OpenCore Module */
 		if($this->routeCatalogSeoUrl()) {
             return true; //we have found a AwebCore match so we will ignore the rest of SeoPack
         }]]></add>
@@ -79,7 +79,7 @@ use AwebCore\Traits\OcCore;
 		<operation>
 			<search><![CDATA[if (isset($this->permission[$key])) {]]></search>
 			<add position="before"><![CDATA[
-        /* Aweb Core Module */
+        /* OpenCore Module */
         if(isset($this->permission[$key]) && ($regex_permissions = preg_grep("/\*/", $this->permission[$key]))) {
             $regex = '/(' . str_replace('/', '\/', implode('|', $regex_permissions)) . ')/';
             $match = (bool) preg_match($regex, $value, $matches);
@@ -102,7 +102,7 @@ use AwebCore\Traits\OcCore;
 		<operation>
 			<search><![CDATA[$class = 'DB\\' . $adaptor;]]></search>
 			<add position="before"><![CDATA[
-        /* Aweb Core Module */
+        /* OpenCore Module */
         if(in_array(strtolower($adaptor), ['mysqli', 'mysql', 'mpdo'])) {
             $adaptor = 'corepdo';
         }
@@ -111,7 +111,7 @@ use AwebCore\Traits\OcCore;
 		<operation>
 			<search><![CDATA[public function connected() {]]></search>
 			<add position="before"><![CDATA[
-    /* Aweb Core Module */
+    /* OpenCore Module */
     public function getConnection() {
 		return $this->adaptor->getConnection();
 	}]]></add>

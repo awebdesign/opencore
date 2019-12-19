@@ -7,7 +7,7 @@
  *
  */
 
-namespace AwebCore\App\Models;
+namespace OpenCore\App\Models;
 
 class OcModel extends \Model
 { }

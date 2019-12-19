@@ -2,8 +2,8 @@
 
 require_once realpath(__DIR__ . '/../../../../') . '/core/Startup.php';
 
-use AwebCore\Traits\Installer;
-use AwebCore\Traits\OcCore;
+use OpenCore\Traits\Installer;
+use OpenCore\Traits\OcCore;
 
 class ControllerExtensionModuleAwebcore extends Controller
 {
@@ -116,7 +116,7 @@ class ControllerExtensionModuleAwebcore extends Controller
         //TODO: need to check event entry/status for awebcore_catalog_before_controll & awebcore_admin_menu
 
         $this->load->model('extension/modification');
-        $modification = $this->model_extension_modification->getModificationByCode('AwebCore');
+        $modification = $this->model_extension_modification->getModificationByCode('OpenCore');
 
         if (empty($modification)) {
             $this->errors[] = $this->language->get('error_modification_entry');

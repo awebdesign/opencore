@@ -1,9 +1,9 @@
 <?php
 
-namespace AwebCore\App\Http\Controllers\Auth;
+namespace OpenCore\App\Http\Controllers\Auth;
 
-use AwebCore\App\User;
-use AwebCore\App\Http\Controllers\Controller;
+use OpenCore\App\User;
+use OpenCore\App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;

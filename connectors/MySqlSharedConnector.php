@@ -7,7 +7,7 @@
  *
  */
 
-namespace AwebCore\Connectors;
+namespace OpenCore\Connectors;
 
 use PDO;
 use Exception;
@@ -28,9 +28,9 @@ class MySqlSharedConnector extends MySqlConnector
          */
         $connection = null;
 
-        if (class_exists('\AwebCore\Framework')) {
+        if (class_exists('\OpenCore\Framework')) {
             try {
-                $connection = \AwebCore\Framework::getInstance()->getRegistry('db')->getConnection();
+                $connection = \OpenCore\Framework::getInstance()->getRegistry('db')->getConnection();
             } catch (Exception $e) {
                 throw new Exception('Bad instance shared instance for MysqlSharedConnector:' . $e->getMessage());
             }

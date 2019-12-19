@@ -1,6 +1,6 @@
 <?php
 
-namespace AwebCore\App\Events;
+namespace OpenCore\App\Events;
 
 class ExampleEvent extends Event
 {

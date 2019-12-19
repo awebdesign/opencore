@@ -1,12 +1,12 @@
 <?php
 
-namespace AwebCore\App\Http\Middleware;
+namespace OpenCore\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Foundation\Application;
-use AwebCore\Startup;
+use OpenCore\Startup;
 
 class AdminMiddleware
 {

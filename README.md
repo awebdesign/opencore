@@ -1,10 +1,10 @@
-Aweb Core Project
+OpenCore Project
 by Aweb Design
 https://www.awebdesign.ro/en/
 
 
 
-FOLDER STRUCTURE OF Aweb Core
+FOLDER STRUCTURE OF OpenCore
 
 /Modules
     /System

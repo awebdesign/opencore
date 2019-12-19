@@ -9,8 +9,8 @@
 
 require_once realpath(__DIR__ . '/../../../') . '/core/Startup.php';
 
-use AwebCore\Startup;
-use AwebCore\Traits\OcCore;
+use OpenCore\Startup;
+use OpenCore\Traits\OcCore;
 
 class ControllerStartupAwebcore extends Startup
 {
@@ -38,7 +38,7 @@ class ControllerStartupAwebcore extends Startup
             $route = $this->request->get['route'];
         }
 
-        if ($this->checkAwebCoreRoute($route, $data)) {
+        if ($this->checkOpenCoreRoute($route, $data)) {
             return $this->response();
         }
 

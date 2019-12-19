@@ -1,6 +1,6 @@
 <?php
 
-namespace AwebCore\App\Providers;
+namespace OpenCore\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;

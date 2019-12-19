@@ -1,6 +1,6 @@
 <?php
 
-namespace AwebCore\App\Providers;
+namespace OpenCore\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -27,15 +27,15 @@ class AppServiceProvider extends ServiceProvider
         /**
          * Mysql OpenCart Share Connector
          */
-        $this->app->singleton('db.connector.mysql', '\AwebCore\Connectors\MySqlSharedConnector');
+        $this->app->singleton('db.connector.mysql', '\OpenCore\Connectors\MySqlSharedConnector');
 
         if (defined('HTTPS_CATALOG')) { //only for admin
             $this->app->singleton('url', function ($app) {
-                return new \AwebCore\App\General\UrlGenerator($app->router->getRoutes(), request());
+                return new \OpenCore\App\General\UrlGenerator($app->router->getRoutes(), request());
             });
 
             $this->app->singleton('url', function ($app) {
-                return new \AwebCore\App\General\UrlGenerator($app->router->getRoutes(), request());
+                return new \OpenCore\App\General\UrlGenerator($app->router->getRoutes(), request());
             });
         }
 

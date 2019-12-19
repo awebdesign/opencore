@@ -30,17 +30,17 @@ $app = new Illuminate\Foundation\Application(
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    AwebCore\App\Http\Kernel::class
+    OpenCore\App\Http\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    AwebCore\App\Console\Kernel::class
+    OpenCore\App\Console\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    AwebCore\App\Exceptions\Handler::class
+    OpenCore\App\Exceptions\Handler::class
 );
 
 /*
@@ -53,7 +53,7 @@ $app->singleton(
 | can respond to, as well as the controllers that may handle them.
 |
 */
-$namespace = 'AwebCore\App\Http';
+$namespace = 'OpenCore\App\Http';
 
 if (defined('HTTPS_CATALOG')) {
     //admin routes here //->prefix('core')

@@ -7,9 +7,9 @@
  *
  */
 
-namespace AwebCore\App\Http\Controllers\Catalog;
+namespace OpenCore\App\Http\Controllers\Catalog;
 
-use AwebCore\App\Http\Controllers\Controller;
+use OpenCore\App\Http\Controllers\Controller;
 
 class ExampleController extends Controller
 {
@@ -18,6 +18,6 @@ class ExampleController extends Controller
     }
 
     function json() {
-        return response()->json(['name' => 'AwebCore', 'by' => 'Aweb Design']);
+        return response()->json(['name' => 'OpenCore', 'by' => 'Aweb Design']);
     }
 }

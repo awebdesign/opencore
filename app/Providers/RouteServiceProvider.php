@@ -1,6 +1,6 @@
 <?php
 
-namespace AwebCore\App\Providers;
+namespace OpenCore\App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
