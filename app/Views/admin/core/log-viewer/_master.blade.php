@@ -2,74 +2,9 @@
 
 @section('styles')
 <style>
-    html {
-        position: relative;
-        min-height: 100%;
-    }
-
-    body {
-        padding-top: 50px;
-        /* Margin bottom by footer height */
-        margin-bottom: 50px;
-        font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, sans-serif;
-        font-weight: 600;
-    }
-
-    h1, h2, h3 {
-        font-family: 'Montserrat', 'Helvetica Neue', Helvetica, sans-serif;
-    }
-
     .sub-header {
         padding-bottom: 10px;
         border-bottom: 1px solid #EEE;
-    }
-
-    .navbar-inverse {
-        background-color: #1a237e;
-        border-color: #1a237e;
-    }
-
-    .navbar-inverse .navbar-nav>.active>a,
-    .navbar-inverse .navbar-nav>.active>a:focus,
-    .navbar-inverse .navbar-nav>.active>a:hover {
-        background-color: #3949ab;
-    }
-
-    .navbar-inverse .navbar-brand {
-        color: #c5cae9;
-    }
-
-    .navbar-inverse .navbar-nav>li>a {
-        color: #c5cae9;
-    }
-
-    .navbar-fixed-top {
-        border: 0;
-    }
-
-    .main {
-        padding: 20px;
-    }
-
-    .main .page-header {
-        margin-top: 0;
-    }
-
-    footer.main-footer {
-        position: absolute;
-        padding: 10px 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #e8eaf6;
-        font-weight: 600;
-    }
-
-    footer.main-footer p {
-        margin: 0;
-    }
-
-    footer.main-footer i.fa.fa-heart {
-        color: #C62828;
     }
 
     .pagination {
@@ -272,38 +207,6 @@
 
 @section('content')
 <div class="panel-body">
-    {{-- Navbar --}}
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="{{ route('admin::core.logs.dashboard') }}" class="navbar-brand">
-                    <i class="fa fa-fw fa-book"></i> LogViewer
-                </a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="nav navbar-nav">
-                    <li class="{{ Route::is('admin::core.logs.dashboard') ? 'active' : '' }}">
-                        <a href="{{ route('admin::core.logs.dashboard') }}">
-                            <i class="fa fa-dashboard"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="{{ Route::is('admin::core.logs.list') ? 'active' : '' }}">
-                        <a href="{{ route('admin::core.logs.list') }}">
-                            <i class="fa fa-archive"></i> Logs
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    {{-- Main container --}}
-
     @yield('logscontent')
 </div>
 @endsection
