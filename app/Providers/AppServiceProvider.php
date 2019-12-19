@@ -24,7 +24,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /**
+         * Mysql OpenCart Share Connector
+         */
+        $this->app->singleton('db.connector.mysql', '\AwebCore\Connectors\MySqlSharedConnector');
+
         if (defined('HTTPS_CATALOG')) { //only for admin
+            $this->app->singleton('url', function ($app) {
+                return new \AwebCore\App\General\UrlGenerator($app->router->getRoutes(), request());
+            });
+
             $this->app->singleton('url', function ($app) {
                 return new \AwebCore\App\General\UrlGenerator($app->router->getRoutes(), request());
             });

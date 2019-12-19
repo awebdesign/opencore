@@ -97,4 +97,28 @@ use AwebCore\Traits\OcCore;
 			<add position="replace"><![CDATA[return $this->routeUrl($url);]]></add>
 		</operation>
 	</file>
+    <!-- Mysql Share Driver -->
+    <file path="system/library/db.php">
+		<operation>
+			<search><![CDATA[$class = 'DB\\' . $adaptor;]]></search>
+			<add position="before"><![CDATA[
+        /* Aweb Core Module */
+        if(in_array(strtolower($adaptor), ['mysqli', 'mysql', 'mpdo'])) {
+            $adaptor = 'corepdo';
+        }
+    ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[public function connected() {]]></search>
+			<add position="before"><![CDATA[
+    /* Aweb Core Module */
+    public function getConnection() {
+		return $this->adaptor->getConnection();
+	}]]></add>
+        </operation>
+		<operation>
+			<search><![CDATA[if (class_exists('NitroDb')]]></search>
+			<add position="replace"><![CDATA[if (0 && class_exists('NitroDb')]]></add>
+		</operation>
+	</file>
 </modification>

@@ -35,7 +35,8 @@
     "autoload": {
         "psr-4": {
             "AwebCore\\App\\": "app/",
-            "AwebCore\\Traits\\": "traits/"
+            "AwebCore\\Traits\\": "traits/",
+            "AwebCore\\Connectors\\": "connectors/"
         },
         "classmap": [
             "database/seeds",

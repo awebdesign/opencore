@@ -35,17 +35,17 @@ return [
 
     'connections' => [
 
-        'mysqlshared' => [
-            'driver' => 'mysqlshared',
-            'url' => env('DATABASE_URL'),
+        'mysqlshared' => [ //OpenCart shared connection
+            'driver' => 'mysql',
+            'url' => '',
             'host' => DB_HOSTNAME,
             'port' => DB_PORT,
             'database' => DB_DATABASE,
             'username' => DB_USERNAME,
             'password' => DB_PASSWORD,
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
+            'unix_socket' => '',
+            'charset' => 'utf8mb4', //utf8
+            'collation' => 'utf8mb4_unicode_ci', //utf8_general_ci
             'prefix' => DB_PREFIX,
             'prefix_indexes' => true,
             'strict' => true,
