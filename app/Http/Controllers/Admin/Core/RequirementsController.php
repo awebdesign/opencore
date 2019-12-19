@@ -9,8 +9,7 @@
 
 namespace AwebCore\App\Http\Controllers\Admin\Core;
 
-
-use Illuminate\Routing\Controller;
+use AwebCore\App\Http\Controllers\Controller;
 use RachidLaasri\LaravelInstaller\Helpers\RequirementsChecker;
 use RachidLaasri\LaravelInstaller\Helpers\PermissionsChecker;
 
