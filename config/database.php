@@ -124,7 +124,7 @@ return [
     |
     */
 
-    'migrations' => 'migrations',
+    'migrations' => 'opencore_migrations',
 
     /*
     |--------------------------------------------------------------------------
