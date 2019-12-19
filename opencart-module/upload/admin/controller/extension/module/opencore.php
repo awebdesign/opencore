@@ -116,7 +116,7 @@ class ControllerExtensionModuleOpencore extends Controller
         //TODO: need to check event entry/status for opencore_catalog_before_controll & opencore_admin_menu
 
         $this->load->model('extension/modification');
-        $modification = $this->model_extension_modification->getModificationByCode('OpenCore');
+        $modification = $this->model_extension_modification->getModificationByCode('opencore');
 
         if (empty($modification)) {
             $this->errors[] = $this->language->get('error_modification_entry');

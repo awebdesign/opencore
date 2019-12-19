@@ -1,6 +1,6 @@
 <?php
 
-namespace Opencore\App\Exceptions;
+namespace OpenCore\App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
