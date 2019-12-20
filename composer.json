@@ -35,6 +35,10 @@
         }
     },
     "autoload": {
+        "files": [
+            "app/Helpers/General.php",
+            "support/Helper.php"
+        ],
         "psr-4": {
             "App\\": "app/",
             "OpenCore\\Support\\": "support/"
