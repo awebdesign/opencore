@@ -29,27 +29,17 @@ class AppServiceProvider extends ServiceProvider
          */
         $this->app->singleton('db.connector.mysql', '\OpenCore\Connectors\MySqlSharedConnector');
 
-        if (defined('HTTPS_CATALOG')) { //only for admin
-            $this->app->singleton('url', function ($app) {
-                return new \OpenCore\App\General\UrlGenerator($app->router->getRoutes(), request());
-            });
-
-            $this->app->singleton('url', function ($app) {
-                return new \OpenCore\App\General\UrlGenerator($app->router->getRoutes(), request());
-            });
-        }
-
-        Schema::defaultStringLength(191);
-
-        /* OpenCart MySql shared driver */
         /**
-         * more info: https://github.com/mixartemev/dbal-vertica-driver
+         * Rewrite admin routes in order to contain the Token query param
+         * corrects assets url
          */
-        /* App::bind('db.connector.mysqlshare', function () {
-            return new MysqlShareDriver;
+        $this->app->singleton('url', function ($app) {
+            return new \OpenCore\App\General\UrlGenerator($app->router->getRoutes(), request(), $this->app->config->get('app.asset_url'));
         });
-        DB::resolverFor('mysqlshare', function ($connection, $database, $prefix, $config) {
-            return new PostgresConnection($connection, $database, $prefix, $config);
-        }); */
+
+        /**
+         * Fix MySql default string length for older mysql versions
+         */
+        Schema::defaultStringLength(191);
     }
 }
