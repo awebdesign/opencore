@@ -11,3 +11,5 @@ add menu builder: https://github.com/spatie/laravel-menu | https://github.com/ha
 add activiy logs: https://github.com/spatie/laravel-activitylog
 add javascript validation: https://github.com/proengsoft/laravel-jsvalidation
 add persistent settings: https://github.com/edvinaskrucas/settings
+fix rotues shown on php artisan route:list
+fix web routes -> split it into admin & catalog;
