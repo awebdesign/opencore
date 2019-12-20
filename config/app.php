@@ -52,9 +52,9 @@ return [
     |
     */
 
-    'url' => defined('HTTPS_SERVER') ? HTTPS_SERVER : HTTP_SERVER,
+    'url' => env('APP_URL', defined('HTTPS_SERVER') ? HTTPS_SERVER : HTTP_SERVER),
 
-    'asset_url' => env('ASSET_URL', null),
+    'asset_url' => env('ASSET_URL', (defined('HTTPS_CATALOG') ? HTTPS_CATALOG : HTTPS_SERVER) . 'core/public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Bucharest',
 
     /*
     |--------------------------------------------------------------------------
@@ -178,7 +178,8 @@ return [
     ],
 
     /*
-    |--------------------------------------------------------------------------
+    |------
+    --------------------------------------------------------------------
     | Class Aliases
     |--------------------------------------------------------------------------
     |
