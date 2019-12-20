@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Studio\Totem\Task;
+use App\Observers\TaskObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,5 +43,7 @@ class AppServiceProvider extends ServiceProvider
          * Fix MySql default string length for older mysql versions
          */
         Schema::defaultStringLength(191);
+
+        Task::observe(TaskObserver::class);
     }
 }
