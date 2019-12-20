@@ -1,0 +1,25 @@
+{
+    "name": "opencore/hello",
+    "description": "",
+    "authors": [
+        {
+            "name": "DaRock",
+            "email": "support@opencore.ro"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Hello\\Providers\\HelloServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Hello\\": ""
+        }
+    }
+}
