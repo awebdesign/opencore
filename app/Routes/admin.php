@@ -22,6 +22,28 @@ $router->name('core.')->prefix('core')->namespace('Core')->group(function ($rout
 
     $router->get('requirements', 'RequirementsController@index')->name('requirements');
 
+    $router->name('tasks.')->prefix('tasks')->namespace('Tasks')->group(function ($router) {
+        $router->get('/', 'TasksController@index')->name('dashboard');
+
+        $router->get('create', 'TasksController@create')->name('create');
+        $router->post('create', 'TasksController@store');
+
+        $router->get('export', 'ExportTasksController@index')->name('export');
+        $router->post('import', 'ImportTasksController@index')->name('import');
+
+        $router->get('{task}', 'TasksController@view')->name('view');
+
+        $router->get('{task}/edit', 'TasksController@edit')->name('edit');
+        $router->post('{task}/edit', 'TasksController@update');
+
+        $router->delete('{task}', 'TasksController@destroy')->name('delete');
+
+        $router->post('status', 'ActiveTasksController@store')->name('activate');
+        $router->delete('status/{id}', 'ActiveTasksController@destroy')->name('deactivate');
+
+        $router->get('{task}/execute', 'ExecuteTasksController@index')->name('execute');
+    });
+
     // admin::core.dashboard
     $router->get('log-viewer', 'LogViewerController@index')->name('logs.dashboard');
 

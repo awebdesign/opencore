@@ -45,5 +45,6 @@
         </span>
     </li>
     @endforeach
+    <li>Cronjob path: * * * * * php {{ $cronpath }} schedule:run >> /dev/null 2>&1</li>
 </ul>
 @endsection

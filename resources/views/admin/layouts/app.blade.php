@@ -70,6 +70,11 @@
                                     <i class="fa fa-life-ring"></i> System Requirements
                                 </a>
                             </li>
+                            <li class="{{ Route::is('admin::core.tasks.dashboard') ? 'active' : '' }}">
+                                    <a href="{{ route('admin::core.tasks.dashboard') }}">
+                                        <i class="fa fa-clock-o"></i> Cron Jobs
+                                    </a>
+                                </li>
                             <li class="{{ Route::is('admin::example') ? 'active' : '' }}">
                                 <a href="{{ route('admin::example') }}">
                                     <i class="fa fa-folder-open-o fw"></i> Example
@@ -90,7 +95,7 @@
 </div>
 
 @yield('modals')
-@yield('scripts')
+@stack('scripts')
 
 @hasSection('opencart_footer')
     @yield('opencart_footer')

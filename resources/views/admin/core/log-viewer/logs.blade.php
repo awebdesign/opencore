@@ -1,4 +1,4 @@
-@extends('admin.core.log-viewer._master')
+@extends('admin.core.log-viewer._layout')
 @section('logscontent')
     <h1 class="page-header">Logs</h1>
 

@@ -52,6 +52,8 @@ class RequirementsController extends Controller
             config('installer.permissions')
         );
 
-        return view('admin.core.requirements', compact('requirements', 'phpSupportInfo', 'permissions'));
+        $cronpath = realpath(basename(__DIR__ . '/../')) . '/core/artisan';
+
+        return view('admin.core.requirements', compact('requirements', 'phpSupportInfo', 'permissions', 'cronpath'));
     }
 }
