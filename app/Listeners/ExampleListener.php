@@ -1,8 +1,8 @@
 <?php
 
-namespace OpenCore\App\Listeners;
+namespace App\Listeners;
 
-use OpenCore\App\Events\ExampleEvent;
+use App\Events\ExampleEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

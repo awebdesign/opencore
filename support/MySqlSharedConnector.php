@@ -7,7 +7,7 @@
  *
  */
 
-namespace OpenCore\Connectors;
+namespace OpenCore\Support;
 
 use PDO;
 use Exception;

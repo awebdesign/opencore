@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenCore\App\Jobs;
+namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;

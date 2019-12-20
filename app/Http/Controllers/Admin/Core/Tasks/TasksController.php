@@ -1,13 +1,13 @@
 <?php
 
-namespace OpenCore\App\Http\Controllers\Admin\Core\Tasks;
+namespace App\Http\Controllers\Admin\Core\Tasks;
 
 use Studio\Totem\Task;
 use Studio\Totem\Totem;
 use Illuminate\Database\Eloquent\Builder;
 use Studio\Totem\Contracts\TaskInterface;
 use Studio\Totem\Http\Requests\TaskRequest;
-use OpenCore\App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\URL;
 

@@ -11,9 +11,9 @@
 			<search><![CDATA[class Url {]]></search>
 			<add position="before"><![CDATA[
 /* OpenCore Module */
-require_once realpath(DIR_SYSTEM . '/../') . '/core/traits/OcCore.php';
+require_once realpath(DIR_SYSTEM . '/../') . '/core/vendor/autoload.php';
 
-use OpenCore\Traits\OcCore;
+use OpenCore\Support\OpenCart\OcCore;
 ]]></add>
 		</operation>
 		<operation>
@@ -30,9 +30,7 @@ use OpenCore\Traits\OcCore;
 			<search><![CDATA[class ControllerStartupSeoUrl]]></search>
 			<add position="before"><![CDATA[
 /* OpenCore Module */
-require_once realpath(DIR_SYSTEM . '/../') . '/core/traits/OcCore.php';
-
-use OpenCore\Traits\OcCore;
+use OpenCore\Support\OpenCart\OcCore;
 ]]></add>
 		</operation>
 		<operation>
@@ -51,9 +49,7 @@ use OpenCore\Traits\OcCore;
 			<search><![CDATA[class ControllerCommonSeoMegaPackProUrl]]></search>
 			<add position="before"><![CDATA[
 /* OpenCore Module */
-require_once realpath(DIR_SYSTEM . '/../') . '/core/traits/OcCore.php';
-
-use OpenCore\Traits\OcCore;
+use OpenCore\Support\OpenCart\OcCore;
 ]]></add>
 		</operation>
 		<operation>

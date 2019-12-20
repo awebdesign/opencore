@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenCore\App\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 

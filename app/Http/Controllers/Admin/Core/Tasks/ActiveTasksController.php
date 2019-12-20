@@ -1,8 +1,8 @@
 <?php
 
-namespace OpenCore\App\Http\Controllers\Admin\Core\Tasks;
+namespace App\Http\Controllers\Admin\Core\Tasks;
 
-use OpenCore\App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Studio\Totem\Contracts\TaskInterface;
 

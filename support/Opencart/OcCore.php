@@ -7,7 +7,7 @@
  *
  */
 
-namespace OpenCore\Traits;
+namespace OpenCore\Support\OpenCart;
 
 trait OcCore
 {

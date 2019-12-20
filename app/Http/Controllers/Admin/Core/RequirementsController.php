@@ -7,9 +7,9 @@
  *
  */
 
-namespace OpenCore\App\Http\Controllers\Admin\Core;
+namespace App\Http\Controllers\Admin\Core;
 
-use OpenCore\App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use RachidLaasri\LaravelInstaller\Helpers\RequirementsChecker;
 use RachidLaasri\LaravelInstaller\Helpers\PermissionsChecker;
 

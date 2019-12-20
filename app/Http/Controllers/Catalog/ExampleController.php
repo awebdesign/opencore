@@ -7,9 +7,9 @@
  *
  */
 
-namespace OpenCore\App\Http\Controllers\Catalog;
+namespace App\Http\Controllers\Catalog;
 
-use OpenCore\App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class ExampleController extends Controller
 {

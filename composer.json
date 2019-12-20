@@ -36,9 +36,8 @@
     },
     "autoload": {
         "psr-4": {
-            "OpenCore\\App\\": "app/",
-            "OpenCore\\Traits\\": "traits/",
-            "OpenCore\\Connectors\\": "connectors/"
+            "App\\": "app/",
+            "OpenCore\\Support\\": "support/"
         },
         "classmap": [
             "database/seeds",

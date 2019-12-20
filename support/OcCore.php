@@ -7,7 +7,7 @@
  *
  */
 
-namespace OpenCore\App\General;
+namespace OpenCore\Support;
 
 use Illuminate\Support\Facades\Request;
 

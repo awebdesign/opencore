@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenCore\App\User;
+namespace App\User;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

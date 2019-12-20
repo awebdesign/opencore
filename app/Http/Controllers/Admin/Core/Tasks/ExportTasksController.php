@@ -1,11 +1,11 @@
 <?php
 
-namespace OpenCore\App\Http\Controllers\Admin\Core\Tasks;
+namespace App\Http\Controllers\Admin\Core\Tasks;
 
 use File;
 use function storage_path;
 use Studio\Totem\Contracts\TaskInterface;
-use OpenCore\App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class ExportTasksController extends Controller
 {

@@ -2,8 +2,8 @@
 
 require_once realpath(__DIR__ . '/../../../../') . '/core/Startup.php';
 
-use OpenCore\Traits\Installer;
-use OpenCore\Traits\OcCore;
+use OpenCore\Support\OpenCart\Installer;
+use OpenCore\Support\OpenCart\OcCore;
 
 class ControllerExtensionModuleOpencore extends Controller
 {

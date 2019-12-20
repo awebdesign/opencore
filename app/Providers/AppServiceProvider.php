@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenCore\App\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -27,14 +27,14 @@ class AppServiceProvider extends ServiceProvider
         /**
          * Mysql OpenCart Share Connector
          */
-        $this->app->singleton('db.connector.mysql', '\OpenCore\Connectors\MySqlSharedConnector');
+        $this->app->singleton('db.connector.mysql', '\OpenCore\Support\MySqlSharedConnector');
 
         /**
          * Rewrite admin routes in order to contain the Token query param
          * corrects assets url
          */
         $this->app->singleton('url', function ($app) {
-            return new \OpenCore\App\General\UrlGenerator($app->router->getRoutes(), request(), $this->app->config->get('app.asset_url'));
+            return new \OpenCore\Support\UrlGenerator($app->router->getRoutes(), request(), $this->app->config->get('app.asset_url'));
         });
 
         /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenCore\App\Jobs;
+namespace App\Jobs;
 
 class ExampleJob extends Job
 {

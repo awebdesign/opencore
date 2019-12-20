@@ -7,7 +7,7 @@
  *
  */
 
-namespace OpenCore\Traits;
+namespace OpenCore\Support\OpenCart;
 
 trait Installer
 {
@@ -44,7 +44,7 @@ trait Installer
 
     public function loadOcMod($file, $replace = null)
     {
-        $engine_mod_path = __DIR__ . '/../resources/' . $file . '.ocmod.xml';
+        $engine_mod_path = __DIR__ . '/../Resources/' . $file . '.ocmod.xml';
 
         if (!file_exists($engine_mod_path)) {
             throw new \Exception($engine_mod_path . ' cannot be found.');
@@ -477,7 +477,7 @@ trait Installer
 
     public function installHtaccess()
     {
-        $file = __DIR__ . '/../resources/htaccess.txt';
+        $file = __DIR__ . '/../Resources/htaccess.txt';
 
         if (!file_exists($file)) {
             throw new \Exception($file . ' cannot be found.');

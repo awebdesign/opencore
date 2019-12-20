@@ -7,12 +7,12 @@
  *
  */
 
-namespace OpenCore\App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
-use OpenCore\App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use OpenCore\App\Example;
+use App\Example;
 
 class ExampleController extends Controller
 {

@@ -169,11 +169,11 @@ return [
         /*
          * Application Service Providers...
          */
-        OpenCore\App\Providers\AppServiceProvider::class,
-        OpenCore\App\Providers\AuthServiceProvider::class,
-        // OpenCore\App\Providers\BroadcastServiceProvider::class,
-        OpenCore\App\Providers\EventServiceProvider::class,
-        OpenCore\App\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
     ],
 
