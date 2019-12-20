@@ -4,6 +4,7 @@ namespace Modules\Hello\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\Config;
 
 class HelloServiceProvider extends ServiceProvider
 {
@@ -70,7 +71,7 @@ class HelloServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/hello';
-        }, \Config::get('view.paths')), [$sourcePath]), 'hello');
+        }, Config::get('view.paths')), [$sourcePath]), 'hello');
     }
 
     /**
@@ -91,7 +92,7 @@ class HelloServiceProvider extends ServiceProvider
 
     /**
      * Register an additional directory of factories.
-     * 
+     *
      * @return void
      */
     public function registerFactories()
