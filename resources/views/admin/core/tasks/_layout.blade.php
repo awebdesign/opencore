@@ -8,9 +8,9 @@
 <main id="root">
     <div class="uk-container uk-section">
         <div class="uk-grid">
-            @include('totem::partials.sidebar')
+            @include('admin.partials.sidebar')
             <section class="uk-width-5-6@l">
-                @include('totem::partials.alerts')
+                @include('admin.partials.alerts')
                 @yield('main-panel-before')
                 <div class="uk-card uk-card-default">
                     <div class="uk-card-header">
@@ -26,7 +26,7 @@
                 @yield('main-panel-after')
                 @yield('additional-panels')
                 <div class="uk-margin-top">
-                    @include('totem::partials.footer')
+                    @include('admin.partials.footer')
                 </div>
             </section>
         </div>

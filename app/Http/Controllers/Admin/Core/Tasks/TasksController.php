@@ -148,7 +148,7 @@ class TasksController extends Controller
         $this->tasks->destroy($task);
 
         return redirect()
-            ->route('admin::tasks.all')
+            ->route('admin::core.tasks.dashboard')
             ->with('success', trans('totem::messages.success.delete'));
     }
 }
