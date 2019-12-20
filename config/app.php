@@ -54,7 +54,7 @@ return [
 
     'url' => env('APP_URL', defined('HTTPS_SERVER') ? HTTPS_SERVER : HTTP_SERVER),
 
-    'asset_url' => env('ASSET_URL', (defined('HTTPS_CATALOG') ? HTTPS_CATALOG : HTTPS_SERVER) . 'core/public'),
+    'asset_url' => env('ASSET_URL', (defined('HTTPS_CATALOG') ? HTTPS_CATALOG : HTTPS_SERVER) . 'core'),
 
     /*
     |--------------------------------------------------------------------------
