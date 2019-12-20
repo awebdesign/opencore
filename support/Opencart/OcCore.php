@@ -51,7 +51,7 @@ trait OcCore
         if (isset($this->request->get['_route_']) && $this->request->get['route'] == 'error/not_found') {
             $newRoute = $this->request->get['_route_'];
             $this->request->get['route'] = $newRoute;
-            $this->request->get['has_route'][$newRoute] = true;
+            $this->request->has_route[$newRoute] = true;
 
             return true;
         }
@@ -61,7 +61,7 @@ trait OcCore
 
     public function isRouted($route)
     {
-        return !empty($this->request->get['has_route'][$route]);
+        return !empty($this->request->has_route[$route]);
     }
 
     public function getTokenStr()
