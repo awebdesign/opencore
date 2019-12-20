@@ -45,6 +45,7 @@
             @endforelse
         </tbody>
     </table>
+    <div align="center">Don't forget to run "php artisan cache:clear" after each new task!</div>
 @stop
 @section('main-panel-footer')
     <div class="uk-flex uk-flex-between">

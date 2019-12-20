@@ -17,6 +17,9 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+
+use Illuminate\Support\Facades\Artisan;
+
 $router->name('core.')->prefix('core')->namespace('Core')->group(function ($router) {
     $router->get('home', 'HomeController@index')->name('home');
 
@@ -68,6 +71,17 @@ $router->name('core.')->prefix('core')->namespace('Core')->group(function ($rout
                 ->name('search'); // admin::core.logs.search
         });
     });
+
+    $router->get('clear-cache', function() {
+        Artisan::call('cache:clear');
+        Artisan::call('route:clear');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+
+        return redirect()
+        ->route('admin::core.home')
+        ->with('success', 'Cache cleared!');
+    })->name('clear-cache');
 });
 
 /** Example Controller */

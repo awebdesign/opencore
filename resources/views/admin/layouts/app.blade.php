@@ -80,13 +80,18 @@
                                     <i class="fa fa-folder-open-o fw"></i> Example
                                 </a>
                             </li>
+                            <li class="{{ Route::is('admin::core.clear-cache') ? 'active' : '' }}">
+                                <a href="{{ route('admin::core.clear-cache') }}">
+                                    <i class="fa fa-eraser"></i> Clear Cache
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
             <!-- Display Validation Errors -->
-            @include('admin.common.errors')
+            @include('admin.common.alerts')
 
             {{-- Main container --}}
             @yield('container')
