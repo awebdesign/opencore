@@ -33,7 +33,7 @@
         </div>
     </div>
 @endsection
-@section('scripts')
+@push('scripts')
     {{-- Scripts --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
     <script>
@@ -55,4 +55,4 @@
             });
         });
     </script>
-@endsection
+@endpush
