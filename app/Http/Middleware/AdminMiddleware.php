@@ -36,16 +36,6 @@ class AdminMiddleware
 
         $this->app->setLocale($locale);
 
-        $loader = Startup::getRegistry('load');
-
-        $header = $loader->controller('common/header');
-        $column_left = $loader->controller('common/column_left');
-        $footer = $loader->controller('common/footer');
-
-        View::share('opencart_header', $header);
-        View::share('opencart_column_left', $column_left);
-        View::share('opencart_footer', $footer);
-
         return $next($request);
     }
 }
