@@ -7,9 +7,9 @@
  *
  */
 
-require_once realpath(__DIR__ . '/../../../') . '/core/Startup.php';
+require_once realpath(__DIR__ . '/../../../') . '/core/support/Opencart/Startup.php';
 
-use OpenCore\Startup;
+use OpenCore\Support\Opencart\Startup;
 use OpenCore\Support\OpenCart\OcCore;
 
 class ControllerStartupOpencore extends Startup

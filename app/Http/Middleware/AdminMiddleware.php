@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Foundation\Application;
-use OpenCore\Startup;
+use OpenCore\Support\Opencart\Startup;
 
 class AdminMiddleware
 {

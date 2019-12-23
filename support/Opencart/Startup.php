@@ -7,7 +7,7 @@
  *
  */
 
-namespace OpenCore;
+namespace OpenCore\Support\Opencart;
 
 if (!defined('DIR_APPLICATION')) {
     exit;
@@ -17,8 +17,10 @@ if (!defined('OPENCORE_VERSION')) {
     define('OPENCORE_VERSION', '1.0.0');
 }
 
-require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/Framework.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../Framework.php';
+
+use Opencore\Framework;
 
 class Startup extends \Controller
 {

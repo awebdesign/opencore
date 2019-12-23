@@ -1,6 +1,6 @@
 <?php
 
-require_once realpath(__DIR__ . '/../../../../') . '/core/Startup.php';
+require_once realpath(__DIR__ . '/../../../../') . '/core/support/Opencart/Startup.php';
 
 use OpenCore\Support\OpenCart\Installer;
 use OpenCore\Support\OpenCart\OcCore;
