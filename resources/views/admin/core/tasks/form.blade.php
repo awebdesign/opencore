@@ -1,7 +1,6 @@
 @extends('admin.core.tasks._layout')
-@section('page-title')
-    @parent
-    - {{ $task->exists ? 'Update' : 'Create'}} Task
+@section('meta.title')
+    {{ $task->exists ? 'Update' : 'Create'}} Task
 @stop
 @section('main-panel-before')
     <form method="POST">

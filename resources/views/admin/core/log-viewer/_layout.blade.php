@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('styles')
+@section('inline.styles')
 <style>
     .sub-header {
         padding-bottom: 10px;

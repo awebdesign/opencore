@@ -3,32 +3,6 @@
 @else
     {!! $opencart_header !!}
 @endif
-<style>
-.navbar-inverse {
-    background-color: #1a237e;
-    border-color: #1a237e;
-}
-
-.navbar-inverse .navbar-nav>.active>a,
-.navbar-inverse .navbar-nav>.active>a:focus,
-.navbar-inverse .navbar-nav>.active>a:hover {
-    background-color: #3949ab;
-}
-
-.navbar-inverse .navbar-brand {
-    color: #c5cae9;
-}
-
-.navbar-inverse .navbar-nav>li>a {
-    color: #c5cae9;
-}
-
-.navbar-fixed-top {
-    border: 0;
-}
-</style>
-@yield('styles')
-
 @hasSection('opencart_column_left')
     @yield('opencart_column_left')
 @else

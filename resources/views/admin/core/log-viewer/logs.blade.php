@@ -92,7 +92,7 @@
         </div>
     </div>
 @endsection
-@push('scripts')
+@section('inline.scripts')
     <script>
         $(function () {
             var deleteLogModal = $('div#delete-log-modal'),
@@ -146,4 +146,4 @@
             });
         });
     </script>
-@endpush
+@endsection

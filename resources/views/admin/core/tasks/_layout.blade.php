@@ -34,6 +34,6 @@
 </main>
 @endsection
 
-@push('scripts')
+@section('scripts')
 <script src="{{ asset('/vendor/totem/js/app.js') }}"></script>
-@endpush
+@endsection

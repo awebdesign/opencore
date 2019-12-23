@@ -1,7 +1,6 @@
 @extends('admin.core.tasks._layout')
-@section('page-title')
-    @parent
-    - Tasks
+@section('meta.title')
+    Tasks
 @stop
 @section('title')
     <div class="uk-flex uk-flex-between uk-flex-middle">

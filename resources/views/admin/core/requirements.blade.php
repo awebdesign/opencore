@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('meta_title')
+@section('meta.title')
     {{ trans('installer_messages.permissions.templateTitle') }}
 @endsection
 
