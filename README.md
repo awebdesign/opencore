@@ -2,7 +2,7 @@
     OpenCore project - Laravel for OpenCart
 </h2>
 <p align="center">
-by [AWeb Design](https://www.awebdesign.ro/en/)
+by <a target="_blank" href="https://www.awebdesign.ro/en/">Aweb Design</a>
 </p>
 <br/><br/>
 
@@ -15,12 +15,12 @@ Please note that this package is still under active development. We encourage ev
 ## Features
 
 * All Laravel's 5.8 built in helpers / features
-* Error logs by <a href="https://github.com/ARCANEDEV/LogViewer">ARCANEDEV</a>
-* Cronjob system management by <a href="https://github.com/codestudiohq/laravel-totem">Codestudiohq</a>
+* Error logs by <a target="_blank" href="https://github.com/ARCANEDEV/LogViewer">ARCANEDEV</a>
+* Cronjob system management by <a target="_blank" href="https://github.com/codestudiohq/laravel-totem">Codestudiohq</a>
 * WYSIWYG Email HTML/Markdown editor.
 * Auto update feature
-* Module management by <a href="https://github.com/nWidart/laravel-modules">nWidart Modules</a>
-* and many more... (promise).
+* Module management by <a target="_blank" href="https://github.com/nWidart/laravel-modules">nWidart Modules</a>
+* many more to come...
 
 ## Requirements
 
@@ -58,10 +58,6 @@ Also the application comes with a mysql shared connector which will help sharing
 ## Documentation
 
 Documentation for OpenCore can be found on the [Official website](https://opencore.ro).
-
-## Change log
-
-Please see the [changelog](changelog.md) for more information on what has changed recently.
 
 ## Security
 
