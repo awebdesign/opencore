@@ -51,7 +51,7 @@ Also you want to access a custom URL like yourwebsite.com/example
 you can create you custom route in laravel /core/app/routes/catalog.php which will handle the request for /example page!
 
 ## Speed ?!
-yes, it has! as long as your server has the minimum required for Laravel 5.8 to work everything should be good. There's no delay and on some opperations Laravel is even fasted than the default OpenCart system!
+yes, it has! As long as your server has the minimum required for Laravel 5.6 to work everything should be good. There's no delay and on some opperations Laravel is even fasted than the default OpenCart system!
 
 Also the application comes with a mysql shared connector which will help sharing the database active connection between OpenCart and Laravel/OpenCore
 
