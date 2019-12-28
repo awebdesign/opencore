@@ -14,7 +14,7 @@ Please note that this package is still under active development. We encourage ev
 
 ## Features
 
-* All Laravel's 5.8 built in helpers / features
+* All Laravel's 5.6 built in helpers / features
 * Error logs by <a target="_blank" href="https://github.com/ARCANEDEV/LogViewer">ARCANEDEV</a>
 * Cronjob system management by <a target="_blank" href="https://github.com/codestudiohq/laravel-totem">Codestudiohq</a>
 * WYSIWYG Email HTML/Markdown editor.
