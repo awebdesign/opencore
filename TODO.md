@@ -13,3 +13,4 @@ add javascript validation: https://github.com/proengsoft/laravel-jsvalidation
 add persistent settings: https://github.com/edvinaskrucas/settings
 fix rotues shown on php artisan route:list
 fix web routes -> split it into admin & catalog;
+add mail eclipse https://github.com/Qoraiche/laravel-mail-editor
