@@ -35,9 +35,6 @@ class Framework
 
     public function __construct()
     {
-        //TEMPORARY REQUEST URI CHANGE -> IN ORDER TO USE MULTIPLE INSTANCES
-        $_SERVER['ORIGINAL_REQUEST_URI'] = $_SERVER['REQUEST_URI'];
-
         $this->app = require __DIR__ . '/bootstrap/app.php';
     }
 
@@ -121,6 +118,13 @@ class Framework
      */
     public function checkRoute($route)
     {
+        //force admin route in case the request comes from admin side
+        if(defined('HTTPS_CATALOG')) {
+            $_SERVER['SCRIPT_NAME'] = str_replace(basename(DIR_APPLICATION) . '/', '', $_SERVER['SCRIPT_NAME']);
+        
+            $route = 'admin/' . $route;
+        }
+
         // Strip query string (?foo=bar) and decode URI
         if (false !== $pos = strpos($route, '?')) {
             $route = substr($route, 0, $pos);

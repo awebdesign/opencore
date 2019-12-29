@@ -11,6 +11,19 @@
 |
 */
 
-/* Route::get('/', function () {
-    return view('welcome');
-}); */
+$namespace = 'App\Http';
+
+Route::middleware(['web', $namespace . '\Middleware\AdminMiddleware'])
+    ->prefix('admin')
+    ->name('admin::')
+    ->namespace('Admin')
+    ->group(function ($router) {
+        require __DIR__ . '/../app/Routes/admin.php';
+    });
+
+Route::middleware(['web', $namespace . '\Middleware\CatalogMiddleware'])
+    ->name('catalog::')
+    ->namespace('Catalog')
+    ->group(function ($router) {
+        require __DIR__ . '/../app/Routes/catalog.php';
+    });

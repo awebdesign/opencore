@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -14,7 +12,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 */
 
 $app = new Illuminate\Foundation\Application(
-    realpath(__DIR__ . '/../')
+    realpath(__DIR__.'/../')
 );
 
 /*
@@ -42,37 +40,6 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
-
-/*
-|--------------------------------------------------------------------------`
-| Load The Application Routes
-|--------------------------------------------------------------------------
-|
-| Next we will include the routes file so that they can all be added to
-| the application. This will provide all of the URLs the application
-| can respond to, as well as the controllers that may handle them.
-|
-*/
-$namespace = 'App\Http';
-
-if (defined('HTTPS_CATALOG')) {
-    //admin routes here //->prefix('core')
-    $app->router->middleware(['web', $namespace . '\Middleware\AdminMiddleware'])
-        ->name('admin::')
-        ->namespace($namespace . '\Controllers\Admin')
-        ->group(function ($router) {
-            require __DIR__ . '/../app/Routes/admin.php';
-        });
-} else {
-    //catalog routes here
-    $app->router
-        ->middleware(['web', $namespace . '\Middleware\CatalogMiddleware'])
-        ->name('catalog::')
-        ->namespace($namespace . '\Controllers\Catalog')
-        ->group(function ($router) {
-            require __DIR__ . '/../app/Routes/catalog.php';
-        });
-}
 
 /*
 |--------------------------------------------------------------------------

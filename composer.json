@@ -32,7 +32,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "rachidlaasri/laravel-installer"
+            ]
         }
     },
     "autoload": {
