@@ -18,10 +18,10 @@
 |
 */
 
-$router->get('example', [
+Route::get('example', [
     'as' => 'example', 'uses' => 'ExampleController@index'
 ]);
 
-$router->get('example/json', [
+Route::get('example/json', [
     'as' => 'example.json', 'uses' => 'ExampleController@json'
 ]);

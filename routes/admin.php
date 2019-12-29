@@ -18,7 +18,7 @@
 |
 */
 
-$router->name('core.')->prefix('core')->namespace('Core')->group(function ($router) {
+Route::name('core.')->prefix('core')->namespace('Core')->group(function ($router) {
     $router->get('home', 'HomeController@index')->name('home');
 
     $router->get('requirements', 'RequirementsController@index')->name('requirements');
@@ -74,14 +74,14 @@ $router->name('core.')->prefix('core')->namespace('Core')->group(function ($rout
 });
 
 /** Example Controller */
-$router->get('example', 'ExampleController@index')->name('example');
-$router->post('example/store', 'ExampleController@store')->name('example.store');
-$router->delete('example/{id}', 'ExampleController@destroy')->name('example.destroy');
+Route::get('example', 'ExampleController@index')->name('example');
+Route::post('example/store', 'ExampleController@store')->name('example.store');
+Route::delete('example/{id}', 'ExampleController@destroy')->name('example.destroy');
 
 /** Example of rewriting common OpenCart controllers */
-/*$router->get('common/header', [
+/*Route::get('common/header', [
     'as' => 'common/header', 'uses' => 'ExampleController@index'
 ]);
-$router->get('common/footer', [
+Route::get('common/footer', [
     'as' => 'common/footer', 'uses' => 'ExampleController@index'
 ]);*/

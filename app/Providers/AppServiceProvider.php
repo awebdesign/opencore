@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Studio\Totem\Task;
 use App\Observers\TaskObserver;
+//use Illuminate\Support\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        /* if ($this->app->environment() === 'local') {
+            $this->app->register('\Barryvdh\Debugbar\ServiceProvider');
+        } */
     }
 
     /**
@@ -43,6 +46,10 @@ class AppServiceProvider extends ServiceProvider
          * Fix MySql default string length for older mysql versions
          */
         Schema::defaultStringLength(191);
+
+        /* Carbon::serializeUsing(function ($carbon) {
+            return $carbon->format('d/m/y H:i:s');
+        }); */
 
         Task::observe(TaskObserver::class);
     }
