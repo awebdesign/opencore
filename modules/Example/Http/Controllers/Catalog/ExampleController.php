@@ -7,7 +7,7 @@
  *
  */
 
-namespace App\Http\Controllers\Catalog;
+namespace Modules\Example\Http\Controllers\Catalog;
 
 use App\Http\Controllers\Controller;
 

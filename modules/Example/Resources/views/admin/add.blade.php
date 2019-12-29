@@ -1,6 +1,6 @@
 <div class="panel-body">
     <!-- New Example Form -->
-    <form action="{{ route('admin::example.store') }}" method="POST" class="form-horizontal">
+    <form action="{{ route('example::admin.store') }}" method="POST" class="form-horizontal">
         @csrf
 
         <!-- Example Name -->

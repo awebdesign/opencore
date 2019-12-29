@@ -73,11 +73,6 @@ Route::name('core.')->prefix('core')->namespace('Core')->group(function ($router
     $router->get('clear-cache', 'ClearCacheController@index')->name('clear-cache');
 });
 
-/** Example Controller */
-Route::get('example', 'ExampleController@index')->name('example');
-Route::post('example/store', 'ExampleController@store')->name('example.store');
-Route::delete('example/{id}', 'ExampleController@destroy')->name('example.destroy');
-
 /** Example of rewriting common OpenCart controllers */
 /*Route::get('common/header', [
     'as' => 'common/header', 'uses' => 'ExampleController@index'

@@ -1,10 +1,11 @@
-<?php 
+<?php
 
 namespace OpenCore\Support\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 //use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 abstract class RoutingServiceProvider extends ServiceProvider
 {
     /**
@@ -14,15 +15,11 @@ abstract class RoutingServiceProvider extends ServiceProvider
      */
     protected $namespace = '';
     /**
-     * Define your route model bindings, pattern filters, etc.
+     * The name of the module based on namespace
      *
-     * @param  \Illuminate\Routing\Router $router
-     * @return void
+     * @var string
      */
-    public function boot(Router $router)
-    {
-        parent::boot($router);
-    }
+    protected $modulename = '';
     /**
      * @return string
      */
@@ -43,7 +40,10 @@ abstract class RoutingServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
-        $router->group(['namespace' => $this->namespace], function (Router $router) {
+        $split = explode('\\', trim($this->namespace. '\\'));
+        $this->modulename = strtolower($split[1]);
+
+        $router->name($this->modulename . '::api.')->namespace($this->namespace)->group(function (Router $router) {
             $this->loadApiRoutes($router);
         });
 
@@ -59,7 +59,7 @@ abstract class RoutingServiceProvider extends ServiceProvider
     {
         $catalog = $this->getCatalogRoute();
         if ($catalog && file_exists($catalog)) {
-            $router->group(['namespace' => 'Catalog', 'middleware' => 'CatalogMiddleware'], function (Router $router) use ($catalog) {
+            $router->name($this->modulename . '::catalog.')->namespace($this->namespace . '\Catalog')->middleware(['web', 'App\Http\Middleware\CatalogMiddleware'])->group(function (Router $router) use ($catalog) {
                 require $catalog;
             });
         }
@@ -71,7 +71,7 @@ abstract class RoutingServiceProvider extends ServiceProvider
     {
         $admin = $this->getAdminRoute();
         if ($admin && file_exists($admin)) {
-            $router->group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function (Router $router) use ($admin) {
+            $router->name($this->modulename . '::admin.')->prefix('admin')->namespace($this->namespace . '\Admin')->middleware(['web', 'App\Http\Middleware\AdminMiddleware'])->group(function (Router $router) use ($admin) {
                 require $admin;
             });
         }

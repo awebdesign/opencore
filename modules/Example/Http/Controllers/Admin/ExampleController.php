@@ -7,12 +7,12 @@
  *
  */
 
-namespace App\Http\Controllers\Admin;
+namespace Modules\Example\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Example;
+use Modules\Example\Example;
 
 class ExampleController extends Controller
 {
@@ -20,7 +20,7 @@ class ExampleController extends Controller
     {
         $examples = Example::orderBy('created_at', 'asc')->get();
 
-        return view("admin.example.index", compact('examples'));
+        return view("example::admin.index", compact('examples'));
     }
 
     function store(Request $request)
@@ -30,7 +30,7 @@ class ExampleController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect(route('admin::example'))
+            return redirect(route('example::admin.example'))
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -39,7 +39,7 @@ class ExampleController extends Controller
         $example->name = $request->name;
         $example->save();
 
-        return redirect(route('admin::example'));
+        return redirect(route('example::admin.example'));
     }
 
     public function destroy(Request $request, $id)
@@ -50,6 +50,6 @@ class ExampleController extends Controller
 
         $example->delete();
 
-        return redirect(route('admin::example'));
+        return redirect(route('example::admin.example'));
     }
 }

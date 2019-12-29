@@ -17,11 +17,3 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
-Route::get('example', [
-    'as' => 'example', 'uses' => 'ExampleController@index'
-]);
-
-Route::get('example/json', [
-    'as' => 'example.json', 'uses' => 'ExampleController@json'
-]);

@@ -24,7 +24,7 @@
 
                             <!-- Delete Button -->
                             <td>
-                                <form action="{{ route('admin::example.destroy', [$example->id]) }}" method="POST">
+                                <form action="{{ route('example::admin.destroy', [$example->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 

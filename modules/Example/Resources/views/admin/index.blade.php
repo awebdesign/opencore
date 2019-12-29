@@ -3,7 +3,7 @@
 
 @section('container')
     <!-- Create Example Form... -->
-    @include('admin.example.add')
+    @include('example::admin.add')
 
-    @include('admin.example.list')
+    @include('example::admin.list')
 @endsection

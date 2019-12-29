@@ -49,9 +49,9 @@
                                         <i class="fa fa-clock-o"></i> Cron Jobs
                                     </a>
                                 </li>
-                            <li class="{{ Route::is('admin::example') ? 'active' : '' }}">
-                                <a href="{{ route('admin::example') }}">
-                                    <i class="fa fa-folder-open-o fw"></i> Example
+                            <li class="{{ Route::is('example::admin.index') ? 'active' : '' }}">
+                                <a href="{{ route('example::admin.index') }}">
+                                    <i class="fa fa-folder-open-o fw"></i> Example Module
                                 </a>
                             </li>
                             <li class="{{ Route::is('admin::core.clear-cache') ? 'active' : '' }}">

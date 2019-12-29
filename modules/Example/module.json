@@ -1,0 +1,14 @@
+{
+    "name": "Example",
+    "alias": "example",
+    "description": "Example module",
+    "keywords": [],
+    "active": 1,
+    "order": 1000,
+    "providers": [
+        "Modules\\Example\\Providers\\ExampleServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
