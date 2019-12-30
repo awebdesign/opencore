@@ -14,7 +14,7 @@ Please note that this package is still under active development. We encourage ev
 
 ## Features
 
-* All Laravel's 5.6 built in helpers / features
+* All Laravel's 5.8 built in helpers / features
 * Error logs by <a target="_blank" href="https://github.com/ARCANEDEV/LogViewer">ARCANEDEV</a>
 * Cronjob system management by <a target="_blank" href="https://github.com/codestudiohq/laravel-totem">Codestudiohq</a>
 * WYSIWYG Email HTML/Markdown editor.
@@ -33,12 +33,13 @@ Please note that this package is still under active development. We encourage ev
 2. go to your OpenCart root folder, open a console and run the following commands step by step
 3. git clone https://github.com/opencorero/opencore.git core
 4. composer update
-5. php artisan key:generate OR php -r "echo bin2hex(random_bytes(16));", copy the key shown there and change APP_KEY from core/.env file
+5. php artisan key:generate
 6. php artisan migrate:install
 7. php artisan migrate
 8. copy OpenCart extension files from core/opencart-module/upload to you OpenCart root folder
 9. go to OpenCart admin panel / extensions / extensions / modules, find OpenCore module and install it
 ```
+Enjoy!
 
 ## How does it works ?
 
@@ -51,9 +52,7 @@ Also you want to access a custom URL like yourwebsite.com/example
 you can create you custom route in laravel /core/app/routes/catalog.php which will handle the request for /example page!
 
 ## Speed ?!
-yes, it has! As long as your server has the minimum required for Laravel 5.6 to work everything should be good. There's no delay and on some opperations Laravel is even fasted than the default OpenCart system!
-
-Also the application comes with a mysql shared connector which will help sharing the database active connection between OpenCart and Laravel/OpenCore
+Yes, it has! As long as your server has the minimum requirements for Laravel 5.8 to work, everything should be good. The module is very fast and has no delay. The integration of Laravel Framework throught OpenCart doesn't affect at all the speed of any of them. That is happenning thanks to the multiple optimizations done in the code and to the mysql shared connector which will help sharing the database active connection between OpenCart and Laravel/OpenCore
 
 ## Documentation
 
