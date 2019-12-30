@@ -41,7 +41,7 @@ class AdminCreator
                         foreach($matches[1] as $styleLink) {
                             $document->addStyle($styleLink, 'stylesheet', 'screen');
                         }
-                    }              
+                    }
                 break;
                 case 'scripts':
                     if(preg_match_all('/"([^"]+?\.js)"/', $content, $matches))
@@ -53,9 +53,14 @@ class AdminCreator
                 break;
                 case 'inline.styles':
                 case 'inline.scripts':
-                    $this->inlineContent[] = $content; 
+                    $this->inlineContent[] = $content;
                 break;
             }
+        }
+
+        //set default meta title in case the title is missing
+        if(!isset($sections['meta.title'])) {
+            $document->setTitle(config('app.name'));
         }
 
         $loader = Startup::getRegistry('load');
@@ -65,6 +70,11 @@ class AdminCreator
             $headContent = implode("\n", $this->inlineContent);
             $header = str_replace('</head>', $headContent . '</head>', $header);
         }
+
+        //Add CSRF Token
+        $csrf = "<!-- CSRF Token -->
+        <meta name=\"csrf-token\" content=\"" . csrf_token() ."\">";
+        $header = str_replace('</title>', '</title>' . $csrf, $header);
 
         $column_left = $loader->controller('common/column_left');
         $footer = $loader->controller('common/footer');
