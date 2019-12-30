@@ -14,7 +14,7 @@
     <div class="container-fluid">
         <div class="page-header">
             {{-- Navbar --}}
-            <nav class="navbar navbar-inverse">
+            <nav class="navbar navbar-color">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -69,6 +69,18 @@
 
             {{-- Main container --}}
             @yield('container')
+
+            {{-- Footer --}}
+            <footer class="footer-container">
+                <div class="container-fluid">
+                    <p class="text-muted pull-left">
+                        Laravel <span class="label label-info">{{ app()->version() }}</span>
+                    </p>
+                    <p class="text-muted pull-right">
+                        Powered by <a href="https://opencore.ro">OpenCore</a>
+                    </p>
+                </div>
+            </footer>
         </div>
     </div>
 </div>

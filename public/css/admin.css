@@ -1,22 +1,24 @@
-.navbar-inverse {
-    background-color: #1a237e;
-    border-color: #1a237e;
+.navbar-color, .navbar-color a, .navbar-color a:visited {
+    color:#fff;
 }
-
-.navbar-inverse .navbar-nav>.active>a,
-.navbar-inverse .navbar-nav>.active>a:focus,
-.navbar-inverse .navbar-nav>.active>a:hover {
-    background-color: #3949ab;
+.navbar-color .nav > li.active, .navbar-color .nav > li:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
-
-.navbar-inverse .navbar-brand {
-    color: #c5cae9;
+.navbar-color .nav > li > a:hover, .navbar-color .nav > li > a:focus {
+    background-color: unset;
 }
-
-.navbar-inverse .navbar-nav>li>a {
-    color: #c5cae9;
+.navbar-color {
+    background: #0082e6;
+    background: -webkit-linear-gradient(left,#a0328c 30%,#7040a4 50%,#4359c7 65%,#0082e6 85%);
+    background: linear-gradient(to right,#a0328c 30%,#7040a4 50%,#4359c7 65%,#0082e6 85%);
+    will-change: transform;
 }
-
-.navbar-fixed-top {
-    border: 0;
+.footer-container {
+    border-color: #e7e7e7;
+    border-radius: 3px;
+    background-color: #f8f8f8;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    padding-top:5px;
 }

@@ -11,5 +11,15 @@ TEST TITLE
 TEST TITLE
 @endsection--}}
 @section('container')
-    CORE HOME TEMPLATE HERE
+<div class="text-center">
+    <p>
+        Welcome to OpenCore!
+    </p>
+    <p>
+        Before you start using the system please make sure the system requirements are fulfill
+    </p>
+    <p>
+        <a class="btn btn-info" href="{{route('admin::core.requirements')}}">System Requirements</a>
+    </p>
+</div>
 @endsection

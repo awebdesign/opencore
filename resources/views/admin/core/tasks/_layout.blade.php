@@ -4,6 +4,20 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/totem/css/app.css') }}">
 @endsection
 
+@section('inline.styles')
+<style>
+html {
+    background:unset;
+}
+*+ul {
+    margin-top: unset;
+}
+p {
+    margin: 0 0 8.5px;
+}
+</style>
+@endsection
+
 @section('container')
 <main id="root">
     <div class="uk-container uk-section">
