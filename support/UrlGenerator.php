@@ -28,7 +28,7 @@ class UrlGenerator extends DefaultUrlGenerator
      */
     public function route($name, $parameters = [], $absolute = true)
     {
-        if (strstr($name, 'admin::')) {
+        if (strstr($name, '::admin') || strstr($name, 'admin::')) {
             if (isOc3()) {
                 $this->tokenKey = 'user_token';
             } else {

@@ -30,7 +30,7 @@ class ExampleController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect(route('example::admin.example'))
+            return redirect(route('example::admin.index'))
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -39,7 +39,7 @@ class ExampleController extends Controller
         $example->name = $request->name;
         $example->save();
 
-        return redirect(route('example::admin.example'));
+        return redirect(route('example::admin.index'));
     }
 
     public function destroy(Request $request, $id)
@@ -50,6 +50,6 @@ class ExampleController extends Controller
 
         $example->delete();
 
-        return redirect(route('example::admin.example'));
+        return redirect(route('example::admin.index'));
     }
 }
