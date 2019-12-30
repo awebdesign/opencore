@@ -7,6 +7,9 @@
 .navbar-color .nav > li > a:hover, .navbar-color .nav > li > a:focus {
     background-color: unset;
 }
+.navbar-color .icon-bar {
+    background-color: #fff;
+}
 .navbar-color {
     background: #0082e6;
     background: -webkit-linear-gradient(left,#a0328c 30%,#7040a4 50%,#4359c7 65%,#0082e6 85%);
