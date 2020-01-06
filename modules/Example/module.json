@@ -3,8 +3,12 @@
     "alias": "example",
     "description": "Example module",
     "keywords": [],
+    "version": "1.0.0",
     "active": 1,
     "order": 1000,
+    "links": {
+        "example::admin.index": "Example Form"
+    },
     "providers": [
         "Modules\\Example\\Providers\\ExampleServiceProvider"
     ],
