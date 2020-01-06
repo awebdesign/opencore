@@ -1,4 +1,14 @@
-.navbar-color, .navbar-color a, .navbar-color a:visited {
+.navbar-color {
+    background: #0082e6;
+    background: -webkit-linear-gradient(left,#a0328c 30%,#7040a4 50%,#4359c7 65%,#0082e6 85%);
+    background: linear-gradient(to right,#a0328c 30%,#7040a4 50%,#4359c7 65%,#0082e6 85%);
+    will-change: transform;
+    z-index:1
+}
+.navbar-color .icon-bar {
+    background-color: #fff;
+}
+.navbar-color, .navbar-color ul:not(.dropdown-menu) > li > a, .navbar-colorul:not(.dropdown-menu) > li > a:visited, .navbar-color .navbar-header a {
     color:#fff;
 }
 .navbar-color .nav > li.active, .navbar-color .nav > li:hover {
@@ -6,15 +16,6 @@
 }
 .navbar-color .nav > li > a:hover, .navbar-color .nav > li > a:focus {
     background-color: unset;
-}
-.navbar-color .icon-bar {
-    background-color: #fff;
-}
-.navbar-color {
-    background: #0082e6;
-    background: -webkit-linear-gradient(left,#a0328c 30%,#7040a4 50%,#4359c7 65%,#0082e6 85%);
-    background: linear-gradient(to right,#a0328c 30%,#7040a4 50%,#4359c7 65%,#0082e6 85%);
-    will-change: transform;
 }
 .footer-container {
     border-color: #e7e7e7;
@@ -24,4 +25,13 @@
     margin-bottom: 15px;
     border: 1px solid transparent;
     padding-top:5px;
+}
+/* Bootstrap overwrite */
+.alert-success {
+    background-color: #32b322;
+    border-color: #dfebd5;
+    color: #ffffff;
+}
+.btn-info {
+    background-color: #0082e6;
 }
