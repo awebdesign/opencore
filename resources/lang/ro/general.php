@@ -8,6 +8,10 @@ return [
         'system' => 'Sistem',
         'clear_cache' => 'Sterge Cache',
     ],
+    'home' => [
+        'title' => 'Multumim ca folositi OpenCore!',
+        'description' => 'Inainte sa incepeti sa folositi sistemul va rugam sa va asigurati ca cerintele sistemului sunt indeplinite',
+    ],
     'cron' => [
         'info' => 'Nu uitati sa adaugati urmatoarea comanda pentru cronjob in panoul de control al serverului de hosting (cPanel)'
     ],

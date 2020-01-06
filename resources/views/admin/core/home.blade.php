@@ -12,14 +12,10 @@ TEST TITLE
 @endsection--}}
 @section('container')
 <div class="text-center">
+    <p>{{ trans('general.home.title') }}</p>
+    <p>{{ trans('general.home.description') }}</p>
     <p>
-        Welcome to OpenCore!
-    </p>
-    <p>
-        Before you start using the system please make sure the system requirements are fulfill
-    </p>
-    <p>
-        <a class="btn btn-info" href="{{route('admin::core.requirements')}}">System Requirements</a>
+        <a class="btn btn-info" href="{{route('admin::core.requirements')}}">{{ trans('general.menu.requirements') }}</a>
     </p>
 </div>
 @endsection
