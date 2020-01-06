@@ -34,18 +34,6 @@ class AdminMiddleware
             return redirect(basename(DIR_APPLICATION) . '/login');
         }
 
-        /**
-         * set language based on OpenCart language session
-         */
-        $locale = config('app.locale');
-
-        if(!empty($session->data['language'])) {
-            $lang = explode('-', $session->data['language']);
-            $locale = $lang[0];
-        }
-
-        $this->app->setLocale($locale);
-
         return $next($request);
     }
 }

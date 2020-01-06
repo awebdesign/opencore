@@ -47,7 +47,7 @@
     @endforeach
 </ul>
 <p>
-    Don't forget to add the folowing cronjob on your hosting control panel (cPanel)
+    {{ trans('general.cron.info') }}
 </p>
 <ul class="list-group">
     <li class="list-group-item list-group-item-info">* * * * * php {{ $cronpath }} schedule:run >> /dev/null 2>&1</li>

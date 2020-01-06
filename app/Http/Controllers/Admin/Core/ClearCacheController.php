@@ -23,6 +23,6 @@ class ClearCacheController extends Controller
 
         return redirect()
         ->route('admin::core.home')
-        ->with('success', 'Cache cleared!');
+        ->with('success', trans('general.cache.cleared'));
     }
 }

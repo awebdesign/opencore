@@ -5,6 +5,8 @@ namespace App\Http\View\Creators;
 use Illuminate\View\View;
 use OpenCore\Support\Opencart\Startup;
 use Illuminate\Support\Facades\View as ViewFacade;
+use Nwidart\Modules\Facades\Module;
+use Illuminate\Support\Facades\Lang;
 
 class AdminCreator
 {
@@ -82,5 +84,23 @@ class AdminCreator
         $view->with('opencart_header', $header);
         $view->with('opencart_column_left', $column_left);
         $view->with('opencart_footer', $footer);
+
+        $modulesLinks = [];
+        $modules = Module::getOrdered();
+        foreach($modules as $module) {
+            if($module->enabled()) {
+                $moduleName = $module->getName();
+                $attributes = $module->json()->getAttributes();
+
+                if(!empty($attributes['links'])) {
+                    $modulesLinks[] = [
+                        'name' => $moduleName,
+                        'links' => $attributes['links']
+                    ];
+                }
+            }
+        }
+
+        $view->with('modulesLinks', $modulesLinks);
     }
 }

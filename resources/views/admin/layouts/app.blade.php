@@ -18,7 +18,7 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
+                            <span class="sr-only">{{ trans('general.menu.toggle') }}</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -27,35 +27,39 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbar">
                         <ul class="nav navbar-nav">
-                            <li class="{{ Route::is('admin::core.logs.dashboard') ? 'active' : '' }}">
-                                <a href="{{ route('admin::core.logs.dashboard') }}">
-                                    <i class="fa fa-dashboard"></i> Logs Dashboard
-                                </a>
-                            </li>
-                            <li class="{{ Route::is('admin::core.logs.list') ? 'active' : '' }}">
-                                <a href="{{ route('admin::core.logs.list') }}">
-                                    <i class="fa fa-archive"></i> Logs
-                                </a>
-                            </li>
                             <li class="{{ Route::is('admin::core.requirements') ? 'active' : '' }}">
                                 <a href="{{ route('admin::core.requirements') }}">
-                                    <i class="fa fa-life-ring"></i> System Requirements
+                                    <i class="fa fa-life-ring"></i> {{ trans('general.menu.requirements') }}
                                 </a>
                             </li>
-                            <li class="{{ Route::is('admin::core.tasks.dashboard') ? 'active' : '' }}">
-                                    <a href="{{ route('admin::core.tasks.dashboard') }}">
-                                        <i class="fa fa-clock-o"></i> Cron Jobs
-                                    </a>
-                                </li>
-                            <li class="{{ Route::is('example::admin.index') ? 'active' : '' }}">
-                                <a href="{{ route('example::admin.index') }}">
-                                    <i class="fa fa-folder-open-o fw"></i> Example Module
+                            <li>
+                                <a class="dropdown-toggle" href="#" id="modulesDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-cubes"></i> {{ trans('general.menu.modules') }}
                                 </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @foreach($modulesLinks as $module)
+                                    <li class="dropdown-header"><i class="fa fa-folder-open-o"></i> {{ $module['name'] }}</li>
+                                        @foreach($module['links'] as $route => $translation)
+                                        <li class="{{ Route::is($route) ? 'active' : '' }}">
+                                            <a href="{{ route($route) }}">
+                                                @lang($translation)
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    @endforeach
+                                </ul>
                             </li>
-                            <li class="{{ Route::is('admin::core.clear-cache') ? 'active' : '' }}">
-                                <a href="{{ route('admin::core.clear-cache') }}">
-                                    <i class="fa fa-eraser"></i> Clear Cache
+                            <li>
+                                <a class="dropdown-toggle" href="#" id="systemDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-gears"></i> {{ trans('general.menu.system') }}
                                 </a>
+                                <ul class="dropdown-menu" aria-labelledby="systemDropdown">
+                                    <li class="{{ Route::is('admin::core.clear-cache') ? 'active' : '' }}">
+                                        <a href="{{ route('admin::core.clear-cache') }}">
+                                            <i class="fa fa-eraser"></i> {{ trans('general.menu.clear_cache') }}
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
