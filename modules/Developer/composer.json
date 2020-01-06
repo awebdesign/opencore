@@ -1,0 +1,36 @@
+{
+    "name": "opencorero/developer",
+    "description": "Developer module",
+    "authors": [
+        {
+            "name": "DaRock",
+            "email": "support@opencore.ro"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "arcanedev/log-viewer": "^4.7",
+        "studio/laravel-totem": "^5.3"
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "arcanedev/log-viewer",
+                "studio/laravel-totem"
+            ],
+            "providers": [
+                "Modules\\Developer\\Providers\\DeveloperServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Developer\\": ""
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
