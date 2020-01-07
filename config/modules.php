@@ -24,26 +24,26 @@ return [
 
     'stubs' => [
         'enabled' => true,
-        'path' => base_path() . '/',
+        'path' => base_path() . '/vendor/nwidart/laravel-modules/src/Commands/stubs',
         'files' => [
-            'support/Stubs/routes/admin' => 'Routes/admin.php',
-            'support/Stubs/routes/catalog' => 'Routes/catalog.php',
-            'vendor/nwidart/laravel-modules/src/Commands/stubs/routes/api' => 'Routes/api.php',
-            'vendor/nwidart/laravel-modules/src/Commands/stubs/views/index' => 'Resources/views/index.blade.php',
-            'vendor/nwidart/laravel-modules/src/Commands/stubs/views/master' => 'Resources/views/layouts/master.blade.php',
-            'vendor/nwidart/laravel-modules/src/Commands/stubs/scaffold/config' => 'Config/config.php',
-            'vendor/nwidart/laravel-modules/src/Commands/stubs/composer' => 'composer.json',
-            'vendor/nwidart/laravel-modules/src/Commands/stubs/assets/js/app' => 'Resources/assets/js/app.js',
-            'vendor/nwidart/laravel-modules/src/Commands/stubs/assets/sass/app' => 'Resources/assets/sass/app.scss',
-            'vendor/nwidart/laravel-modules/src/Commands/stubs/webpack' => 'webpack.mix.js',
-            'vendor/nwidart/laravel-modules/src/Commands/stubs/package' => 'package.json',
+            '../../../../../../support/Stubs/routes/admin' => 'Routes/admin.php',
+            '../../../../../../support/Stubs/routes/catalog' => 'Routes/catalog.php',
+            'routes/api' => 'Routes/api.php',
+            'views/index' => 'Resources/views/index.blade.php',
+            'views/master' => 'Resources/views/layouts/master.blade.php',
+            'scaffold/config' => 'Config/config.php',
+            'composer' => 'composer.json',
+            'assets/js/app' => 'Resources/assets/js/app.js',
+            'assets/sass/app' => 'Resources/assets/sass/app.scss',
+            'webpack' => 'webpack.mix.js',
+            'package' => 'package.json',
         ],
         'replacements' => [
-            'routes/admin' => ['LOWER_NAME', 'STUDLY_NAME'],
-            'routes/catalog' => ['LOWER_NAME', 'STUDLY_NAME'],
+            '../../../../../../support/Stubs/routes/admin' => ['LOWER_NAME', 'STUDLY_NAME'],
+            '../../../../../../support/Stubs/routes/catalog' => ['LOWER_NAME', 'STUDLY_NAME'],
             'routes/api' => ['LOWER_NAME'],
             'webpack' => ['LOWER_NAME'],
-            'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
+            'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE', 'PROVIDER_NAMESPACE'],
             'views/index' => ['LOWER_NAME'],
             'views/master' => ['LOWER_NAME', 'STUDLY_NAME'],
             'scaffold/config' => ['STUDLY_NAME'],
@@ -54,6 +54,7 @@ return [
                 'AUTHOR_NAME',
                 'AUTHOR_EMAIL',
                 'MODULE_NAMESPACE',
+                'PROVIDER_NAMESPACE',
             ],
         ],
         'gitkeep' => true,
@@ -150,7 +151,7 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'opencore',
+        'vendor' => 'opencorero',
         'author' => [
             'name' => 'DaRock',
             'email' => 'support@opencore.ro',
@@ -165,7 +166,7 @@ return [
     |
     */
     'cache' => [
-        'enabled' => true,
+        'enabled' => false,
         'key' => 'laravel-modules',
         'lifetime' => 60,
     ],
