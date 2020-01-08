@@ -1,0 +1,9 @@
+url: https://github.com/opencorero/Example
+versions:
+    "1.0.0":
+        added:
+            - Using new feature
+        changed:
+            - Updating the module structure
+        removed:
+            - Old home file
