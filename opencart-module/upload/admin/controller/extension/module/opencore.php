@@ -1,6 +1,6 @@
 <?php
 
-require_once realpath(__DIR__ . '/../../../../') . '/core/Startup.php';
+require_once realpath(__DIR__ . '/../../../../') . '/core/support/Opencart/Startup.php';
 
 use OpenCore\Support\OpenCart\Installer;
 use OpenCore\Support\OpenCart\OcCore;
@@ -66,7 +66,8 @@ class ControllerExtensionModuleOpencore extends Controller
 
         $this->addPermissions('extension/module/opencore', ['access', 'modify']);
         $this->addPermissions('core/*', ['access', 'modify']);
-        $this->addPermissions('example/*', ['access', 'modify']);
+        $this->addPermissions('developer/*', ['access', 'modify']); //temporary
+        $this->addPermissions('example/*', ['access', 'modify']); //temporary
 
         $this->session->data['success'] = $this->language->get('text_success');
     }
@@ -84,7 +85,8 @@ class ControllerExtensionModuleOpencore extends Controller
 
         $this->removePermissions('extension/module/opencore', ['access', 'modify']);
         $this->removePermissions('core/*', ['access', 'modify']);
-        $this->removePermissions('example/*', ['access', 'modify']);
+        $this->removePermissions('developer/*', ['access', 'modify']); //temporary
+        $this->removePermissions('example/*', ['access', 'modify']); //temporary
 
         $this->session->data['success'] = $this->language->get('text_success');
 

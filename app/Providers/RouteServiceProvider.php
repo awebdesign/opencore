@@ -23,8 +23,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
     }
 
@@ -37,9 +35,11 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapApiRoutes();
 
-        $this->mapWebRoutes();
+        //$this->mapWebRoutes();
 
-        //
+        $this->mapCatalogRoutes();
+
+        $this->mapAdminRoutes();
     }
 
     /**
@@ -51,9 +51,26 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
+        /* Route::middleware('web')
              ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+             ->group(base_path('routes/web.php')); */
+    }
+
+    protected function mapAdminRoutes()
+    {
+        Route::middleware(['web', 'App\Http\Middleware\AdminMiddleware'])
+            ->prefix('admin')
+            ->name('admin::')
+            ->namespace('App\Http\Controllers\Admin')
+            ->group(base_path('routes/admin.php'));
+    }
+
+    protected function mapCatalogRoutes()
+    {
+        Route::middleware(['web', 'App\Http\Middleware\CatalogMiddleware'])
+            ->name('catalog::')
+            ->namespace('App\Http\Controllers\Catalog')
+            ->group(base_path('routes/catalog.php'));
     }
 
     /**

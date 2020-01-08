@@ -1,0 +1,25 @@
+{
+    "name": "opencorero/example",
+    "description": "Example module",
+    "authors": [
+        {
+            "name": "DaRock",
+            "email": "support@opencore.ro"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Example\\Providers\\ExampleServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Example\\": ""
+        }
+    }
+}

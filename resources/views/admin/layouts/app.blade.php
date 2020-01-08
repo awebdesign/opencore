@@ -3,32 +3,6 @@
 @else
     {!! $opencart_header !!}
 @endif
-<style>
-.navbar-inverse {
-    background-color: #1a237e;
-    border-color: #1a237e;
-}
-
-.navbar-inverse .navbar-nav>.active>a,
-.navbar-inverse .navbar-nav>.active>a:focus,
-.navbar-inverse .navbar-nav>.active>a:hover {
-    background-color: #3949ab;
-}
-
-.navbar-inverse .navbar-brand {
-    color: #c5cae9;
-}
-
-.navbar-inverse .navbar-nav>li>a {
-    color: #c5cae9;
-}
-
-.navbar-fixed-top {
-    border: 0;
-}
-</style>
-@yield('styles')
-
 @hasSection('opencart_column_left')
     @yield('opencart_column_left')
 @else
@@ -40,50 +14,52 @@
     <div class="container-fluid">
         <div class="page-header">
             {{-- Navbar --}}
-            <nav class="navbar navbar-inverse">
+            <nav class="navbar navbar-color">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
+                            <span class="sr-only">{{ trans('general.menu.toggle') }}</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="{{ route('admin::core.home') }}" class="navbar-brand">
-                            <i class="fa fa-cube"></i> Core Home
-                        </a>
+                        <a href="{{ route('admin::core.home') }}" class="navbar-brand"><i class="fa fa-cube"></i> OpenCore</a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar">
                         <ul class="nav navbar-nav">
-                            <li class="{{ Route::is('admin::core.logs.dashboard') ? 'active' : '' }}">
-                                <a href="{{ route('admin::core.logs.dashboard') }}">
-                                    <i class="fa fa-dashboard"></i> Logs Dashboard
-                                </a>
-                            </li>
-                            <li class="{{ Route::is('admin::core.logs.list') ? 'active' : '' }}">
-                                <a href="{{ route('admin::core.logs.list') }}">
-                                    <i class="fa fa-archive"></i> Logs
-                                </a>
-                            </li>
                             <li class="{{ Route::is('admin::core.requirements') ? 'active' : '' }}">
                                 <a href="{{ route('admin::core.requirements') }}">
-                                    <i class="fa fa-life-ring"></i> System Requirements
+                                    <i class="fa fa-life-ring"></i> {{ trans('general.menu.requirements') }}
                                 </a>
                             </li>
-                            <li class="{{ Route::is('admin::core.tasks.dashboard') ? 'active' : '' }}">
-                                    <a href="{{ route('admin::core.tasks.dashboard') }}">
-                                        <i class="fa fa-clock-o"></i> Cron Jobs
-                                    </a>
-                                </li>
-                            <li class="{{ Route::is('admin::example') ? 'active' : '' }}">
-                                <a href="{{ route('admin::example') }}">
-                                    <i class="fa fa-folder-open-o fw"></i> Example
+                            <li>
+                                <a class="dropdown-toggle" href="#" id="modulesDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-cubes"></i> {{ trans('general.menu.modules') }}
                                 </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @foreach($modulesLinks as $module)
+                                    <li class="dropdown-header"><i class="fa fa-folder-open-o"></i> {{ $module['name'] }}</li>
+                                        @foreach($module['links'] as $route => $translation)
+                                        <li class="{{ Route::is($route) ? 'active' : '' }}">
+                                            <a href="{{ route($route) }}">
+                                                @lang($translation)
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    @endforeach
+                                </ul>
                             </li>
-                            <li class="{{ Route::is('admin::core.clear-cache') ? 'active' : '' }}">
-                                <a href="{{ route('admin::core.clear-cache') }}">
-                                    <i class="fa fa-eraser"></i> Clear Cache
+                            <li>
+                                <a class="dropdown-toggle" href="#" id="systemDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-gears"></i> {{ trans('general.menu.system') }}
                                 </a>
+                                <ul class="dropdown-menu" aria-labelledby="systemDropdown">
+                                    <li class="{{ Route::is('admin::core.clear-cache') ? 'active' : '' }}">
+                                        <a href="{{ route('admin::core.clear-cache') }}">
+                                            <i class="fa fa-eraser"></i> {{ trans('general.menu.clear_cache') }}
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -95,6 +71,18 @@
 
             {{-- Main container --}}
             @yield('container')
+
+            {{-- Footer --}}
+            <footer class="footer-container">
+                <div class="container-fluid">
+                    <p class="text-muted pull-left">
+                        Laravel <span class="label label-info">{{ app()->version() }}</span>
+                    </p>
+                    <p class="text-muted pull-right">
+                        Powered by <a href="https://opencore.ro">OpenCore</a>
+                    </p>
+                </div>
+            </footer>
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
-@section('meta_title')
-    {{ trans('installer_messages.permissions.templateTitle') }}
+@section('meta.title')
+    {{ trans('installer_messages.welcome.next') }}
 @endsection
 
 @section('title')
@@ -11,9 +11,9 @@
 
 @section('container')
 
-<ul class="list">
+<ul class="list-group">
 @foreach($requirements['requirements'] as $type => $requirement)
-    <li class="list__item list__title {{ $phpSupportInfo['supported'] ? 'success' : 'error' }}">
+    <li class="list-group-item {{ $phpSupportInfo['supported'] ? 'success' : 'list-group-item-danger' }}">
         <strong>{{ ucfirst($type) }}</strong>
         @if($type == 'php')
             <strong>
@@ -30,14 +30,14 @@
         @endif
     </li>
     @foreach($requirements['requirements'][$type] as $extention => $enabled)
-        <li class="list__item {{ $enabled ? 'success' : 'error' }}">
+        <li class="list-group-item {{ $enabled ? 'success' : 'list-group-item-danger' }}">
             {{ $extention }}
             <i class="fa fa-fw fa-{{ $enabled ? 'check-circle-o' : 'exclamation-circle' }} row-icon" aria-hidden="true"></i>
         </li>
     @endforeach
     @endforeach
     @foreach($permissions['permissions'] as $permission)
-    <li class="list__item list__item--permissions {{ $permission['isSet'] ? 'success' : 'error' }}">
+    <li class="list-group-item {{ $permission['isSet'] ? 'success' : 'list-group-item-danger' }}">
         {{ $permission['folder'] }}
         <span>
             <i class="fa fa-fw fa-{{ $permission['isSet'] ? 'check-circle-o' : 'exclamation-circle' }}"></i>
@@ -45,6 +45,11 @@
         </span>
     </li>
     @endforeach
-    <li>Cronjob path: * * * * * php {{ $cronpath }} schedule:run >> /dev/null 2>&1</li>
+</ul>
+<p>
+    {{ trans('general.cron.info') }}
+</p>
+<ul class="list-group">
+    <li class="list-group-item list-group-item-info">* * * * * php {{ $cronpath }} schedule:run >> /dev/null 2>&1</li>
 </ul>
 @endsection

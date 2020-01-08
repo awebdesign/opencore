@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Studio\Totem\Task;
-use App\Observers\TaskObserver;
+use Illuminate\Support\Carbon;
+use OpenCore\Support\Opencart\Startup;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        /* if ($this->app->environment() === 'local') {
+            $this->app->register('\Barryvdh\Debugbar\ServiceProvider');
+        } */
     }
 
     /**
@@ -44,6 +46,23 @@ class AppServiceProvider extends ServiceProvider
          */
         Schema::defaultStringLength(191);
 
-        Task::observe(TaskObserver::class);
+        /**
+         * set language based on OpenCart language session
+         * if there is an instance of OpenCart ready
+         */
+        if(defined('OPENCORE_VERSION')) {
+            $session = Startup::getRegistry('session');
+
+            $locale = config('app.locale');
+            if(!empty($session->data['language'])) {
+                $lang = explode('-', $session->data['language']);
+                $locale = $lang[0];
+            }
+            $this->app->setLocale($locale);
+        }
+
+        Carbon::serializeUsing(function ($carbon) {
+            return $carbon->format(config('app.dateformat'));
+        });
     }
 }

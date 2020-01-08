@@ -1,0 +1,20 @@
+{
+    "name": "Developer",
+    "alias": "developer",
+    "description": "Developer module for OpenCore",
+    "keywords": [],
+    "version": "1.0.0",
+    "active": 1,
+    "order": 1,
+    "links": {
+        "developer::admin.logs.dashboard": "developer::admin.logs.dashboard",
+        "developer::admin.logs.list": "developer::admin.logs.list",
+        "developer::admin.tasks.dashboard": "developer::admin.tasks.dashboard"
+    },
+    "providers": [
+        "Modules\\Developer\\Providers\\DeveloperServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

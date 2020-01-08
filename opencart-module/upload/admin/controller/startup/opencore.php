@@ -7,9 +7,9 @@
  *
  */
 
-require_once realpath(__DIR__ . '/../../../') . '/core/Startup.php';
+require_once realpath(__DIR__ . '/../../../') . '/core/support/Opencart/Startup.php';
 
-use OpenCore\Startup;
+use OpenCore\Support\Opencart\Startup;
 use OpenCore\Support\OpenCart\OcCore;
 
 class ControllerStartupOpencore extends Startup
@@ -70,7 +70,8 @@ class ControllerStartupOpencore extends Startup
             case 'user/user_group_form':
                 //adding permissions into admin user/permissions page for OpenCore panel
                 $data['permissions'][] = 'core/*';
-                $data['permissions'][] = 'example/*';
+                $data['permissions'][] = 'developer/*'; //temporary
+                $data['permissions'][] = 'example/*'; //temporary
 
                 sort($data['permissions']);
             break;
