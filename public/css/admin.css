@@ -17,6 +17,10 @@
 .navbar-color .nav > li > a:hover, .navbar-color .nav > li > a:focus {
     background-color: unset;
 }
+.navbar-color .nav .open > a, .navbar-color .nav .open > a:hover, .navbar-color .nav .open > a:focus {
+    background-color: #515151;
+}
+
 .footer-container {
     border-color: #e7e7e7;
     border-radius: 3px;
@@ -28,9 +32,14 @@
 }
 /* Bootstrap overwrite */
 .alert-success {
-    background-color: #32b322;
+    background-color: #00a65a;
     border-color: #dfebd5;
-    color: #ffffff;
+    color: #fff;
+}
+.alert-danger {
+    background-color: #da2f1a;
+    border-color: #dfebd5;
+    color: #fff;
 }
 .btn-info {
     background-color: #0082e6;

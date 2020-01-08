@@ -66,8 +66,6 @@ class ControllerExtensionModuleOpencore extends Controller
 
         $this->addPermissions('extension/module/opencore', ['access', 'modify']);
         $this->addPermissions('core/*', ['access', 'modify']);
-        $this->addPermissions('developer/*', ['access', 'modify']); //temporary
-        $this->addPermissions('example/*', ['access', 'modify']); //temporary
 
         $this->session->data['success'] = $this->language->get('text_success');
     }
@@ -85,8 +83,6 @@ class ControllerExtensionModuleOpencore extends Controller
 
         $this->removePermissions('extension/module/opencore', ['access', 'modify']);
         $this->removePermissions('core/*', ['access', 'modify']);
-        $this->removePermissions('developer/*', ['access', 'modify']); //temporary
-        $this->removePermissions('example/*', ['access', 'modify']); //temporary
 
         $this->session->data['success'] = $this->language->get('text_success');
 

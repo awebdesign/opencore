@@ -5,6 +5,7 @@ return [
         'toggle' => 'Meniu',
         'requirements' => 'Cerinte sistem',
         'modules' => 'Module',
+        'modules_management' => 'Management Module',
         'system' => 'Sistem',
         'clear_cache' => 'Sterge Cache',
     ],
@@ -18,5 +19,6 @@ return [
     'cache' => [
         'cleared' => 'Cache-ul a fost sters!'
     ],
-    'powered_by' => 'Powered by'
+    'powered_by' => 'Powered by',
+    'error_title' => 'Opa! Am intampinat probleme!',
 ];

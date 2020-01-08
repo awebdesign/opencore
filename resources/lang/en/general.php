@@ -5,6 +5,7 @@ return [
         'toggle' => 'Menu',
         'requirements' => 'System Requirements',
         'modules' => 'Modules',
+        'modules_management' => 'Modules Management',
         'system' => 'System',
         'clear_cache' => 'Clear Cache',
     ],
@@ -18,5 +19,6 @@ return [
     'cache' => [
         'cleared' => 'Cache cleared!'
     ],
-    'powered_by' => 'Powered by'
+    'powered_by' => 'Powered by',
+    'error_title' => 'Whoops! Something went wrong!',
 ];

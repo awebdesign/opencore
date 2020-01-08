@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Carbon;
 use OpenCore\Support\Opencart\Startup;
+use Nwidart\Modules\Contracts\RepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        app('router')->bind('module', function ($module) {
+            return app(RepositoryInterface::class)->find($module);
+        });
+
         /* if ($this->app->environment() === 'local') {
             $this->app->register('\Barryvdh\Debugbar\ServiceProvider');
         } */
@@ -62,7 +68,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Carbon::serializeUsing(function ($carbon) {
-            return $carbon->format(config('app.dateformat'));
+            return $carbon->format(config('opencore.dateformat'));
         });
     }
 }

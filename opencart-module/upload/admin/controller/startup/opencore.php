@@ -70,10 +70,14 @@ class ControllerStartupOpencore extends Startup
             case 'user/user_group_form':
                 //adding permissions into admin user/permissions page for OpenCore panel
                 $data['permissions'][] = 'core/*';
-                $data['permissions'][] = 'developer/*'; //temporary
-                $data['permissions'][] = 'example/*'; //temporary
 
-                sort($data['permissions']);
+                //get modules
+                $modules = app('modules')->all();
+                foreach ($modules as $module) {
+                    if($module->enabled()) {
+                        $data['permissions'][] = strtolower($module->getName()) . '/*';
+                    }
+                }
             break;
         }
 

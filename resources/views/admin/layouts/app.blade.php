@@ -47,6 +47,9 @@
                                         </li>
                                         @endforeach
                                     @endforeach
+                                    <li class="{{ Route::is('admin::core.modules.index') ? 'active' : '' }}">
+                                        <a href="{{ route('admin::core.modules.index') }}"><i class="fa fa-gears"></i> <strong>{{ trans('general.menu.modules_management') }}</strong></a>
+                                    </li>
                                 </ul>
                             </li>
                             <li>
@@ -79,7 +82,7 @@
                         Laravel <span class="label label-info">{{ app()->version() }}</span>
                     </p>
                     <p class="text-muted pull-right">
-                        Powered by <a href="https://opencore.ro">OpenCore</a>
+                        {{ trans('general.powered_by') }} <a href="https://opencore.ro">OpenCore</a>
                     </p>
                 </div>
             </footer>

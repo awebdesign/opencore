@@ -56,3 +56,10 @@ if (!function_exists('token_field')) {
         return new HtmlString('<input type="hidden" name="' . getTokenKey() . '" value="' . getToken() . '">');
     }
 }
+
+if (! function_exists('module_version')) {
+    function module_version(\Nwidart\Modules\Laravel\Module $module)
+    {
+        return $module->version;
+    }
+}
