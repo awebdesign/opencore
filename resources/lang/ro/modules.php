@@ -12,6 +12,7 @@ return [
     'disable' => 'Dezactivati',
     'publish_assets' => 'Publica Asset-uri',
     'update' => 'Update',
+    'changelog' => 'Changelog',
     'added' => 'Adaugari',
     'changed' => 'Modificari',
     'removed' => 'Stergeri',

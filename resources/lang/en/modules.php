@@ -12,6 +12,7 @@ return [
     'disable' => 'Disable',
     'publish_assets' => 'Publish Assets',
     'update' => 'Update',
+    'changelog' => 'Changelog',
     'added' => 'Added',
     'changed' => 'Changed',
     'removed' => 'Removed',
