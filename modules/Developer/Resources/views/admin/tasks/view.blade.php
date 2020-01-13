@@ -1,4 +1,4 @@
-@extends('admin.core.tasks._layout')
+@extends('developer::admin.tasks._layout')
 @section('meta.title')
    Task
 @stop

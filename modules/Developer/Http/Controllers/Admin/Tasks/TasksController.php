@@ -64,7 +64,7 @@ class TasksController extends Controller
             return ['name' => $command->getName(), 'description' => $command->getDescription()];
         });
 
-        return view('admin.core.tasks.form', [
+        return view('developer::admin.tasks.form', [
             'task'          => new Task,
             'commands'      => $commands,
             'timezones'     => timezone_identifiers_list(),
@@ -95,7 +95,7 @@ class TasksController extends Controller
      */
     public function view(Task $task)
     {
-        return view('admin.core.tasks.view', [
+        return view('developer::admin.tasks.view', [
             'task'  => $task,
         ]);
     }
@@ -112,7 +112,7 @@ class TasksController extends Controller
             return ['name' => $command->getName(), 'description' => $command->getDescription()];
         });
 
-        return view('admin.core.tasks.form', [
+        return view('developer::admin.tasks.form', [
             'task'          => $task,
             'commands'      => $commands,
             'timezones'     => timezone_identifiers_list(),
