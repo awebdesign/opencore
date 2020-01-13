@@ -26,15 +26,15 @@ class CatalogMiddleware
         /**
          * set language absed on OpenCart language session
          */
-        $locale = config('app.locale');
+        // $locale = config('app.locale');
 
-        $session = Startup::getRegistry('session');
-        if(!empty($session->data['language'])) {
-            $lang = explode('-', $session->data['language']);
-            $locale = $lang[0];
-        }
+        // $session = Startup::getRegistry('session');
+        // if(!empty($session->data['language'])) {
+        //     $lang = explode('-', $session->data['language']);
+        //     $locale = $lang[0];
+        // }
 
-        $this->app->setLocale($locale);
+        // $this->app->setLocale($locale);
 
         return $next($request);
     }

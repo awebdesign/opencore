@@ -47,7 +47,7 @@ let's take this file from OpenCart system: /admin/controller/common/header.php
     => IF exists in /core/app/Http/Controllers/Admin/common/header.php => we load it from here
 		That means you can write your own core based on Laravel framework and integrate it into OpenCart
     => IF DOES NOT exists in /core/app/Http/Controllers/Admin/common/header.php => we load the system default one; same for model, lang, view, etc
-	
+
 Also you want to access a custom URL like yourwebsite.com/example
 you can create you custom route in laravel /core/app/routes/catalog.php which will handle the request for /example page!
 
@@ -68,7 +68,7 @@ MIT license. Please see the [license file](LICENSE) for more information.
 
 
 ## TODO
-
+* display jobs & failed_jobs lists in developer module
 * admin user permission checked on modify | POST / PUT / DELETE
 * move occore user permission changes inside OpenCore project in a separate method
 * remove getRegistry from Startup controller and let Framework handle it

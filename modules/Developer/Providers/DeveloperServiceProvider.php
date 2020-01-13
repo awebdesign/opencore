@@ -5,8 +5,6 @@ namespace Modules\Developer\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Facades\Config;
-use Studio\Totem\Task;
-use Modules\Developer\Observers\TaskObserver;
 
 class DeveloperServiceProvider extends ServiceProvider
 {
@@ -30,7 +28,10 @@ class DeveloperServiceProvider extends ServiceProvider
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
-        Task::observe(TaskObserver::class);
+        //avoid errors when working with local machine composer & remote server files
+        if(class_exists('\Studio\Totem\Task')) {
+            \Studio\Totem\Task::observe(\Modules\Developer\Observers\TaskObserver::class);
+        }
     }
 
     /**

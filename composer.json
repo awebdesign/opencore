@@ -1,12 +1,18 @@
 {
     "name": "awebdesign/core",
     "description": "The Laravel Framework for OpenCart projects",
-    "keywords": ["framework", "laravel", "opencart"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "opencart"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "7.1.3",
+        "php": ">=7.0.0",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.5",
+        "intervention/image": "^2.5",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "nwidart/laravel-modules": "^4.1",
