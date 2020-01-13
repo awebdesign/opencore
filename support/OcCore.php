@@ -9,15 +9,12 @@
 
 namespace OpenCore\Support;
 
+use Closure;
 use Illuminate\Support\Facades\Request;
+use Intervention\Image\Facades\Image;
 
 class OcCore
 {
-    /**
-     * You can use Startup::getRegistry() to access to OpenCart registry
-     * Example: Startup::getRegistry('request')->get
-     */
-
     public function getTokenStr()
     {
         return $this->getTokenKey() . '=' . $this->getToken();
@@ -31,5 +28,35 @@ class OcCore
     public function getTokenKey()
     {
         return (isOc3() ? 'user_token' : 'token');
+    }
+
+    public function ImageResize($image, $width, $height, Closure $closure = null)
+    {
+        if (!is_file(DIR_IMAGE . $image) || substr(str_replace('\\', '/', realpath(DIR_IMAGE . $image)), 0, strlen(DIR_IMAGE)) != DIR_IMAGE) {
+			return;
+        }
+
+        $extension = pathinfo($image, PATHINFO_EXTENSION);
+        $cacheImage = 'cache/' . str_replace('.' . $extension, '', $image) . '-' . (int)$width . 'x' . (int)$height . '.' . $extension;
+        if (!is_file(DIR_IMAGE . $cacheImage) || (filectime(DIR_IMAGE . $image) > filectime(DIR_IMAGE . $cacheImage))) {
+            $dir = pathinfo(DIR_IMAGE . $cacheImage, PATHINFO_DIRNAME);
+            if( ! \File::isDirectory($dir) ) {
+                \File::makeDirectory($dir, 493, true);
+            }
+
+            if($closure) {
+                $img = Image::make(DIR_IMAGE . $image)->resize($width, $height, $closure);
+            } else {
+                $img = Image::make(DIR_IMAGE . $image)->resize($width, $height, function($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+
+            $img->save(DIR_IMAGE . $cacheImage);
+        }
+
+        $url = Request::secure() ? HTTPS_SERVER : HTTP_SERVER;
+
+        return  $url . 'image/' . $cacheImage;
     }
 }
