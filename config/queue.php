@@ -36,7 +36,7 @@ return [
 
         'database' => [
             'driver' => 'database',
-            'table' => 'jobs',
+            'table' => 'opencore_jobs',
             'queue' => 'default',
             'retry_after' => 90,
         ],
@@ -81,7 +81,7 @@ return [
 
     'failed' => [
         'database' => env('DB_CONNECTION', 'mysql'),
-        'table' => 'failed_jobs',
+        'table' => 'opencore_failed_jobs',
     ],
 
 ];
