@@ -8,7 +8,6 @@ use Illuminate\Support\Carbon;
 use OpenCore\Support\Opencart\Startup;
 use Nwidart\Modules\Contracts\RepositoryInterface;
 use OpenCore\Support\OcCore;
-use Illuminate\Support\Facades\Artisan;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -56,10 +55,6 @@ class AppServiceProvider extends ServiceProvider
          * Fix MySql default string length for older mysql versions
          */
         Schema::defaultStringLength(191);
-
-        if (env('APP_ENV') === 'local') {
-            Artisan::call('view:clear');
-        }
 
         /**
          * set language based on OpenCart language session

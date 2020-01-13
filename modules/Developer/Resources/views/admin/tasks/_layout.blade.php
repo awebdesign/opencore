@@ -48,6 +48,6 @@ p {
 </main>
 @endsection
 
-@section('scripts')
+@push('scripts')
 <script src="{{ asset('/vendor/totem/js/app.js') }}"></script>
-@endsection
+@endpush
