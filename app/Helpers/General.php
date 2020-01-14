@@ -14,3 +14,10 @@ if (!function_exists('pre')) {
         if (!empty($exit)) exit();
     }
 }
+
+if (! function_exists('email_clean')) {
+    function email_clean(string $html)
+    {
+        return strip_tags(preg_replace("/<br\W*?\/>/", "\n", $html));
+    }
+}

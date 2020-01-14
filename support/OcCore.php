@@ -33,7 +33,7 @@ class OcCore
     public function ImageResize($image, $width, $height, Closure $closure = null)
     {
         if (!is_file(DIR_IMAGE . $image) || substr(str_replace('\\', '/', realpath(DIR_IMAGE . $image)), 0, strlen(DIR_IMAGE)) != DIR_IMAGE) {
-			return;
+			$image = 'no_image.jpg';
         }
 
         $extension = pathinfo($image, PATHINFO_EXTENSION);
@@ -54,8 +54,11 @@ class OcCore
 
             $img->save(DIR_IMAGE . $cacheImage);
         }
-
-        $url = Request::secure() ? HTTPS_SERVER : HTTP_SERVER;
+        if(defined('HTTPS_CATALOG')) {
+            $url = Request::secure() ? HTTPS_CATALOG : HTTP_CATALOG;
+        } else {
+            $url = Request::secure() ? HTTPS_SERVER : HTTP_SERVER;
+        }
 
         return  $url . 'image/' . $cacheImage;
     }

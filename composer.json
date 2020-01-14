@@ -17,7 +17,8 @@
         "laravel/tinker": "^1.0",
         "nwidart/laravel-modules": "^4.1",
         "rachidlaasri/laravel-installer": "^4.0",
-        "symfony/yaml": "^3.0"
+        "symfony/yaml": "^3.0",
+        "laravelcollective/html": "~5.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -39,6 +40,7 @@
     "extra": {
         "laravel": {
             "dont-discover": [
+                "intervention/image",
                 "rachidlaasri/laravel-installer"
             ]
         }

@@ -26,6 +26,10 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        \Blade::directive('emailclean', function ($html) {
+            return "<?php echo email_clean($html); ?>";
+        });
+
         View::creator('admin.layouts.*', 'App\Http\View\Creators\AdminCreator');
     }
 }
