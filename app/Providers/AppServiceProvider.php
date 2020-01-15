@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
             return app(RepositoryInterface::class)->find($module);
         });
 
-        $this->app->bind('OcCore',function(){
+        $this->app->bind('OcCore', function () {
             return new OcCore();
         });
 
@@ -39,10 +39,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         /**
-         * Mysql OpenCart Share Connector
+         * Mysql OpenCart Share Connector | ignore it for artisan commands
          */
-        $this->app->singleton('db.connector.mysql', '\OpenCore\Support\MySqlSharedConnector');
-
+        if (class_exists('\OpenCore\Framework')) {
+            $this->app->singleton('db.connector.mysql', '\OpenCore\Support\MySqlSharedConnector');
+        }
         /**
          * Rewrite admin routes in order to contain the Token query param
          * corrects assets url
@@ -61,10 +62,10 @@ class AppServiceProvider extends ServiceProvider
          * if there is an instance of OpenCart ready
          */
         $locale = config('app.locale');
-        if(defined('OPENCORE_VERSION')) {
+        if (defined('OPENCORE_VERSION')) {
             $session = Startup::getRegistry('session');
 
-            if(!empty($session->data['language'])) {
+            if (!empty($session->data['language'])) {
                 $lang = explode('-', $session->data['language']);
                 $locale = $lang[0];
             }

@@ -13,6 +13,8 @@ class CustomerTransaction extends Model
     const CREATED_AT = 'date_added';
     const UPDATED_AT = null;
 
+    protected $guarded = ['customer_transaction_id'];
+
     /**
      * The storage format of the model's date columns.
      *

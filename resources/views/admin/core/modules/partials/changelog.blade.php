@@ -4,7 +4,7 @@
         <?php if (str_contains($version, ['unreleased', 'dev'])): ?>
             {{ $version }}
         <?php else: ?>
-            <a href="{{ $changelog['url'].'/releases/tag/'.$version }}" target="_blank">
+            <a href="@if(isset($changelog['url'])){{ $changelog['url'] . $version }} @else {{ $version }} @endif" target="_blank">
                 <i class="fa fa-external-link-square"></i> {{ $version }}
             </a>
         <?php endif; ?>

@@ -1,0 +1,7 @@
+url: https://github.com/opencorero/developer-module/releases/tag/
+versions:
+  "1.0.0":
+    added:
+      - logs section dashboard
+      - logs view / search
+      - tasks / cron job section
