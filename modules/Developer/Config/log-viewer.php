@@ -48,12 +48,12 @@ return [
      */
 
     'route'         => [
-        'enabled'    => false,
+        'enabled'    => true,
 
         'attributes' => [
             'prefix'     => 'admin/developer/log-viewer',
 
-            'middleware' => env('ARCANEDEV_LOGVIEWER_MIDDLEWARE') ? explode(',', env('ARCANEDEV_LOGVIEWER_MIDDLEWARE')) : null,
+            'middleware' => env('ARCANEDEV_LOGVIEWER_MIDDLEWARE') ? explode(',', env('ARCANEDEV_LOGVIEWER_MIDDLEWARE')) : 'App\Http\Middleware\AdminMiddleware',
         ],
     ],
 
