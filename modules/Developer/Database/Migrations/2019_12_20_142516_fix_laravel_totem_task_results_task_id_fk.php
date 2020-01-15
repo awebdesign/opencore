@@ -13,17 +13,19 @@ class FixLaravelTotemTaskResultsTaskIdFk extends Migration
      */
     public function up()
     {
-        Schema::connection(TOTEM_DATABASE_CONNECTION)
-            ->table(TOTEM_TABLE_PREFIX.'task_results', function (Blueprint $table) {
-                $table->dropForeign('task_id_fk');
-        });
+        if (defined('TOTEM_DATABASE_CONNECTION')) {
+            Schema::connection(TOTEM_DATABASE_CONNECTION)
+                ->table(TOTEM_TABLE_PREFIX . 'task_results', function (Blueprint $table) {
+                    $table->dropForeign('task_id_fk');
+                });
 
-        Schema::connection(TOTEM_DATABASE_CONNECTION)
-            ->table(TOTEM_TABLE_PREFIX.'task_results', function (Blueprint $table) {
-                $table->foreign('task_id', 'task_results_task_id_fk')
-                    ->references('id')
-                    ->on(TOTEM_TABLE_PREFIX.'tasks');
-        });
+            Schema::connection(TOTEM_DATABASE_CONNECTION)
+                ->table(TOTEM_TABLE_PREFIX . 'task_results', function (Blueprint $table) {
+                    $table->foreign('task_id', 'task_results_task_id_fk')
+                        ->references('id')
+                        ->on(TOTEM_TABLE_PREFIX . 'tasks');
+                });
+        }
     }
 
     /**

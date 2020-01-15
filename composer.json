@@ -27,7 +27,9 @@
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^7.5",
-        "facade/ignition": "^1.0"
+        "facade/ignition": "^1.0",
+        "arcanedev/log-viewer": "^4.7",
+        "studio/laravel-totem": "^5.3"
     },
     "config": {
         "platform": {
@@ -41,7 +43,9 @@
         "laravel": {
             "dont-discover": [
                 "intervention/image",
-                "rachidlaasri/laravel-installer"
+                "rachidlaasri/laravel-installer",
+                "arcanedev/log-viewer",
+                "studio/laravel-totem"
             ]
         }
     },

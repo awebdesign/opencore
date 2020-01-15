@@ -8,16 +8,10 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0",
-        "arcanedev/log-viewer": "^4.7",
-        "studio/laravel-totem": "^5.3"
+        "php": ">=7.0.0"
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-                "arcanedev/log-viewer",
-                "studio/laravel-totem"
-            ],
             "providers": [
                 "Modules\\Developer\\Providers\\DeveloperServiceProvider"
             ],

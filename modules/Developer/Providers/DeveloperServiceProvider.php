@@ -29,7 +29,7 @@ class DeveloperServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
         //avoid errors when working with local machine composer & remote server files
-        if(class_exists('\Studio\Totem\Task')) {
+        if(defined('TOTEM_DATABASE_CONNECTION') && class_exists('\Studio\Totem\Task')) {
             \Studio\Totem\Task::observe(\Modules\Developer\Observers\TaskObserver::class);
         }
     }
@@ -42,6 +42,9 @@ class DeveloperServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+
+        $this->app->register(\Studio\Totem\Providers\TotemServiceProvider::class);
+        $this->app->register(\Arcanedev\LogViewer\LogViewerServiceProvider::class);
     }
 
     /**
