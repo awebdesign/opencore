@@ -32,7 +32,7 @@ trait OcCore
         return $this->registry;
     }*/
 
-    public function routeUrl($url)
+    public function removeIndexAndRouteParam($url)
     {
         if (strstr($url, 'index.php?route=')) {
             $url = str_replace('index.php?route=common/home', '', $url); //replace home url for catalog
@@ -48,15 +48,20 @@ trait OcCore
 
     public function routeCatalogSeoUrl()
     {
-        if (isset($this->request->get['_route_']) && $this->request->get['route'] == 'error/not_found') {
-            $newRoute = $this->request->get['_route_'];
-            $this->request->get['route'] = $newRoute;
-            $this->request->has_route[$newRoute] = true;
+        /**
+         * Check for Ceo Mega Packe module
+         */
+        if (!$this->config->get('smp_is_install')) {
 
-            return true;
+            /**
+             * check if not found, maybe the page exists in Laravel system
+             */
+            if (isset($this->request->get['_route_']) && isset($this->request->get['route']) && $this->request->get['route'] == 'error/not_found') {
+                $newRoute = $this->request->get['_route_'];
+                $this->request->get['route'] = $newRoute;
+                $this->request->has_route[$newRoute] = true;
+            }
         }
-
-        return false;
     }
 
     public function isRouted($route)

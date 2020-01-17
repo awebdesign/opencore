@@ -22,7 +22,7 @@ use OpenCore\Support\OpenCart\OcCore;
 		</operation>
 		<operation>
 			<search><![CDATA[return $url;]]></search>
-			<add position="replace"><![CDATA[return $this->routeUrl($url);]]></add>
+			<add position="replace"><![CDATA[return $this->removeIndexAndRouteParam($url);]]></add>
 		</operation>
 	</file>
 	<file path="catalog/controller/startup/seo_url.php">
@@ -37,10 +37,17 @@ use OpenCore\Support\OpenCart\OcCore;
 			<search><![CDATA[Controller {]]></search>
 			<add position="after"><![CDATA[use OcCore;]]></add>
 		</operation>
-		<operation>
-			<search><![CDATA[if (!isset($this->request->get['route'])) {]]></search>
-			<add position="before"><![CDATA[/* OpenCore Module */
-		$this->routeCatalogSeoUrl();]]></add>
+        <operation>
+			<search><![CDATA[public function index() {]]></search>
+			<add position="replace"><![CDATA[/* OpenCore Module */
+            public function index() {
+                $this->oldSeoUrlindex();
+
+                $this->routeCatalogSeoUrl();
+            }
+
+            public function oldSeoUrlindex() {
+            ]]></add>
 		</operation>
 	</file>
     <!-- if using SEO MEGA PACK -->
@@ -56,12 +63,9 @@ use OpenCore\Support\OpenCart\OcCore;
 			<search><![CDATA[Controller {]]></search>
 			<add position="after"><![CDATA[use OcCore;]]></add>
 		</operation>
-		<operation>
-			<search><![CDATA[private function parseUrlExt_part_3( $part, $parts, $params ) {]]></search>
-			<add position="after"><![CDATA[/* OpenCore Module */
-		if($this->routeCatalogSeoUrl()) {
-            return true; //we have found a OpenCore match so we will ignore the rest of SeoPack
-        }]]></add>
+        <operation>
+			<search><![CDATA[if( $this->request->get['route'] == 'error/not_found' ) {]]></search>
+			<add position="before"><![CDATA[$this->routeCatalogSeoUrl();]]></add>
 		</operation>
         <operation>
 			<search><![CDATA[return new Action( $this->request->get['route'] );]]></search>

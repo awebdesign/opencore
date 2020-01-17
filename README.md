@@ -68,7 +68,7 @@ MIT license. Please see the [license file](LICENSE) for more information.
 
 
 ## TODO
-* remove routes from other initiated vendors to be accessible -> logs & totem! URGENT!
+
 * display jobs & failed_jobs lists in developer module
 * admin user permission checked on modify | POST / PUT / DELETE
 * move occore user permission changes inside OpenCore project in a separate method
