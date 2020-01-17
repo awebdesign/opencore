@@ -25,22 +25,17 @@ class ControllerStartupOpencore extends Startup
      * @param array $data
      * @return string
      */
-    function before_controller($route, &$data)
+    function before_controller($route, &$data, &$output = false)
     {
         /* if (self::$booted) {
             return false;
         } */
 
         /**
-         * we are using $this->request->get['route'] instead of $route because on $route some characters like dash ("-") are removed
+         * Check if a laravel route exists and if so execute it
+         * else return NULL
          */
-        if (!empty($this->request->get['route']) && preg_replace('/[^a-zA-Z0-9_\/]/', '', (string) $this->request->get['route']) == $route) {
-            $route = $this->request->get['route'];
-        }
-
-        if ($this->checkOpenCoreRoute($route, $data)) {
-            return $this->response();
-        }
+        return $this->executeIfRouteExists($route, $data, $output);
 
         /**
          * in case the view\/*\/before event is not activated by default we can call

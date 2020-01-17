@@ -1,5 +1,9 @@
 url: https://github.com/opencorero/developer-module/releases/tag/
 versions:
+  "1.0.1":
+    changed:
+      - changed routes of arcanedev/log-viewer
+      - changed routes for totem
   "1.0.0":
     added:
       - logs section dashboard

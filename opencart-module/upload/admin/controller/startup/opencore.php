@@ -25,18 +25,13 @@ class ControllerStartupOpencore extends Startup
      * @param array $data
      * @return string
      */
-    function before_controller($route, &$data)
+    function before_controller($route, &$data, &$output = false)
     {
         /**
-         * we are using $this->request->get['route'] instead of $route because on $route some characters like dash ("-") are removed
+         * Check if a laravel route exists and if so execute it
+         * else return NULL
          */
-        if (!empty($this->request->get['route']) && preg_replace('/[^a-zA-Z0-9_\/]/', '', (string) $this->request->get['route']) == $route) {
-            $route = $this->request->get['route'];
-        }
-
-        if ($this->checkOpenCoreRoute($route, $data)) {
-            return $this->response();
-        }
+        return $this->executeIfRouteExists($route, $data, $output);
 
         /**
          * in case the view\/*\/before event is not activated by default we can call
@@ -56,7 +51,7 @@ class ControllerStartupOpencore extends Startup
             return;
         }
 
-        switch($route) {
+        switch ($route) {
             case 'common/column_left':
                 //adding entries into admin menu for OpenCore panel
                 $data['menus'][] = [
@@ -66,7 +61,7 @@ class ControllerStartupOpencore extends Startup
                     'href'     => $this->url->link('core/home', $this->getTokenStr()),
                     'children' => []
                 ];
-            break;
+                break;
             case 'user/user_group_form':
                 //adding permissions into admin user/permissions page for OpenCore panel
                 $data['permissions'][] = 'core/*';
@@ -74,17 +69,18 @@ class ControllerStartupOpencore extends Startup
                 //get modules
                 $modules = app('modules')->all();
                 foreach ($modules as $module) {
-                    if($module->enabled()) {
+                    if ($module->enabled()) {
                         $data['permissions'][] = strtolower($module->getName()) . '/*';
                     }
                 }
-            break;
+                break;
         }
 
         $this->booted($route);
     }
 
-    private function booted($route) {
+    private function booted($route)
+    {
         $this->booted[$route] = true;
     }
 }

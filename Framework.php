@@ -32,6 +32,7 @@ class Framework
     private $request;
     private $kernel;
     private $registry;
+    private $routes_checked = [];
 
     public function __construct()
     {
@@ -116,14 +117,8 @@ class Framework
      * @param object $registry
      * @return bool
      */
-    public function checkRoute($route)
+    public function checkRoute($route, &$output)
     {
-        //force admin route in case the request comes from admin side
-        if(defined('HTTPS_CATALOG')) {
-            $_SERVER['SCRIPT_NAME'] = str_replace(basename(DIR_APPLICATION) . '/', '', $_SERVER['SCRIPT_NAME']);
-        
-            $route = 'admin/' . $route;
-        }
 
         // Strip query string (?foo=bar) and decode URI
         if (false !== $pos = strpos($route, '?')) {
@@ -131,7 +126,35 @@ class Framework
         }
         $route = rawurldecode($route);
 
+        /**
+         * Avoid multi chekings for the same controller
+         */
+        if(isset($this->routes_checked[$route])) {
+            return null;
+        } else {
+            $this->routes_checked[$route] = true;
+        }
+
         $this->request = \Illuminate\Http\Request::capture();
+
+        /**
+         * force admin route in case the request comes from admin side
+         */
+        if(defined('HTTPS_CATALOG')) {
+            $appBaseName = basename(DIR_APPLICATION) . '/';
+            $route = $appBaseName . $route;
+
+            $serverName = $this->request->server->get('SCRIPT_NAME');
+            $this->request->server->set('SCRIPT_NAME', str_replace($appBaseName, '', $serverName));
+        }
+
+        /**
+         * Change URI for partial loaded controllers like common/header, common/footer etc...
+         * in order to be able to override them
+         */
+        if($output !== false) {
+            $this->request->server->set('REQUEST_URI', $route);
+        }
 
         return $this->app->router->has($route) || $this->request->is($route . '*');
     }

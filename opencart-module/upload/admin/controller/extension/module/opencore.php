@@ -61,8 +61,8 @@ class ControllerExtensionModuleOpencore extends Controller
         $this->refreshOcmod();
 
         $this->installEvent('opencore_admin_menu', 'startup/opencore/before_view', 'admin/view/*/before');
-        $this->installEvent('opencore_admin_before_controller', 'startup/opencore/before_controller', 'admin/controller/*/before');
-        $this->installEvent('opencore_catalog_before_controller', 'startup/opencore/before_controller', 'catalog/controller/*/before');
+        $this->installEvent('opencore_admin_before_c', 'startup/opencore/before_controller', 'admin/controller/*/before');
+        $this->installEvent('opencore_catalog_before_c', 'startup/opencore/before_controller', 'catalog/controller/*/before');
 
         $this->addPermissions('extension/module/opencore', ['access', 'modify']);
         $this->addPermissions('core/*', ['access', 'modify']);
@@ -78,8 +78,8 @@ class ControllerExtensionModuleOpencore extends Controller
         $this->refreshOcmod();
 
         $this->removeEvent('opencore_admin_menu');
-        $this->removeEvent('opencore_admin_before_controller');
-        $this->removeEvent('opencore_catalog_before_controller');
+        $this->removeEvent('opencore_admin_before_c');
+        $this->removeEvent('opencore_catalog_before_c');
 
         $this->removePermissions('extension/module/opencore', ['access', 'modify']);
         $this->removePermissions('core/*', ['access', 'modify']);

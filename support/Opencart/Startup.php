@@ -14,7 +14,7 @@ if (!defined('DIR_APPLICATION')) {
 }
 
 if (!defined('OPENCORE_VERSION')) {
-    define('OPENCORE_VERSION', '1.0.0');
+    define('OPENCORE_VERSION', '1.1.0');
 }
 
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -36,6 +36,62 @@ class Startup extends \Controller
     }
 
     /**
+     * Execute Laravel if route exists
+     *
+     * @param string $route
+     * @param array &$data
+     * @param string &$output
+     */
+    public function executeIfRouteExists($route, &$data, &$output = false)
+    {
+        /**
+         * we are using $this->request->get['route'] instead of $route because on $route some characters like dash ("-") are removed
+         */
+        if (!empty($this->request->get['route']) && preg_replace('/[^a-zA-Z0-9_\/]/', '', (string) $this->request->get['route']) == $route) {
+            $route = $this->request->get['route'];
+        }
+
+        if ($this->checkOpenCoreRoute($route, $data, $output)) {
+            $response = $this->response();
+
+            if($output === false) {
+                /**
+                 * means is a controller request which means we need to use default setOutput()
+                 */
+                $this->response->setOutput($response);
+                return true;
+            } else {
+                /**
+                 * the request is done using the loader method and $output need to be populated
+                 * Check system/engine/loader.php
+                 */
+                $output = $response;
+                return false;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Check Framewrok available routes
+     *
+     * @param string $route
+     */
+    public function checkOpenCoreRoute($route, &$data, &$output)
+    {
+        $this->route = $route;
+        $this->data = $data;
+
+        /*
+            We should add a dinamyc ignore list here
+        */
+        if (Framework::getInstance()->checkRoute($route, $output)) {
+            return Framework::getInstance()->handle(self::$_registry);
+        }
+    }
+
+    /**
      * Run function
      *
      * @execute Framewrok
@@ -46,35 +102,11 @@ class Startup extends \Controller
     }
 
     /**
-     * Check Framewrok available routes
-     *
-     * @param string $route
-     */
-    public function checkOpenCoreRoute($route, &$data)
-    {
-        $this->route = $route;
-        $this->data = $data;
-        /*
-            We should add a dinamyc ignore list here
-        */
-        if (Framework::getInstance()->checkRoute($route)) {
-            return Framework::getInstance()->handle(self::$_registry);
-        }
-    }
-
-    /**
      * Framework Response function
      */
     public function response()
     {
-        $response = Framework::getInstance()->getResponse();
-
-        if ((isset($this->request->get['route']) && $this->request->get['route'] == $this->route) || (!isset($this->request->get['route']) && in_array($this->route, ['/', 'common/home']))) {
-            echo $response;
-            return false;
-        } else {
-            return $response;
-        }
+        return Framework::getInstance()->getResponse();
     }
 
     /**

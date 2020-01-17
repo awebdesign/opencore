@@ -52,4 +52,15 @@ class ExampleController extends Controller
 
         return redirect(route('example::admin.index'));
     }
+
+    /**
+     * Example method for replacing admin common/column_left partial controller/view
+     * You can rewrite any default route based on routes/admin.php
+     * If the route is already used by the system, that means you will override it
+     *
+     * @return Response object
+     */
+    public function commonColumnLeftReplace() {
+        return response("COLUMN LEFT REPLACE EXAMPLE");
+    }
 }

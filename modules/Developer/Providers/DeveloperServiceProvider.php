@@ -29,7 +29,7 @@ class DeveloperServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
         //avoid errors when working with local machine composer & remote server files
-        if(defined('TOTEM_DATABASE_CONNECTION') && class_exists('\Studio\Totem\Task')) {
+        if (defined('TOTEM_DATABASE_CONNECTION') && class_exists('\Studio\Totem\Task')) {
             \Studio\Totem\Task::observe(\Modules\Developer\Observers\TaskObserver::class);
         }
     }
@@ -55,13 +55,22 @@ class DeveloperServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('developer.php'),
-            __DIR__.'/../Config/log-viewer.php' => config_path('log-viewer.php'),
-            __DIR__.'/../Config/totem.php' => config_path('totem.php'),
+            __DIR__ . '/../Config/config.php' => config_path('developer.php'),
+            __DIR__ . '/../Config/log-viewer.php' => config_path('log-viewer.php'),
+            __DIR__ . '/../Config/totem.php' => config_path('totem.php'),
         ], 'config');
 
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'developer'
+            __DIR__ . '/../Config/config.php',
+            'developer'
+        );
+        $this->mergeConfigFrom(
+            __DIR__ . '/../Config/log-viewer.php',
+            'log-viewer'
+        );
+        $this->mergeConfigFrom(
+            __DIR__ . '/../Config/totem.php',
+            'totem'
         );
     }
 
@@ -74,11 +83,11 @@ class DeveloperServiceProvider extends ServiceProvider
     {
         $viewPath = resource_path('views/modules/developer');
 
-        $sourcePath = __DIR__.'/../Resources/views';
+        $sourcePath = __DIR__ . '/../Resources/views';
 
         $this->publishes([
             $sourcePath => $viewPath
-        ],'views');
+        ], 'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/developer';
@@ -97,7 +106,7 @@ class DeveloperServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'developer');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'developer');
+            $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'developer');
         }
     }
 
@@ -108,7 +117,7 @@ class DeveloperServiceProvider extends ServiceProvider
      */
     public function registerFactories()
     {
-        if (! app()->environment('production')) {
+        if (!app()->environment('production')) {
             app(Factory::class)->load(__DIR__ . '/../Database/factories');
         }
     }
