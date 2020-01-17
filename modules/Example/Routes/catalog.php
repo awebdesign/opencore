@@ -18,3 +18,11 @@ $router->get('example', [
 $router->get('example/json', [
     'as' => 'example.json', 'uses' => 'ExampleController@json'
 ]);
+
+/**
+ * Example overriding common/column_left controller
+ * Uncomment the following line if you whant to test it
+ */
+/*$router->get('common/column_left', [
+    'as' => 'common.column_left', 'uses' => 'ExampleController@commonColumnLeftReplace'
+]);*/

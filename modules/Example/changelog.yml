@@ -1,9 +1,12 @@
 url: https://github.com/opencorero/example-module/releases/tag/
 versions:
-    "1.0.0":
-        added:
-            - Using new feature
-        changed:
-            - Updating the module structure
-        removed:
-            - Old home file
+  "1.0.1":
+    added:
+        - Example for overriding default opencart routes added
+  "1.0.0":
+    added:
+        - Using new feature
+    changed:
+        - Updating the module structure
+    removed:
+        - Old home file
