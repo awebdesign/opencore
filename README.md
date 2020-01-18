@@ -95,3 +95,8 @@ MIT license. Please see the [license file](LICENSE) for more information.
 * fix rotues shown on php artisan route:list
 * add mail eclipse https://github.com/Qoraiche/laravel-mail-editor (maybe)
 * add a MarketPlace for all OpenCore modules! IMPORTANT!
+
+## Screenshots
+
+<img src="https://opencore.me/images/screenshots/screenshot-opencore-home.png">
+<img src="https://opencore.me/images/screenshots/screenshot-opencore-home-2.png">
