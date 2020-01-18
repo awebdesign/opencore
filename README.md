@@ -99,4 +99,4 @@ MIT license. Please see the [license file](LICENSE) for more information.
 ## Screenshots
 
 <img src="https://opencore.me/images/screenshots/screenshot-opencore-home.png">
-<img src="https://opencore.me/images/screenshots/screenshot-opencore-home2.png">
+<img src="https://opencore.me/images/screenshots/screenshot-opencore-home-2.png">
