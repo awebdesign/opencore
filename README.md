@@ -1,12 +1,12 @@
-<h2 align="center">
-    OpenCore project - Laravel for OpenCart
-</h2>
-<p align="center">
-by <a target="_blank" href="https://www.awebdesign.ro/en/">Aweb Design</a>
-</p>
-<br/><br/>
+<h1 align="center"><img src="https://opencore.me/images/logo/opencore-logo-large-transparent.png" width="180" alt="OpenCore"></h1>
 
-OpenCore is an application made on Laravel for OpenCart and let's you develop new features or overwrite the existing ones in Laravel instead of the old OpenCart framework. The application comes with build in features which will help the developers to create new modules or new functionallities for OpenCart ecommerce platform.
+**An application build on Laravel which can run as a subsystem for OpenCart system.**
+
+OpenCore is an application made on Laravel for OpenCart which let's you develop new features or overwrite the existing ones in Laravel instead of the old OpenCart framework. The application comes with build in features which will help the developers to create new modules or new functionallities for OpenCart ecommerce platform. Also stand alone(idependent of OpenCart) features can be done too.
+
+## OpenCore - Laravel for OpenCart
+by <a target="_blank" href="https://www.awebdesign.ro/en/">Aweb Design</a>
+
 
 ## WORK IN PROGRESS
 
@@ -44,19 +44,31 @@ Enjoy!
 ## How does it works ?
 
 let's take this file from OpenCart system: /admin/controller/common/header.php
-    => IF exists in /core/app/Http/Controllers/Admin/common/header.php => we load it from here
-		That means you can write your own core based on Laravel framework and integrate it into OpenCart
-    => IF DOES NOT exists in /core/app/Http/Controllers/Admin/common/header.php => we load the system default one; same for model, lang, view, etc
+As you probably know, this file is commonly used for inserting the header part in all admin sections(there's one for catalog as well in catalog/controller/common/header.php) as is called in other controllers like
 
-Also you want to access a custom URL like yourwebsite.com/example
-you can create you custom route in laravel /core/app/routes/catalog.php which will handle the request for /example page!
+    $data['header'] = $this->load->controller('common/header');
 
-## Speed ?!
-Yes, it has! As long as your server has the minimum requirements for Laravel 5.8 to work, everything should be good. The module is very fast and has no delay. The integration of Laravel Framework throught OpenCart doesn't affect at all the speed of any of them. That is happenning thanks to the multiple optimizations done in the code and to the mysql shared connector which will help sharing the database active connection between OpenCart and Laravel/OpenCore
+and if does not have aother slash after header then the default index() method will be loaded from header controller.
+So, if you will like to rewrite this section using Laravel you can create a custom Controller and a GET route 'common/header' which will point to the new created controller and that's it! You will not be able to write whatever custom code you want for the header file.
+
+Example: $router->get('common/header', 'ExampleController@commonColumnLeftReplace')->name('common.header');
+
+If you will want to create a new functionallity, the process is the same but instead of using an existing route you will need to create a unique one.
+
+Example: $router->get('example', 'ExampleController@index')->name('example');
+
+So, everytime you will call /admin/example this controller will throw the content
+
+Just remember that routes are splited into two:
+admin.php and catalog.php routes files which can be found in /core/app/routes/ or in any module ex: /core/modules/Example/routes/
+
+## Is it fast ?!
+Yes, it is! As long as your server has the minimum requirements for Laravel 5.8 to work, everything should be good. The module is very fast and has no delay of any kind. The integration of Laravel Framework throught OpenCart doesn't affect at all the speed of any of them. That is happenning thanks to the multiple optimizations done in the code and to the mysql shared connector which will help sharing the database active connection between OpenCart and Laravel/OpenCore
 
 ## Documentation
 
-Documentation for OpenCore can be found on the [Official website](https://opencore.ro).
+Documentation for OpenCore can be found on the [Official website](https://opencore.me).
+* right now is under developement but everything will be there soon
 
 ## Security
 
@@ -75,14 +87,11 @@ MIT license. Please see the [license file](LICENSE) for more information.
 * remove getRegistry from Startup controller and let Framework handle it
 * add ocmode(on refresh) multi line changes
 * change header files comments
-* change template directory structure
-* change template design
-* fix inserting CSS & JS header / footer tags correctly
 * add flash messages: https://github.com/laracasts/flash
 * add menu builder: https://github.com/spatie/laravel-menu | https://github.com/harimayco/wmenu-builder | https://github.com/msurguy/laravel-shop-menu
 * add activiy logs: https://github.com/spatie/laravel-activitylog
 * add javascript validation: https://github.com/proengsoft/laravel-jsvalidation
 * add persistent settings: https://github.com/edvinaskrucas/settings
 * fix rotues shown on php artisan route:list
-* fix web routes -> split it into admin & catalog;
-* add mail eclipse https://github.com/Qoraiche/laravel-mail-editor
+* add mail eclipse https://github.com/Qoraiche/laravel-mail-editor (maybe)
+* add a MarketPlace for all OpenCore modules! IMPORTANT!
