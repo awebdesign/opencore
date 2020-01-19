@@ -24,7 +24,17 @@ Please note that this package is still under active development. We encourage ev
 
 ## Requirements
 
-* OpenCart 2.x / 3.x
+PHP >= 7.1.3
+BCMath PHP Extension
+Ctype PHP Extension
+JSON PHP Extension
+Mbstring PHP Extension
+OpenSSL PHP Extension
+PDO PHP Extension
+Tokenizer PHP Extension
+XML PHP Extension
+OpenCart 2.x / 3.x
+* check Laravel requirements cause may differ depending on the used version
 
 ## Installation
 
@@ -32,12 +42,15 @@ Please note that this package is still under active development. We encourage ev
 1. Install Git and Composer on your system
 2. go to your OpenCart root folder, open a console and run the following commands step by step
 3. git clone https://github.com/opencorero/opencore.git core
-4. composer update
-5. php artisan key:generate
-6. php artisan migrate:install
-7. php artisan migrate
-8. copy OpenCart extension files from core/opencart-module/upload to you OpenCart root folder
-9. go to OpenCart admin panel / extensions / extensions / modules, find OpenCore module and install it
+4. cd core/
+5. composer update
+6. php artisan key:generate
+7. php artisan migrate:install
+8. php artisan migrate
+9. copy OpenCart extension files from core/opencart-module/2.3/upload to you OpenCart root folder
+10. go to OpenCart admin panel / extensions / extensions / modules, find OpenCore module and install it
+11. click on the OpenCore icon from admin / left column / section "System Requirements" and make sure there's nothing marked with red
+12. Optional: in order to enable Developer & Example modules you need to access admin / user / user groups section and add permission for them
 ```
 Enjoy!
 
@@ -81,6 +94,8 @@ MIT license. Please see the [license file](LICENSE) for more information.
 
 ## TODO
 
+* when enableing a module the permission must be added automatically for the user who made the action
+* Example & Developer modules should be disabled by default
 * display jobs & failed_jobs lists in developer module
 * admin user permission checked on modify | POST / PUT / DELETE
 * move occore user permission changes inside OpenCore project in a separate method
