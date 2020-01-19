@@ -22,7 +22,7 @@ Please note that this package is still under active development. We encourage ev
 * Module management by <a target="_blank" href="https://github.com/nWidart/laravel-modules">nWidart Modules</a>
 * many more to come...
 
-## Requirements
+## System Requirements
 
 PHP >= 7.1.3
 BCMath PHP Extension
@@ -33,8 +33,12 @@ OpenSSL PHP Extension
 PDO PHP Extension
 Tokenizer PHP Extension
 XML PHP Extension
-OpenCart 2.x / 3.x
 * check Laravel requirements cause may differ depending on the used version
+
+## Other Requirements
+OpenCart 2.x / 3.x installed
+root .htaccess.txt renamed to .htaccess
+admin / setting / server / Use SEO URLs: Yes
 
 ## Installation
 
