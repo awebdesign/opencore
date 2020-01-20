@@ -3,13 +3,22 @@
     background: -webkit-linear-gradient(left,#a0328c 30%,#7040a4 50%,#4359c7 65%,#0082e6 85%);
     background: linear-gradient(to right,#a0328c 30%,#7040a4 50%,#4359c7 65%,#0082e6 85%);
     will-change: transform;
-    z-index:1
+    z-index:1;
+    min-height: 50px;
 }
 .navbar-color .icon-bar {
     background-color: #fff;
 }
 .navbar-color, .navbar-color ul:not(.dropdown-menu) > li > a, .navbar-colorul:not(.dropdown-menu) > li > a:visited, .navbar-color .navbar-header a {
     color:#fff;
+}
+.navbar-color .navbar-header a {
+    padding: 16.5px 15px;
+    line-height: 17px;
+    height: 50px;
+}
+.navbar-color .navbar-nav > li > a {
+    line-height: 20px;
 }
 .navbar-color .nav > li.active, .navbar-color .nav > li:hover {
     background: rgba(255, 255, 255, 0.1);

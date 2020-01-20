@@ -29,8 +29,10 @@ class AdminMiddleware
 
         $session = Startup::getRegistry('session');
 
+        $tokenKey = getTokenKey();
+
         /** check if OpenCart admin token is present and if is valid */
-        if(empty($session->data['token']) || empty($request->get('token')) || $session->data['token'] != $request->get('token')) {
+        if(empty($session->data[$tokenKey]) || empty($request->get($tokenKey)) || $session->data[$tokenKey] != $request->get($tokenKey)) {
             return redirect(basename(DIR_APPLICATION) . '/login');
         }
 

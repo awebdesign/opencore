@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://opencore.me/images/logo/opencore-logo-large-transparent.png" width="180" alt="OpenCore"></h1>
+<h1 align="center"><img src="https://opencore.me/images/logo/opencore-logo-large-transparent.png" width="250" alt="OpenCore"></h1>
 
 **An application build on Laravel which can run as a subsystem for OpenCart system.**
 
@@ -51,7 +51,7 @@ admin / setting / server / Use SEO URLs: Yes
 6. php artisan key:generate
 7. php artisan migrate:install
 8. php artisan migrate
-9. copy OpenCart extension files from core/opencart-module/2.3/upload to you OpenCart root folder
+9. copy OpenCart extension files from core/opencart-module/(2.x|3.x)/upload to you OpenCart root folder
 10. go to OpenCart admin panel / extensions / extensions / modules, find OpenCore module and install it
 11. click on the OpenCore icon from admin / left column / section "System Requirements" and make sure there's nothing marked with red
 12. Optional: in order to enable Developer & Example modules you need to access admin / user / user groups section and add permission for them
@@ -117,5 +117,12 @@ MIT license. Please see the [license file](LICENSE) for more information.
 
 ## Screenshots
 
-<img src="https://opencore.me/images/screenshots/screenshot-opencore-home.png">
-<img src="https://opencore.me/images/screenshots/screenshot-opencore-home-2.png">
+<img alt="OpenCore home OpenCart 2x" src="https://opencore.me/images/screenshots/home-2x.png">
+<img alt="OpenCore home OpenCart 3x" src="https://opencore.me/images/screenshots/home-3x.png">
+<img alt="System Requirements" src="https://opencore.me/images/screenshots/system-requirements.png">
+<img alt="OpenCore Modules management" src="https://opencore.me/images/screenshots/modules-management.png">
+<img alt="Developer Module" src="https://opencore.me/images/screenshots/developer-module.png">
+<img alt="Logs Dashboard" src="https://opencore.me/images/screenshots/logs-dashboard.png">
+<img alt="Tasks" src="https://opencore.me/images/screenshots/tasks-module.png">
+<img alt="Add Task" src="https://opencore.me/images/screenshots/tasks-module-add.png">
+<img alt="Example Module" src="https://opencore.me/images/screenshots/example-module.png">

@@ -32,7 +32,7 @@ trait Installer
         );
 
         if (isOc3()) {
-            $query = $this->db->query('SELECT * FROM `' . DB_PREFIX . 'extension` WHERE ode = "' . $this->db->escape($code) . '"');
+            $query = $this->db->query('SELECT * FROM `' . DB_PREFIX . 'extension` WHERE code = "' . $this->db->escape($code) . '"');
 
             $modification_data['extension_install_id'] = $query->num_rows ? (int) $query->row['extension_id'] : 0;
 

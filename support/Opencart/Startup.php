@@ -14,7 +14,7 @@ if (!defined('DIR_APPLICATION')) {
 }
 
 if (!defined('OPENCORE_VERSION')) {
-    define('OPENCORE_VERSION', '1.1.0');
+    define('OPENCORE_VERSION', '1.2.0');
 }
 
 require_once __DIR__ . '/../../vendor/autoload.php';
