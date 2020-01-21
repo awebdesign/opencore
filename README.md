@@ -5,7 +5,8 @@
 OpenCore is an application made on Laravel for OpenCart which let's you develop new features or overwrite the existing ones in Laravel instead of the old OpenCart framework. The application comes with build in features which will help the developers to create new modules or new functionallities for OpenCart ecommerce platform. Also stand alone(idependent of OpenCart) features can be done too.
 
 ## OpenCore - Laravel for OpenCart
-by <a target="_blank" href="https://www.awebdesign.ro/en/">Aweb Design</a>
+Official website [OpenCore](https://opencore.me).
+project made with the help of <a target="_blank" href="https://www.awebdesign.ro/en/">Aweb Design</a>
 
 
 ## WORK IN PROGRESS
