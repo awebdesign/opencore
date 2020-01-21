@@ -3,9 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Event;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\File;
+//use Illuminate\Auth\Events\Registered;
+//use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -15,9 +16,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
+        // Registered::class => [
+        //     SendEmailVerificationNotification::class,
+        // ],
     ];
 
     /**
@@ -29,6 +30,16 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        /**
+         * delete OpenCore routes stored on OpenCart cache folder
+         */
+        Event::listen('cache:cleared', function () {
+            if (!defined('DIR_CACHE')) {
+                require realpath(basename(__DIR__ . '/../../../')) . '/config.php';
+            }
+
+            $cachedRoutes = File::glob(DIR_CACHE . 'cache.opencore_routes.*.*');
+            File::delete($cachedRoutes);
+        });
     }
 }
