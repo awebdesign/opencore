@@ -59,4 +59,25 @@ class UrlGenerator extends DefaultUrlGenerator
 
         return $parameters;
     }
+
+    /**
+     * Get the base URL for the request.
+     *
+     * @param  string  $scheme
+     * @param  string|null  $root
+     * @return string
+     */
+    public function formatRoot($scheme, $root = null)
+    {
+        if(defined('DIR_CATALOG')) {
+            /**
+             * because we are checking the routes in Framework::checkRoute using
+             * $this->kernel->handle($request = \Illuminate\Http\Request::capture());
+             * the admin path is added twice in routes
+             */
+            $root = HTTPS_CATALOG;
+        }
+
+        return parent::formatRoot($scheme, $root);
+    }
 }

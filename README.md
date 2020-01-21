@@ -5,7 +5,8 @@
 OpenCore is an application made on Laravel for OpenCart which let's you develop new features or overwrite the existing ones in Laravel instead of the old OpenCart framework. The application comes with built-in features which help the developers to create new modules or new functionalities for OpenCart ecommerce platform. Also, stand-alone features (independent of OpenCart) can be easily added.
 
 ## OpenCore - Laravel for OpenCart
-by <a target="_blank" href="https://www.awebdesign.ro/en/">Aweb Design</a>
+Official website [OpenCore](https://opencore.me).
+project made with the help of <a target="_blank" href="https://www.awebdesign.ro/en/">Aweb Design</a>
 
 
 ## WORK IN PROGRESS
@@ -24,21 +25,22 @@ Please note that this package is still under active development. We encourage ev
 
 ## System Requirements
 
-PHP >= 7.1.3
-BCMath PHP Extension
-Ctype PHP Extension
-JSON PHP Extension
-Mbstring PHP Extension
-OpenSSL PHP Extension
-PDO PHP Extension
-Tokenizer PHP Extension
-XML PHP Extension
-* check Laravel requirements because they may differ depending on the used version
+* PHP >= 7.1.3
+* BCMath PHP Extension
+* Ctype PHP Extension
+* JSON PHP Extension
+* Mbstring PHP Extension
+* OpenSSL PHP Extension
+* PDO PHP Extension
+* Tokenizer PHP Extension
+* XML PHP Extension
+
+check Laravel requirements because they may differ depending on the used version
 
 ## Other Requirements
-OpenCart 2.x / 3.x installed
-root .htaccess.txt renamed to .htaccess
-admin / setting / server / Use SEO URLs: Yes
+* OpenCart 2.x / 3.x installed
+* root .htaccess.txt renamed to .htaccess
+* change admin settings from admin / setting / server / Use SEO URLs: Yes
 
 ## Installation
 

@@ -29,14 +29,19 @@ class Framework
     public static $instance;
     private $app;
     private $response;
-    private $request;
+    private $request = null;
     private $kernel;
+    private $get_routes;
+
     private $registry;
-    private $routes_checked = [];
+    private $route;
+    private $output;
 
     public function __construct()
     {
         $this->app = require __DIR__ . '/bootstrap/app.php';
+
+        $this->kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
     }
 
     /**
@@ -49,6 +54,13 @@ class Framework
             self::$instance = $app;
         }
         return self::$instance;
+    }
+
+    public function initiate($registry, $route, &$output)
+    {
+        $this->registry =  $registry;
+        $this->route =  $route;
+        $this->output =  $output;
     }
 
     /**
@@ -79,8 +91,6 @@ class Framework
      */
     public function run()
     {
-        $this->kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
-
         $this->response = $this->kernel->handle(
             $this->request = \Illuminate\Http\Request::capture()
         );
@@ -93,15 +103,11 @@ class Framework
     /**
      * Handle Framework Response
      */
-    public function handle($registry = null)
+    public function handle()
     {
-        $this->registry =  $registry;
-
-        $this->kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
-
         $this->response = $this->kernel->handle($this->request);
 
-        if($this->response instanceof \Symfony\Component\HttpFoundation\BinaryFileResponse){
+        if ($this->response instanceof \Symfony\Component\HttpFoundation\BinaryFileResponse) {
             $this->response->send();
 
             return true;
@@ -113,37 +119,46 @@ class Framework
     /**
      * Check Route function
      *
-     * @param string $route
-     * @param object $registry
      * @return bool
      */
-    public function checkRoute($route, &$output)
+    public function checkRoute()
     {
-
-        // Strip query string (?foo=bar) and decode URI
-        if (false !== $pos = strpos($route, '?')) {
-            $route = substr($route, 0, $pos);
-        }
-        $route = rawurldecode($route);
+        Framework::getInstance()->initiateRouteRequest();
 
         /**
-         * Avoid multi chekings for the same controller
+         * TODO: find a better way to check all available routes
          */
-        if(isset($this->routes_checked[$route])) {
-            return null;
-        } else {
-            $this->routes_checked[$route] = true;
-        }
+        if (!isset($this->get_routes)) {
+            $response = $this->kernel->handle($request = \Illuminate\Http\Request::capture());
 
+            $this->kernel->terminate($request, $response);
+
+            $this->get_routes = $this->app->router->getRoutes();
+        };
+
+        try {
+            return (bool) $this->get_routes->match($this->request)->uri();
+        } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Initiate Route request function
+     *
+     * @param string $route
+     * @param string &$output
+     * @return void
+     */
+    public function initiateRouteRequest()
+    {
         $this->request = \Illuminate\Http\Request::capture();
 
         /**
          * force admin route in case the request comes from admin side
          */
-        if(defined('HTTPS_CATALOG')) {
-            $appBaseName = basename(DIR_APPLICATION) . '/';
-            $route = $appBaseName . $route;
-
+        $appBaseName = basename(DIR_APPLICATION) . '/';
+        if (defined('HTTPS_CATALOG')) {
             $serverName = $this->request->server->get('SCRIPT_NAME');
             $this->request->server->set('SCRIPT_NAME', str_replace($appBaseName, '', $serverName));
         }
@@ -152,10 +167,8 @@ class Framework
          * Change URI for partial loaded controllers like common/header, common/footer etc...
          * in order to be able to override them
          */
-        if($output !== false) {
-            $this->request->server->set('REQUEST_URI', $route);
+        if ($this->output !== false) {
+            $this->request->server->set('REQUEST_URI', $this->route);
         }
-
-        return $this->app->router->has($route) || $this->request->is($route . '*');
     }
 }
