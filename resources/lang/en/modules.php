@@ -16,4 +16,5 @@ return [
     'added' => 'Added',
     'changed' => 'Changed',
     'removed' => 'Removed',
+    'required' => 'Action required',
 ];

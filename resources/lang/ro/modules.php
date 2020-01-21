@@ -16,4 +16,5 @@ return [
     'added' => 'Adaugari',
     'changed' => 'Modificari',
     'removed' => 'Stergeri',
+    'required' => 'Necesita actiuni',
 ];

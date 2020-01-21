@@ -34,6 +34,14 @@
             'data' => $info['removed']
         ])
         <?php endif; ?>
+        <?php if (isset($info['required'])): ?>
+        @include('admin.core.modules.partials.changelog-part', [
+            'title' => trans('modules.required'),
+            'label' => 'info',
+            'color' => 'orange',
+            'data' => $info['required']
+        ])
+        <?php endif; ?>
     </dd>
 </dl>
 <?php endforeach; ?>
