@@ -1,4 +1,11 @@
 <?php
+/*
+ * Created on Wed Jan 22 2020 by DaRock
+ *
+ * Aweb Design
+ * https://www.awebdesign.ro
+ *
+ */
 
 namespace App\Http\Controllers\Admin\Core;
 
@@ -80,6 +87,8 @@ class ModulesController extends Controller
         $model_user_user_group->removePermission($userGroupId, 'access', $path);
         $model_user_user_group->removePermission($userGroupId, 'modify', $path);
 
+        Artisan::call('cache:clear');
+
         return redirect()->route('admin::core.modules.show', [$module->getLowerName()])
             ->with('success', trans('modules.disabled'));
     }
@@ -105,6 +114,8 @@ class ModulesController extends Controller
         $model_user_user_group = Startup::getRegistry('model_user_user_group');
         $model_user_user_group->addPermission($userGroupId, 'access', $path);
         $model_user_user_group->addPermission($userGroupId, 'modify', $path);
+
+        Artisan::call('cache:clear');
 
         return redirect()->route('admin::core.modules.show', [$module->getLowerName()])->with(
             'success',
