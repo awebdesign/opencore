@@ -9,6 +9,8 @@
 
 namespace OpenCore;
 
+use Exception;
+
 define('LARAVEL_START', microtime(true));
 
 /*
@@ -31,17 +33,30 @@ class Framework
     private $response;
     private $request = null;
     private $kernel;
-    private $get_routes;
 
     private $registry;
-    private $route;
-    private $output;
+    public $route;
+    public $output;
+    public $routes_session;
+
+    public const NOT_FOUND = 0;
+    public const FOUND = 1;
 
     public function __construct()
     {
         $this->app = require __DIR__ . '/bootstrap/app.php';
 
         $this->kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
+
+        $this->app->singleton('OcLoader', function () {
+            $OcLoader = new \OpenCore\Support\OcLoader();
+            /**
+             * set loaded true in order to know the request was done through OpenCart
+             */
+            $OcLoader->set('loaded', true);
+
+            return $OcLoader;
+        });
     }
 
     /**
@@ -61,6 +76,8 @@ class Framework
         $this->registry =  $registry;
         $this->route =  $route;
         $this->output =  $output;
+
+        $this->routes_session[] = $route;
     }
 
     /**
@@ -70,7 +87,7 @@ class Framework
     {
         $this->response->sendHeaders();
 
-        $content = $this->response->getContent();
+        $content = $this->response;
 
         $this->kernel->terminate($this->request, $this->response);
 
@@ -128,18 +145,33 @@ class Framework
         /**
          * TODO: find a better way to check all available routes
          */
-        if (!isset($this->get_routes)) {
-            $response = $this->kernel->handle($request = \Illuminate\Http\Request::capture());
+        if (!$this->app->OcLoader->get('routes')) {
+            $request = \Illuminate\Http\Request::capture();
+
+            /**
+             * Force returning an empty response
+             */
+            $this->app->OcLoader->flash('check-routes', true);
+
+            $response = $this->kernel->handle($request);
 
             $this->kernel->terminate($request, $response);
 
-            $this->get_routes = $this->app->router->getRoutes();
-        };
+            $this->app->OcLoader->set('routes', $this->app->router->getRoutes());
+
+        }
 
         try {
-            return (bool) $this->get_routes->match($this->request)->uri();
+            $routes = $this->app->OcLoader->get('routes');
+
+            if ((bool) $routes->match($this->request)->uri()) {
+                return self::FOUND;
+            } else {
+                return self::NOT_FOUND;
+            }
+
         } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e) {
-            return false;
+            return self::NOT_FOUND;
         }
     }
 

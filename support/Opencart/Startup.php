@@ -17,7 +17,6 @@ if (!defined('OPENCORE_VERSION')) {
     define('OPENCORE_VERSION', '1.2.1');
 }
 
-require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../Framework.php';
 
 use Opencore\Framework;
@@ -28,7 +27,7 @@ class Startup extends \Controller
     private $route;
     private $data;
 
-    private $routes_cache_time = 3600; //1 hour expiration time
+    public $routes_cache_time = 3600; //1 hour expiration time
 
     private $default_allowed_routes = [
         'admin/core/home',
@@ -70,7 +69,15 @@ class Startup extends \Controller
         $this->route = rawurldecode($this->route);
 
         if ($this->checkOpenCoreRoute()) {
-            $response = $this->response();
+            $response = $this->response()->getContent();
+
+            /**
+             * set content type of the response received
+             */
+            $contentType = $this->response()->headers->all('content-type');
+            if (!empty($contentType[0])) {
+                $this->response->addHeader('Content-Type: ' . $contentType[0]);
+            }
 
             if ($output === false) {
                 /**
@@ -117,8 +124,9 @@ class Startup extends \Controller
             $allowed_routes = $cache->get('opencore_routes.' . $appBaseName); //separate for admin & catalog to avoid large cache files
         }
 
+        $force = false;
         if (in_array($this->route, $this->default_allowed_routes)) {
-            $allowed_routes[$this->route] = true;
+            $force = true;
         }
 
         if (isset($allowed_routes[$this->route]) && $allowed_routes[$this->route] == false) {
@@ -126,23 +134,30 @@ class Startup extends \Controller
         } else {
             Framework::getInstance()->initiate(self::$_registry, $this->route, $output);
 
-            if (!empty($allowed_routes[$this->route])) {
+            if (!empty($allowed_routes[$this->route]) || $force) {
                 Framework::getInstance()->initiateRouteRequest();
-            } elseif (Framework::getInstance()->checkRoute()) {
-                $allowed_routes[$this->route] = true;
             } else {
-                $allowed_routes[$this->route] = false;
+                $checkRoute = Framework::getInstance()->checkRoute();
+
+                switch ($checkRoute) {
+                    case Framework::FOUND:
+                        $allowed_routes[$this->route] = true;
+                        break;
+                    case Framework::NOT_FOUND:
+                        $allowed_routes[$this->route] = false;
+                        break;
+                }
             }
         }
 
         /**
          * Cache OpenCore allowed routes for faster rendering
          */
-        if ($this->routes_cache_time) {
+        if ($this->routes_cache_time && !$force) {
             $cache->set('opencore_routes.' . $appBaseName, $allowed_routes, time() + $this->routes_cache_time);
         }
 
-        if ($allowed_routes[$this->route]) {
+        if (!empty($allowed_routes[$this->route]) || $force) {
             return Framework::getInstance()->handle();
         }
 
