@@ -1,4 +1,10 @@
 <?php
+/*
+ * Created on Fri Jan 23 2020 by DaRock
+ *
+ * Copyright (c) Aweb Design
+ * https://www.awebdesign.ro
+ */
 
 namespace App\Console\Commands;
 

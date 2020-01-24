@@ -42,9 +42,9 @@
                         <?php $buttonClass = $module->enabled() ? 'alert-danger' : 'alert-success' ?>
                         {!! Form::open(['route' => ["admin::core.modules.$status", $module->getName()], 'method' => 'post']) !!}
                             <button class="btn btn-box-tool {{ $buttonClass }}" data-toggle="tooltip" type="submit"
-                                    title="" data-original-title="{{ trans("modules.{$status}") }}">
+                                    title="" data-original-title="{{ trans("general.status.{$status}") }}">
                                 <i class="fa fa-toggle-{{ $module->enabled() ? 'on' : 'off' }}"></i>
-                                {{ trans("modules.{$status}") }}
+                                {{ trans("general.status.{$status}") }}
                             </button>
                         {!! Form::close() !!}
                     </div>

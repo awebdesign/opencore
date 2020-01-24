@@ -14,7 +14,7 @@ if (!defined('DIR_APPLICATION')) {
 }
 
 if (!defined('OPENCORE_VERSION')) {
-    define('OPENCORE_VERSION', '1.2.1');
+    define('OPENCORE_VERSION', '1.2.2');
 }
 
 require_once __DIR__ . '/../../Framework.php';
@@ -31,9 +31,11 @@ class Startup extends \Controller
 
     private $default_allowed_routes = [
         'admin/core/home',
-        'admin/core/requirements',
         'admin/core/modules',
-        'admin/core/clear-cache'
+        'admin/core/system/routes',
+        'admin/core/system/register-routes',
+        'admin/core/system/requirements',
+        'admin/core/system/clear-cache',
     ];
 
     function __construct($registry)

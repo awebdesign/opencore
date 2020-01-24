@@ -46,7 +46,7 @@
                             <td>
                                 <a href="{{ route('admin::core.modules.show', [$module->getLowerName()]) }}">
                                     <span class="label label-{{$module->enabled() ? 'success' : 'danger'}}">
-                                        {{ $module->enabled() ? trans('modules.enabled') : trans('modules.disabled') }}
+                                        {{ $module->enabled() ? trans('general.status.enabled') : trans('general.status.disabled') }}
                                     </span>
                                 </a>
                             </td>

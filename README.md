@@ -109,6 +109,7 @@ MIT license. Please see the [license file](LICENSE) for more information.
 
 ## TODO
 
+* force paginator->appends to automatically add token/user_token param for admin requests only
 * when enabling a module the permission must be added automatically for the user who made the action
 * Example & Developer modules should be disabled by default
 * display jobs & failed_jobs lists in developer module

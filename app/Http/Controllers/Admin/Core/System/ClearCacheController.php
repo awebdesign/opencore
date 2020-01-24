@@ -7,7 +7,7 @@
  *
  */
 
-namespace App\Http\Controllers\Admin\Core;
+namespace App\Http\Controllers\Admin\Core\System;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
@@ -21,8 +21,7 @@ class ClearCacheController extends Controller
         Artisan::call('config:clear');
         Artisan::call('view:clear');
 
-        return redirect()
-        ->route('admin::core.home')
-        ->with('success', trans('general.cache.cleared'));
+        return redirect(url()->previous())
+        ->with('success', trans('system.cache.cleared'));
     }
 }

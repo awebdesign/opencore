@@ -90,7 +90,7 @@ class ModulesController extends Controller
         Artisan::call('cache:clear');
 
         return redirect()->route('admin::core.modules.show', [$module->getLowerName()])
-            ->with('success', trans('modules.disabled'));
+            ->with('success', trans('general.status.disabled'));
     }
 
     /**
@@ -119,7 +119,7 @@ class ModulesController extends Controller
 
         return redirect()->route('admin::core.modules.show', [$module->getLowerName()])->with(
             'success',
-            trans('modules.enabled')
+            trans('general.status.enabled')
         );
     }
 
