@@ -9,7 +9,7 @@ return [
         'action' => 'Action',
         'enabled' => 'Route has been enabled',
         'disabled' => 'Route has been disabled',
-        'register' => 'Register Routes',
+        'register' => 'Reinitialize Routes',
         'registered' => 'The routes have been registered!'
     ],
     'cache' => [

@@ -16,10 +16,7 @@ class ClearCacheController extends Controller
 {
     function index()
     {
-        Artisan::call('cache:clear');
-        Artisan::call('route:clear');
-        Artisan::call('config:clear');
-        Artisan::call('view:clear');
+        Artisan::call('opencore:clear-cache');
 
         return redirect(url()->previous())
         ->with('success', trans('system.cache.cleared'));

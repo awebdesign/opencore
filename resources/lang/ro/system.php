@@ -9,7 +9,7 @@ return [
         'action' => 'Actiune',
         'enabled' => 'Ruta a fost activata',
         'disabled' => 'Ruta a fost dezactivata',
-        'register' => 'Inregistreaza Rute',
+        'register' => 'Reinitializeaza Rutele',
         'registered' => 'Rutele au fost inregistrate!'
     ],
     'cache' => [

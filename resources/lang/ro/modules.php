@@ -12,5 +12,7 @@ return [
     'added' => 'Adaugari',
     'changed' => 'Modificari',
     'removed' => 'Stergeri',
+    'enabled' => 'Modulul a fost activat',
+    'disabled' => 'Modulul a fost dezactivat',
     'required' => 'Necesita actiuni',
 ];

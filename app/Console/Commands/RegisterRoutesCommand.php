@@ -8,6 +8,7 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Routing\Router;
 use Illuminate\Console\Command;
 use OpenCore\Support\Entities\OpencoreRoute;
@@ -62,6 +63,11 @@ class RegisterRoutesCommand extends Command
      */
     public function handle()
     {
+        $this->router->compiled = false;
+        Artisan::call('cache:clear');
+        Artisan::call('route:clear');
+
+        // $this->router->setRoutes($this->router->getRoutes());
         if (empty($this->router->getRoutes())) {
             $this->deleteAllRoutes();
 

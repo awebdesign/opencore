@@ -12,5 +12,7 @@ return [
     'added' => 'Added',
     'changed' => 'Changed',
     'removed' => 'Removed',
+    'enabled' => 'Module has been enabled',
+    'disabled' => 'Module has been disabled',
     'required' => 'Action required',
 ];

@@ -3,19 +3,6 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | OpenCart Debug Mode
-    |--------------------------------------------------------------------------
-    |
-    | When your application is in debug mode, detailed error messages with
-    | stack traces will be shown on every error that occurs within your
-    | OpenCart application.
-    |
-    */
-
-    'debug_opencart' => env('OPENCORE_DEBUG_OPENCART', false),
-
-    /*
-    |--------------------------------------------------------------------------
     | These are the core modules that should NOT be disabled under any circumstance
     |--------------------------------------------------------------------------
     */
@@ -37,7 +24,7 @@ return [
     */
 
     'paginate' => [
-        'admin' => 25,
+        'admin' => 30,
         'catalog' => 20
     ]
 ];

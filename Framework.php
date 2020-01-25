@@ -9,8 +9,6 @@
 
 namespace OpenCore;
 
-use Exception;
-
 define('LARAVEL_START', microtime(true));
 
 /*
@@ -37,10 +35,6 @@ class Framework
     private $registry;
     public $route;
     public $output;
-    public $routes_session;
-
-    public const NOT_FOUND = 0;
-    public const FOUND = 1;
 
     public function __construct()
     {
@@ -71,15 +65,6 @@ class Framework
         return self::$instance;
     }
 
-    public function initiate($registry, $route, &$output)
-    {
-        $this->registry =  $registry;
-        $this->route =  $route;
-        $this->output =  $output;
-
-        $this->routes_session[] = $route;
-    }
-
     /**
      * Retrieve Response
      */
@@ -104,86 +89,14 @@ class Framework
     }
 
     /**
-     * Run Framework
-     */
-    public function run()
-    {
-        $this->response = $this->kernel->handle(
-            $this->request = \Illuminate\Http\Request::capture()
-        );
-
-        $this->response->send();
-
-        $this->kernel->terminate($this->request, $this->response);
-    }
-
-    /**
      * Handle Framework Response
      */
-    public function handle()
+    public function handle($registry, $route, &$output)
     {
-        $this->response = $this->kernel->handle($this->request);
+        $this->registry =  $registry;
+        $this->route =  $route;
+        $this->output =  $output;
 
-        if ($this->response instanceof \Symfony\Component\HttpFoundation\BinaryFileResponse) {
-            $this->response->send();
-
-            return true;
-        } else {
-            return ($this->response->status() != '404') ? true : false;
-        }
-    }
-
-    /**
-     * Check Route function
-     *
-     * @return bool
-     */
-    public function checkRoute()
-    {
-        Framework::getInstance()->initiateRouteRequest();
-
-        /**
-         * TODO: find a better way to check all available routes
-         */
-        if (!$this->app->OcLoader->get('routes')) {
-            $request = \Illuminate\Http\Request::capture();
-
-            /**
-             * Force returning an empty response
-             */
-            $this->app->OcLoader->flash('check-routes', true);
-
-            $response = $this->kernel->handle($request);
-
-            $this->kernel->terminate($request, $response);
-
-            $this->app->OcLoader->set('routes', $this->app->router->getRoutes());
-
-        }
-
-        try {
-            $routes = $this->app->OcLoader->get('routes');
-
-            if ((bool) $routes->match($this->request)->uri()) {
-                return self::FOUND;
-            } else {
-                return self::NOT_FOUND;
-            }
-
-        } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e) {
-            return self::NOT_FOUND;
-        }
-    }
-
-    /**
-     * Initiate Route request function
-     *
-     * @param string $route
-     * @param string &$output
-     * @return void
-     */
-    public function initiateRouteRequest()
-    {
         $this->request = \Illuminate\Http\Request::capture();
 
         /**
@@ -202,5 +115,13 @@ class Framework
         if ($this->output !== false) {
             $this->request->server->set('REQUEST_URI', $this->route);
         }
+
+        $this->response = $this->kernel->handle($this->request);
+
+        if ($this->response instanceof \Symfony\Component\HttpFoundation\BinaryFileResponse) {
+            $this->response->send();
+        }
+
+        $this->kernel->terminate($this->request, $this->response);
     }
 }

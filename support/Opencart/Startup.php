@@ -33,7 +33,7 @@ class Startup extends \Controller
         'admin/core/home',
         'admin/core/modules',
         'admin/core/system/routes',
-        'admin/core/system/register-routes',
+        'admin/core/system/routes/register',
         'admin/core/system/requirements',
         'admin/core/system/clear-cache',
     ];
@@ -70,7 +70,17 @@ class Startup extends \Controller
         }
         $this->route = rawurldecode($this->route);
 
+        /**
+         * if is an Admin request add path to route
+         */
+        $appBaseName = basename(DIR_APPLICATION);
+        if (defined('HTTPS_CATALOG') && !strstr($this->route, $appBaseName . '/')) {
+            $this->route = $appBaseName . '/' . $this->route;
+        }
+
         if ($this->checkOpenCoreRoute()) {
+            Framework::getInstance()->handle(self::$_registry, $this->route, $output);
+
             $response = $this->response()->getContent();
 
             /**
@@ -86,6 +96,7 @@ class Startup extends \Controller
                  * means is a controller request which means we need to use default setOutput()
                  */
                 $this->response->setOutput($response);
+
                 return true;
             } else {
                 /**
@@ -93,6 +104,7 @@ class Startup extends \Controller
                  * Check system/engine/loader.php
                  */
                 $output = $response;
+
                 return false;
             }
         }
@@ -106,61 +118,48 @@ class Startup extends \Controller
     public function checkOpenCoreRoute()
     {
         /**
-         * if is an Admin request add path to route
+         * Check default allowed routes
          */
-        $appBaseName = basename(DIR_APPLICATION);
-        if (defined('HTTPS_CATALOG') && !strstr($this->route, $appBaseName . '/')) {
-            $this->route = $appBaseName . '/' . $this->route;
+        if (in_array($this->route, $this->default_allowed_routes)) {
+            return true;
         }
-        /*
-            TODO: We should add a dynamic ignore list here which should be configurable in admin/core/settings
-        */
 
         /**
          * force admin route in case the request comes from admin side
          */
         $allowed_routes = [];
 
-        if ($this->routes_cache_time) {
-            $cache = self::$_registry->get('cache');
-            $allowed_routes = $cache->get('opencore_routes.' . $appBaseName); //separate for admin & catalog to avoid large cache files
+        if (!$allowed_routes = $this->cache->get('opencore_routes')) {
+            $query = $this->db->query("SELECT method, uri FROM `opencore_routes` WHERE `status` = '1' ORDER BY uri");
+
+            if (!$query->num_rows)
+                return false;
+
+            foreach ($query->rows as $route) {
+                $allowed_routes[$route['method']][] = $route['uri'];
+            }
+
+            /**
+             * Cache OpenCore allowed routes for faster rendering
+             */
+            $this->cache->set('opencore_routes', $allowed_routes, time() + $this->routes_cache_time);
         }
 
-        $force = false;
-        if (in_array($this->route, $this->default_allowed_routes)) {
-            $force = true;
-        }
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
+        if (!empty($allowed_routes[$requestMethod])) {
+            foreach ($allowed_routes[$requestMethod] as $route) {
+                if (preg_match_all('/\{(.*?)\??\}/', $route, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER)) {
+                    foreach ($matches[0] as $match) {
+                        $remainingUri = substr($this->route, $match[1], strlen($this->route));
+                        $getSamePartFromRoute = strtok($remainingUri, '/');
+                        $route = substr_replace($route, $getSamePartFromRoute, $match[1], strlen($match[0]));
+                    }
+                }
 
-        if (isset($allowed_routes[$this->route]) && $allowed_routes[$this->route] == false) {
-            return false;
-        } else {
-            Framework::getInstance()->initiate(self::$_registry, $this->route, $output);
-
-            if (!empty($allowed_routes[$this->route]) || $force) {
-                Framework::getInstance()->initiateRouteRequest();
-            } else {
-                $checkRoute = Framework::getInstance()->checkRoute();
-
-                switch ($checkRoute) {
-                    case Framework::FOUND:
-                        $allowed_routes[$this->route] = true;
-                        break;
-                    case Framework::NOT_FOUND:
-                        $allowed_routes[$this->route] = false;
-                        break;
+                if ($route === $this->route) {
+                    return true;
                 }
             }
-        }
-
-        /**
-         * Cache OpenCore allowed routes for faster rendering
-         */
-        if ($this->routes_cache_time && !$force) {
-            $cache->set('opencore_routes.' . $appBaseName, $allowed_routes, time() + $this->routes_cache_time);
-        }
-
-        if (!empty($allowed_routes[$this->route]) || $force) {
-            return Framework::getInstance()->handle();
         }
 
         return false;
@@ -198,15 +197,5 @@ class Startup extends \Controller
         }
 
         return $registry;
-    }
-
-    /**
-     * Retrieves OpenCart variables defined when the controller was loaded
-     *
-     * @return object
-     */
-    public function getOcVars()
-    {
-        return $this->data;
     }
 }

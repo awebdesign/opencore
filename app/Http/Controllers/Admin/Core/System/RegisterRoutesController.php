@@ -30,6 +30,8 @@ class RegisterRoutesController extends Controller
         $route->status = 1;
         $route->save();
 
+        Artisan::call('cache:clear');
+
         return redirect(url()->previous())
         ->with('success', trans('system.routes.enabled'));
     }
@@ -39,6 +41,8 @@ class RegisterRoutesController extends Controller
         $route = OpencoreRoute::findOrFail($id);
         $route->status = 0;
         $route->save();
+
+        Artisan::call('cache:clear');
 
         return redirect(url()->previous())
         ->with('success', trans('system.routes.disabled'));
