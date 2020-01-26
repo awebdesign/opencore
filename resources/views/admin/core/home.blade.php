@@ -15,7 +15,7 @@ TEST TITLE
     <p>{{ trans('general.home.title') }}</p>
     <p>{{ trans('general.home.description') }}</p>
     <p>
-        <a class="btn btn-info" href="{{route('admin::core.requirements')}}">{{ trans('general.menu.requirements') }}</a>
+        <a class="btn btn-info" href="{{route('admin::core.system.requirements')}}">{{ trans('general.menu.requirements') }}</a>
     </p>
 </div>
 @endsection

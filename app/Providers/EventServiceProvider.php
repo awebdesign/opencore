@@ -38,7 +38,7 @@ class EventServiceProvider extends ServiceProvider
                 require realpath(basename(__DIR__ . '/../../../')) . '/config.php';
             }
 
-            $cachedRoutes = File::glob(DIR_CACHE . 'cache.opencore_routes.*.*');
+            $cachedRoutes = File::glob(DIR_CACHE . 'cache.opencore_routes.*');
             File::delete($cachedRoutes);
         });
     }

@@ -18,17 +18,27 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        /**
+         * Initiate loader in case the request is not done throught OpenCart
+         * and in order to avoid futher errors throwing
+         */
+        if (!$this->app->bound('OcLoader')) {
+            $this->app->bind('OcLoader', function () {
+                return new \OpenCore\Support\OcLoader();
+            });
+        }
+
         app('router')->bind('module', function ($module) {
             return app(RepositoryInterface::class)->find($module);
         });
 
-        $this->app->bind('OcCore', function () {
-            return new OcCore();
-        });
-
-        /* if ($this->app->environment() === 'local') {
-            $this->app->register('\Barryvdh\Debugbar\ServiceProvider');
-        } */
+        /**
+         * Loading Barryvdh Debug bar
+         * must be on local and APP_DEBUG = true
+         */
+        if (\App::environment('local')) {
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+        }
     }
 
     /**
@@ -44,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
         if (class_exists('\OpenCore\Framework')) {
             $this->app->singleton('db.connector.mysql', '\OpenCore\Support\MySqlSharedConnector');
         }
+
         /**
          * Rewrite admin routes in order to contain the Token query param
          * corrects assets url
@@ -56,6 +67,10 @@ class AppServiceProvider extends ServiceProvider
          * Fix MySql default string length for older mysql versions
          */
         Schema::defaultStringLength(191);
+
+        $this->app->bind('OcCore', function () {
+            return new OcCore();
+        });
 
         /**
          * set language based on OpenCart language session

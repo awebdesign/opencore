@@ -31,17 +31,26 @@ class Framework
     private $response;
     private $request = null;
     private $kernel;
-    private $get_routes;
 
     private $registry;
-    private $route;
-    private $output;
+    public $route;
+    public $output;
 
     public function __construct()
     {
         $this->app = require __DIR__ . '/bootstrap/app.php';
 
         $this->kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
+
+        $this->app->singleton('OcLoader', function () {
+            $OcLoader = new \OpenCore\Support\OcLoader();
+            /**
+             * set loaded true in order to know the request was done through OpenCart
+             */
+            $OcLoader->set('loaded', true);
+
+            return $OcLoader;
+        });
     }
 
     /**
@@ -56,13 +65,6 @@ class Framework
         return self::$instance;
     }
 
-    public function initiate($registry, $route, &$output)
-    {
-        $this->registry =  $registry;
-        $this->route =  $route;
-        $this->output =  $output;
-    }
-
     /**
      * Retrieve Response
      */
@@ -70,7 +72,7 @@ class Framework
     {
         $this->response->sendHeaders();
 
-        $content = $this->response->getContent();
+        $content = $this->response;
 
         $this->kernel->terminate($this->request, $this->response);
 
@@ -87,71 +89,14 @@ class Framework
     }
 
     /**
-     * Run Framework
-     */
-    public function run()
-    {
-        $this->response = $this->kernel->handle(
-            $this->request = \Illuminate\Http\Request::capture()
-        );
-
-        $this->response->send();
-
-        $this->kernel->terminate($this->request, $this->response);
-    }
-
-    /**
      * Handle Framework Response
      */
-    public function handle()
+    public function handle($registry, $route, &$output)
     {
-        $this->response = $this->kernel->handle($this->request);
+        $this->registry =  $registry;
+        $this->route =  $route;
+        $this->output =  $output;
 
-        if ($this->response instanceof \Symfony\Component\HttpFoundation\BinaryFileResponse) {
-            $this->response->send();
-
-            return true;
-        } else {
-            return ($this->response->status() != '404') ? true : false;
-        }
-    }
-
-    /**
-     * Check Route function
-     *
-     * @return bool
-     */
-    public function checkRoute()
-    {
-        Framework::getInstance()->initiateRouteRequest();
-
-        /**
-         * TODO: find a better way to check all available routes
-         */
-        if (!isset($this->get_routes)) {
-            $response = $this->kernel->handle($request = \Illuminate\Http\Request::capture());
-
-            $this->kernel->terminate($request, $response);
-
-            $this->get_routes = $this->app->router->getRoutes();
-        };
-
-        try {
-            return (bool) $this->get_routes->match($this->request)->uri();
-        } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e) {
-            return false;
-        }
-    }
-
-    /**
-     * Initiate Route request function
-     *
-     * @param string $route
-     * @param string &$output
-     * @return void
-     */
-    public function initiateRouteRequest()
-    {
         $this->request = \Illuminate\Http\Request::capture();
 
         /**
@@ -170,5 +115,13 @@ class Framework
         if ($this->output !== false) {
             $this->request->server->set('REQUEST_URI', $this->route);
         }
+
+        $this->response = $this->kernel->handle($this->request);
+
+        if ($this->response instanceof \Symfony\Component\HttpFoundation\BinaryFileResponse) {
+            $this->response->send();
+        }
+
+        $this->kernel->terminate($this->request, $this->response);
     }
 }

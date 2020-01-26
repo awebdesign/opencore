@@ -20,15 +20,22 @@
 
 Route::name('core.')->prefix('core')->namespace('Core')->group(function ($router) {
     $router->get('home', 'HomeController@index')->name('home');
-    $router->get('requirements', 'RequirementsController@index')->name('requirements');
-    $router->get('clear-cache', 'ClearCacheController@index')->name('clear-cache');
 
     $router->get('modules', 'ModulesController@index')->name('modules.index');
     $router->get('modules/{module}', 'ModulesController@show')->name('modules.show');
     $router->post('modules/{module}/update', 'ModulesController@update')->name('modules.update');
-    $router->post('modules/disable/{module}', 'ModulesController@disable')->name('modules.disable');
     $router->post('modules/enable/{module}', 'ModulesController@enable')->name('modules.enable');
+    $router->post('modules/disable/{module}', 'ModulesController@disable')->name('modules.disable');
     $router->post('modules/{module}/publish', 'ModulesController@publishAssets')->name('modules.publish');
+
+    Route::name('system.')->prefix('system')->namespace('System')->group(function ($router) {
+        $router->get('requirements', 'RequirementsController@index')->name('requirements');
+        $router->get('routes', 'RegisterRoutesController@index')->name('routes');
+        $router->post('routes/enable/{id}', 'RegisterRoutesController@enable')->name('routes.enable');
+        $router->post('routes/disable/{id}', 'RegisterRoutesController@disable')->name('routes.disable');
+        $router->get('routes/register', 'RegisterRoutesController@register')->name('routes.register');
+        $router->get('clear-cache', 'ClearCacheController@index')->name('clear-cache');
+    });
 });
 
 /** Example of rewriting common OpenCart controllers */

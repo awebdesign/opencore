@@ -27,11 +27,6 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbar">
                         <ul class="nav navbar-nav">
-                            <li class="{{ Route::is('admin::core.requirements') ? 'active' : '' }}">
-                                <a href="{{ route('admin::core.requirements') }}">
-                                    <i class="fa fa-life-ring"></i> {{ trans('general.menu.requirements') }}
-                                </a>
-                            </li>
                             <li>
                                 <a class="dropdown-toggle" href="#" id="modulesDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-cubes"></i> {{ trans('general.menu.modules') }}
@@ -57,8 +52,18 @@
                                     <i class="fa fa-gears"></i> {{ trans('general.menu.system') }}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="systemDropdown">
-                                    <li class="{{ Route::is('admin::core.clear-cache') ? 'active' : '' }}">
-                                        <a href="{{ route('admin::core.clear-cache') }}">
+                                    <li class="{{ Route::is('admin::core.system.routes') }}">
+                                        <a href="{{ route('admin::core.system.routes') }}">
+                                            <i class="fa fa-registered"></i> {{ trans('general.menu.routes') }}
+                                        </a>
+                                    </li>
+                                    <li class="{{ Route::is('admin::core.system.requirements') ? 'active' : '' }}">
+                                        <a href="{{ route('admin::core.system.requirements') }}">
+                                            <i class="fa fa-life-ring"></i> {{ trans('general.menu.requirements') }}
+                                        </a>
+                                    </li>
+                                    <li class="{{ Route::is('admin::core.system.clear-cache') ? 'active' : '' }}">
+                                        <a href="{{ route('admin::core.system.clear-cache') }}">
                                             <i class="fa fa-eraser"></i> {{ trans('general.menu.clear_cache') }}
                                         </a>
                                     </li>

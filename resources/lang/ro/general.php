@@ -3,10 +3,11 @@
 return [
     'menu' => [
         'toggle' => 'Meniu',
-        'requirements' => 'Cerinte sistem',
         'modules' => 'Module',
         'modules_management' => 'Management Module',
         'system' => 'Sistem',
+        'routes' => 'Rute',
+        'requirements' => 'Cerinte sistem',
         'clear_cache' => 'Sterge Cache',
     ],
     'home' => [
@@ -16,8 +17,11 @@ return [
     'cron' => [
         'info' => 'Nu uitati sa adaugati urmatoarea comanda pentru cronjob in panoul de control al serverului de hosting (cPanel)'
     ],
-    'cache' => [
-        'cleared' => 'Cache-ul a fost sters!'
+    'status' => [
+        'enable' => 'Activeaza',
+        'disable' => 'Dezactiveaza',
+        'enabled' => 'Activat',
+        'disabled' => 'Dezactivat',
     ],
     'powered_by' => 'Powered by',
     'error_title' => 'Opa! Am intampinat probleme!',

@@ -7,7 +7,7 @@
  *
  */
 
-namespace App\Http\Controllers\Admin\Core;
+namespace App\Http\Controllers\Admin\Core\System;
 
 use App\Http\Controllers\Controller;
 use RachidLaasri\LaravelInstaller\Helpers\RequirementsChecker;
@@ -54,6 +54,6 @@ class RequirementsController extends Controller
 
         $cronpath = realpath(basename(__DIR__ . '/../')) . '/core/artisan';
 
-        return view('admin.core.requirements', compact('requirements', 'phpSupportInfo', 'permissions', 'cronpath'));
+        return view('admin.core.system.requirements', compact('requirements', 'phpSupportInfo', 'permissions', 'cronpath'));
     }
 }

@@ -11,7 +11,8 @@
 			<search><![CDATA[class Url {]]></search>
 			<add position="before"><![CDATA[
 /* OpenCore Module */
-require_once realpath(DIR_SYSTEM . '/../') . '/core/vendor/autoload.php';
+//require_once realpath(DIR_SYSTEM . '/../') . '/core/vendor/autoload.php';
+require_once realpath(DIR_SYSTEM . '/../') . '/core/support/Opencart/OcCore.php';
 
 use OpenCore\Support\OpenCart\OcCore;
 ]]></add>
@@ -103,7 +104,7 @@ use OpenCore\Support\OpenCart\OcCore;
 			<search><![CDATA[$class = 'DB\\' . $adaptor;]]></search>
 			<add position="before"><![CDATA[
         /* OpenCore Module */
-        if(in_array(strtolower($adaptor), ['mysqli', 'mysql', 'mpdo'])) {
+        if(!defined('OPENCORE_DISABLED') && in_array(strtolower($adaptor), ['mysqli', 'mysql', 'mpdo'])) {
             $adaptor = 'corepdo';
         }
     ]]></add>
@@ -118,7 +119,7 @@ use OpenCore\Support\OpenCart\OcCore;
         </operation>
 		<operation>
 			<search><![CDATA[if (class_exists('NitroDb')]]></search>
-			<add position="replace"><![CDATA[if (0 && class_exists('NitroDb')]]></add>
+			<add position="replace"><![CDATA[if (defined('OPENCORE_DISABLED') && class_exists('NitroDb')]]></add>
 		</operation>
 	</file>
 </modification>
