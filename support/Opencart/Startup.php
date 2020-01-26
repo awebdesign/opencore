@@ -147,6 +147,10 @@ class Startup extends \Controller
 
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         if (!empty($allowed_routes[$requestMethod])) {
+            if (in_array($this->route, $allowed_routes[$requestMethod])) {
+                return true;
+            }
+
             foreach ($allowed_routes[$requestMethod] as $route) {
                 if (preg_match_all('/\{(.*?)\??\}/', $route, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER)) {
                     foreach ($matches[0] as $match) {
@@ -154,25 +158,15 @@ class Startup extends \Controller
                         $getSamePartFromRoute = strtok($remainingUri, '/');
                         $route = substr_replace($route, $getSamePartFromRoute, $match[1], strlen($match[0]));
                     }
-                }
 
-                if ($route === $this->route) {
-                    return true;
+                    if ($route === $this->route) {
+                        return true;
+                    }
                 }
             }
         }
 
         return false;
-    }
-
-    /**
-     * Run function
-     *
-     * @execute Framewrok
-     */
-    public function run()
-    {
-        Framework::getInstance()->run();
     }
 
     /**
