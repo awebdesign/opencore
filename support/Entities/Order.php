@@ -18,4 +18,14 @@ class Order extends Model
      * @var string
      */
     protected $dateFormat = 'Y-m-d H:i:s';
+
+    /**
+     * Get the customer's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return ucwords(strtolower("{$this->firstname} {$this->lastname}"));
+    }
 }

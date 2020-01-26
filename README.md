@@ -50,14 +50,24 @@ check Laravel requirements because they may differ depending on the used version
 4. `cd core/`
 5. `composer update`
 6. `php artisan key:generate`
-7. `php artisan migrate:install`
-8. `php artisan migrate`
+7. `php artisan migrate`
+8. `php artisan opencore:register-routes`
 9. copy OpenCart extension files from core/opencart-module/(2.x|3.x)/upload to you OpenCart root folder
 10. go to OpenCart admin panel / extensions / extensions / modules, find OpenCore module and install it
 11. click on the OpenCore icon from admin / left column / section "System Requirements" and make sure there's nothing marked with red
 12. Optional: in order to enable Developer & Example modules you need to access admin / user / user groups section and add permission for them
 
 Enjoy!
+
+## Update
+
+1. `cd core/`
+2. `git update`
+3. `composer update`
+4. `php artisan migrate`
+5. `php artisan opencore:register-routes`
+6. copy OpenCart extension files from core/opencart-module/(2.x|3.x)/upload to you OpenCart root folder
+7. Optional: go to OpenCart / extensions / modules, disable and then re-enable the OpenCore module
 
 ## How does it works ?
 
@@ -109,6 +119,8 @@ MIT license. Please see the [license file](LICENSE) for more information.
 
 ## TODO
 
+* create a console command for faster instalation / update
+* force paginator->appends to automatically add token/user_token param for admin requests only
 * when enabling a module the permission must be added automatically for the user who made the action
 * Example & Developer modules should be disabled by default
 * display jobs & failed_jobs lists in developer module

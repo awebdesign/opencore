@@ -3,10 +3,11 @@
 return [
     'menu' => [
         'toggle' => 'Menu',
-        'requirements' => 'System Requirements',
         'modules' => 'Modules',
         'modules_management' => 'Modules Management',
         'system' => 'System',
+        'routes' => 'Routes',
+        'requirements' => 'System Requirements',
         'clear_cache' => 'Clear Cache',
     ],
     'home' => [
@@ -16,8 +17,11 @@ return [
     'cron' => [
         'info' => 'Don\'t forget to add the folowing cronjob on your hosting control panel (cPanel)'
     ],
-    'cache' => [
-        'cleared' => 'Cache cleared!'
+    'status' => [
+        'enable' => 'Enable',
+        'disable' => 'Disable',
+        'enabled' => 'Enabled',
+        'disabled' => 'Disabled',
     ],
     'powered_by' => 'Powered by',
     'error_title' => 'Whoops! Something went wrong!',

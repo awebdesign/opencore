@@ -27,6 +27,14 @@ class ControllerStartupOpencore extends Startup
      */
     function before_controller($route, &$data, &$output = false)
     {
+        /**
+         * In case we want to disable OpenCore for catalog
+         * OPENCORE_DISABLED constant must be defined in config.php
+         */
+        if(defined('OPENCORE_DISABLED')) {
+            return null;
+        }
+
         /* if (self::$booted) {
             return false;
         } */

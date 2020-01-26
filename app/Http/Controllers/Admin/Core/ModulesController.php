@@ -1,4 +1,11 @@
 <?php
+/*
+ * Created on Wed Jan 22 2020 by DaRock
+ *
+ * Aweb Design
+ * https://www.awebdesign.ro
+ *
+ */
 
 namespace App\Http\Controllers\Admin\Core;
 
@@ -80,6 +87,9 @@ class ModulesController extends Controller
         $model_user_user_group->removePermission($userGroupId, 'access', $path);
         $model_user_user_group->removePermission($userGroupId, 'modify', $path);
 
+        //TODO: need to be call in a separate Job/Queue in order to use a diff instance of app
+        Artisan::call('opencore:register-routes');
+
         return redirect()->route('admin::core.modules.show', [$module->getLowerName()])
             ->with('success', trans('modules.disabled'));
     }
@@ -106,6 +116,9 @@ class ModulesController extends Controller
         $model_user_user_group->addPermission($userGroupId, 'access', $path);
         $model_user_user_group->addPermission($userGroupId, 'modify', $path);
 
+        //TODO: need to be call in a separate Job/Queue in order to use a diff instance of app
+        Artisan::call('opencore:register-routes');
+
         return redirect()->route('admin::core.modules.show', [$module->getLowerName()])->with(
             'success',
             trans('modules.enabled')
@@ -121,6 +134,9 @@ class ModulesController extends Controller
     {
         $output = new BufferedOutput();
         Artisan::call('module:update', ['module' => $module->getName()], $output);
+
+        //TODO: need to be call in a separate Job/Queue in order to use a diff instance of app
+        Artisan::call('opencore:register-routes');
 
         return Response::json(['updated' => true, 'message' => $output->fetch()]);
     }

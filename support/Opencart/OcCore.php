@@ -11,29 +11,12 @@ namespace OpenCore\Support\OpenCart;
 
 trait OcCore
 {
-    /*public $registry;
-
-    public function setInstance($registry)
-    {
-        $this->registry = $registry;
-        return $this->registry;
-    }
-
-    public function __get($key)
-    {
-        return $this->registry->get($key);
-    }
-
-    public static function getInstance()
-    {
-        if ($this->registry === NULL) {
-            throw new Exception('Oc Registry Instance Could not be loaded');
-        }
-        return $this->registry;
-    }*/
-
     public function removeIndexAndRouteParam($url)
     {
+        if (defined('OPENCORE_DISABLED')) {
+            return $url;
+        }
+
         if (strstr($url, 'index.php?route=')) {
             $url = str_replace('index.php?route=common/home', '', $url); //replace home url for catalog
             $url = str_replace('&amp;', '&', $url);
@@ -53,6 +36,9 @@ trait OcCore
          */
         if (!$this->config->get('smp_is_install')) {
 
+            if (defined('OPENCORE_DISABLED')) {
+                return true;
+            }
             /**
              * check if not found, maybe the page exists in Laravel system
              */
@@ -66,7 +52,7 @@ trait OcCore
 
     public function isRouted($route)
     {
-        return !empty($this->request->has_route[$route]);
+        return !defined('OPENCORE_DISABLED') && !empty($this->request->has_route[$route]);
     }
 
     public function getTokenStr()
@@ -110,30 +96,5 @@ trait OcCore
         foreach ($permissions as $permission) {
             $this->model_user_user_group->removePermission($this->user->getGroupId(), $permission, $path);
         }
-    }
-
-    function getWorkingFolder()
-    {
-        return !defined('HTTPS_CATALOG') ? 'catalog' : 'admin';
-    }
-
-    function getCurrentLanguage($load_fallback)
-    {
-        if ($this->getWorkingFolder() == 'admin') {
-            $lang = $this->config->get('config_admin_language');
-        } else {
-            $lang = isset($this->session->data['language']) ? basename($this->session->data['language']) : $this->config->get('config_language');
-        }
-
-        return $load_fallback ? 'en-gb' : ($lang ?: $this->getCurrentLanguage(true));
-    }
-
-    public function getOcControllers($controllers = [], $args = [])
-    {
-        foreach ($controllers as $key => $controller) {
-            $this->setData($key, $this->getOcController($controller, $args));
-        }
-
-        return $this;
     }
 }
