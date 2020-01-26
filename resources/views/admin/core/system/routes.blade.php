@@ -20,7 +20,7 @@
                         <thead>
                         <tr>
                             <th width="15%">{{ trans('system.routes.method') }}</th>
-                            <th>{{ trans('routes.uri') }}</th>
+                            <th>{{ trans('system.routes.uri') }}</th>
                             <th width="15%">{{ trans('system.routes.name') }}</th>
                             <th width="15%">{{ trans('system.routes.action') }}</th>
                         </tr>
