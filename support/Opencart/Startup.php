@@ -14,7 +14,7 @@ if (!defined('DIR_APPLICATION')) {
 }
 
 if (!defined('OPENCORE_VERSION')) {
-    define('OPENCORE_VERSION', '1.2.3');
+    define('OPENCORE_VERSION', '1.2.2');
 }
 
 require_once __DIR__ . '/../../Framework.php';
@@ -130,7 +130,7 @@ class Startup extends \Controller
         $allowed_routes = [];
 
         if (!$allowed_routes = $this->cache->get('opencore_routes')) {
-            $query = $this->db->query("SELECT method, uri FROM `" . DB_PREFIX . "opencore_routes` WHERE `status` = '1' ORDER BY uri");
+            $query = $this->db->query("SELECT method, uri FROM `opencore_routes` WHERE `status` = '1' ORDER BY uri");
 
             if (!$query->num_rows)
                 return false;
@@ -154,10 +154,10 @@ class Startup extends \Controller
             foreach ($allowed_routes[$requestMethod] as $route) {
                 if (preg_match_all('/\{(.*?)\??\}/', $route, $matches, PREG_OFFSET_CAPTURE)) {
                     foreach ($matches[0] as $match) {
-                        $remainingUri = substr($this->route, $match[1], strlen($this->route));
+                        $remainingUri = trim(substr($this->route, $match[1], strlen($this->route)), '/');
 
                         $getSamePartFromRoute = strtok($remainingUri, '/');
-                        $route = substr_replace($route, $getSamePartFromRoute, $match[1], strlen($match[0]));
+                        $route = str_replace($match[0], $getSamePartFromRoute, $route);
                     }
 
                     if (rtrim($route, '/') === $this->route) {
