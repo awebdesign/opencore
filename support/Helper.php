@@ -57,9 +57,20 @@ if (!function_exists('token_field')) {
     }
 }
 
-if (! function_exists('module_version')) {
+if (!function_exists('module_version')) {
     function module_version(\Nwidart\Modules\Laravel\Module $module)
     {
         return $module->version;
+    }
+}
+
+if (!function_exists('module_asset')) {
+    function module_asset($asset)
+    {
+        $url = Module::asset($asset);
+
+        $url  = substr_replace($url, 'https://', 0, 2);
+
+        return $url;
     }
 }
