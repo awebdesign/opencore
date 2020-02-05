@@ -14,12 +14,17 @@ if (!defined('DIR_APPLICATION')) {
 }
 
 if (!defined('OPENCORE_VERSION')) {
-    define('OPENCORE_VERSION', '1.2.3');
+    define('OPENCORE_VERSION', '1.2.2');
 }
 
 require_once __DIR__ . '/../../Framework.php';
 
+use Exception;
 use Opencore\Framework;
+use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouteCollection;
 
 class Startup extends \Controller
 {
@@ -130,13 +135,14 @@ class Startup extends \Controller
         $allowed_routes = [];
 
         if (!$allowed_routes = $this->cache->get('opencore_routes')) {
-            $query = $this->db->query("SELECT method, uri FROM `" . DB_PREFIX . "opencore_routes` WHERE `status` = '1' ORDER BY uri");
+            $query = $this->db->query("SELECT method, name, uri FROM `opencore_routes` WHERE `status` = '1' ORDER BY uri");
 
             if (!$query->num_rows)
                 return false;
 
             foreach ($query->rows as $route) {
-                $allowed_routes[$route['method']][] = $route['uri'];
+                $name = $route['name'] ?? $route['uri'];
+                $allowed_routes[$route['method']][$name] = $route['uri'];
             }
 
             /**
@@ -147,22 +153,20 @@ class Startup extends \Controller
 
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         if (!empty($allowed_routes[$requestMethod])) {
-            if (in_array($this->route, $allowed_routes[$requestMethod])) {
-                return true;
+            $routes = new RouteCollection();
+            $context = new RequestContext('/');
+
+            foreach ($allowed_routes[$requestMethod] as $name => $routeUri) {
+                $routeInstance = new Route($routeUri);
+                $routes->add($name, $routeInstance);
             }
 
-            foreach ($allowed_routes[$requestMethod] as $route) {
-                if (preg_match_all('/\{(.*?)\??\}/', $route, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER)) {
-                    foreach ($matches[0] as $match) {
-                        $remainingUri = substr($this->route, $match[1], strlen($this->route));
-                        $getSamePartFromRoute = strtok($remainingUri, '/');
-                        $route = substr_replace($route, $getSamePartFromRoute, $match[1], strlen($match[0]));
-                    }
+            $matcher = new UrlMatcher($routes, $context);
 
-                    if ($route === $this->route) {
-                        return true;
-                    }
-                }
+            try {
+                return $matcher->match('/'.$this->route);
+            } catch(Exception $e) {
+                return false;
             }
         }
 

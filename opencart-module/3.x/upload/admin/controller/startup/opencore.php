@@ -67,10 +67,13 @@ class ControllerStartupOpencore extends Startup
                 $data['permissions'][] = 'core/*';
 
                 //get modules
-                $modules = app('modules')->all();
-                foreach ($modules as $module) {
-                    if ($module->enabled()) {
-                        $data['permissions'][] = strtolower($module->getName()) . '/*';
+                if (is_dir(realpath(DIR_APPLICATION . '../core/modules'))) {
+                    foreach (glob(realpath(DIR_APPLICATION . '../core/modules') . '/*/module.json') as $path) {
+                        $moduleManifest = json_decode(file_get_contents($path));
+                        if (!json_last_error() && !empty($moduleManifest->active)) {
+                            $moduleName = strtolower(basename(str_replace('/module.json', '', $path)));
+                            $data['permissions'][] = $moduleName . '/*';
+                        }
                     }
                 }
                 break;
