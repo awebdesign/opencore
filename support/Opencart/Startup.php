@@ -152,14 +152,15 @@ class Startup extends \Controller
             }
 
             foreach ($allowed_routes[$requestMethod] as $route) {
-                if (preg_match_all('/\{(.*?)\??\}/', $route, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER)) {
+                if (preg_match_all('/\{(.*?)\??\}/', $route, $matches, PREG_OFFSET_CAPTURE)) {
                     foreach ($matches[0] as $match) {
                         $remainingUri = substr($this->route, $match[1], strlen($this->route));
+
                         $getSamePartFromRoute = strtok($remainingUri, '/');
                         $route = substr_replace($route, $getSamePartFromRoute, $match[1], strlen($match[0]));
                     }
 
-                    if ($route === $this->route) {
+                    if (rtrim($route, '/') === $this->route) {
                         return true;
                     }
                 }
