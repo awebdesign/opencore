@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Lang;
 
 class AdminCreator
 {
-    private $inlineContent = null;
+    private $inlineContent = [
+        'header' => null,
+        'footer' => null
+    ];
 
     /**
      * Bind data to the view.
@@ -54,8 +57,10 @@ class AdminCreator
                     }
                 break;
                 case 'inline.styles':
+                    $this->inlineContent['header'][] = $content;
+                break;
                 case 'inline.scripts':
-                    $this->inlineContent[] = $content;
+                    $this->inlineContent['footer'][] = $content;
                 break;
             }
         }
@@ -68,8 +73,8 @@ class AdminCreator
         $loader = Startup::getRegistry('load');
 
         $header = $loader->controller('common/header');
-        if(!is_null($this->inlineContent)) {
-            $headContent = implode("\n", $this->inlineContent);
+        if(!is_null($this->inlineContent['header'])) {
+            $headContent = implode("\n", $this->inlineContent['header']);
             $header = str_replace('</head>', $headContent . '</head>', $header);
         }
 
@@ -80,6 +85,10 @@ class AdminCreator
 
         $column_left = $loader->controller('common/column_left');
         $footer = $loader->controller('common/footer');
+        if(!is_null($this->inlineContent['footer'])) {
+            $footerContent = implode("\n", $this->inlineContent['footer']);
+            $footer = str_replace('</body>', $footerContent . '</body>', $footer);
+        }
 
         $view->with('opencart_header', $header);
         $view->with('opencart_column_left', $column_left);
