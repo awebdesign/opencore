@@ -151,7 +151,13 @@ class Startup extends \Controller
             $this->cache->set('opencore_routes', $allowed_routes, time() + $this->routes_cache_time);
         }
 
-        $requestMethod = $_SERVER['REQUEST_METHOD'];
+        /* fix delete routes */
+        if(!empty($this->request->post['_method']) && $this->request->post['_method'] == 'DELETE') {
+            $requestMethod = $this->request->post['_method'];
+        } else {
+            $requestMethod = $_SERVER['REQUEST_METHOD'];
+        }
+
         if (!empty($allowed_routes[$requestMethod])) {
             $routes = new RouteCollection();
             $context = new RequestContext('/');
