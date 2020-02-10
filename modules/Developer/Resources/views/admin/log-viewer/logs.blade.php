@@ -99,7 +99,7 @@
                 deleteLogForm  = $('form#delete-log-form'),
                 submitBtn      = deleteLogForm.find('button[type=submit]');
 
-            $("a[href=#delete-log-modal]").on('click', function(event) {
+            $("a[href=\\#delete-log-modal]").on('click', function(event) {
                 event.preventDefault();
                 var date = $(this).data('log-date');
                 deleteLogForm.find('input[name=date]').val(date);
