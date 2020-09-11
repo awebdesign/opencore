@@ -135,7 +135,7 @@ class Startup extends \Controller
         $allowed_routes = [];
 
         if (!$allowed_routes = $this->cache->get('opencore_routes')) {
-            $query = $this->db->query("SELECT method, name, uri FROM `opencore_routes` WHERE `status` = '1' ORDER BY uri");
+            $query = $this->db->query("SELECT method, name, uri FROM `" . DB_PREFIX . "opencore_routes` WHERE `status` = '1' ORDER BY uri");
 
             if (!$query->num_rows)
                 return false;
