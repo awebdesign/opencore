@@ -1,4 +1,12 @@
-<h1 align="center"><img src="https://opencore.me/images/logo/opencore-logo-large-transparent.png" width="250" alt="OpenCore"></h1>
+<h1 align="center">This project is abandoned!</h1>
+**We suggest you to use Nexus for OpenCart.**
+Nexus can be found here <a target="_blank" href="https://github.com/awebdesign/nexus">GitHub Nexus</a> and is a module like package which can be added in OpenCart and will let you call methods in the same manner as Laravel.
+For the moment it doesn't have the same complexity of OpenCore but with a little help from you I'm sure it will be much better than it.
+The best thing is that the footprint is much smaller and the speed is much faster!
+
+
+
+<h1 align="center">OpenCore</h1>
 
 **An application built on Laravel which can run as a subsystem for OpenCart system.**
 
@@ -137,15 +145,3 @@ MIT license. Please see the [license file](LICENSE) for more information.
 * fix rotues shown on php artisan route:list
 * add mail eclipse https://github.com/Qoraiche/laravel-mail-editor (maybe)
 * add a MarketPlace for all OpenCore modules! IMPORTANT!
-
-## Screenshots
-
-<img alt="OpenCore home OpenCart 2x" src="https://opencore.me/images/screenshots/home-2x.png">
-<img alt="OpenCore home OpenCart 3x" src="https://opencore.me/images/screenshots/home-3x.png">
-<img alt="System Requirements" src="https://opencore.me/images/screenshots/system-requirements.png">
-<img alt="OpenCore Modules management" src="https://opencore.me/images/screenshots/modules-management.png">
-<img alt="Developer Module" src="https://opencore.me/images/screenshots/developer-module.png">
-<img alt="Logs Dashboard" src="https://opencore.me/images/screenshots/logs-dashboard.png">
-<img alt="Tasks" src="https://opencore.me/images/screenshots/tasks-module.png">
-<img alt="Add Task" src="https://opencore.me/images/screenshots/tasks-module-add.png">
-<img alt="Example Module" src="https://opencore.me/images/screenshots/example-module.png">
